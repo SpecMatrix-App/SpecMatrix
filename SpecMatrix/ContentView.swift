@@ -86,20 +86,21 @@ struct BatteryInfo {
     var stateColor: Color {
         // An unknown level is not a low level.
         if level < 0 {
-            return .secondary
+            return SpecColors.neutral
         }
         if state == .charging || state == .full {
-            return .green
+            return SpecColors.good
         }
         
         if level <= 0.1 {
-            return .red
+            return SpecColors.critical
         } else if level <= 0.2 {
-            return .orange
+            return SpecColors.warning
         } else if level <= 0.5 {
-            return .yellow
+            return SpecColors.caution
         } else {
-            return .blue
+            // A normal level is not a status to call out: the accent colour, as for other section icons.
+            return Color.accentColor
         }
     }
     
@@ -323,7 +324,7 @@ struct NetworkInfo {
     }
     
     var statusColor: Color {
-        isConnected ? .green : .red
+        isConnected ? SpecColors.good : SpecColors.critical
     }
 }
 
@@ -634,6 +635,8 @@ struct ContentView: View {
                 .tabItem { Label("Settings", systemImage: "gear") }
                 .tag(4)
         }
+        // Hidden-section notices offer a shortcut to Settings (tag 4). It only changes the selected tab.
+        .environment(\.showSettingsTab, { selectedTab = 4 })
         .specTabBarMinimizesOnScroll()
         .preferredColorScheme(selectedTheme.colorScheme)
         .onAppear {

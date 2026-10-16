@@ -20,7 +20,7 @@ struct SpecsScreen: View {
 
     var body: some View {
         SpecScreen(
-            title: "Device Specs",
+            title: "Specs",
             subtitle: device.modelName,
             hiddenNotice: showsAnything ? nil : HiddenNotice(title: "Specifications Hidden")
         ) {
@@ -65,7 +65,7 @@ struct BatteryInfoView: View {
                 showingSettingsGuide = true
             } label: {
                 SpecRow(label: "Health", value: batteryInfo.healthDescription,
-                        accessorySystemImage: "info.circle", isSelectable: false)
+                        accessorySystemImage: "info.circle", isSelectable: false, labelIsPrimary: true)
             }
             .accessibilityHint("Shows how to find battery health in Settings")
         }

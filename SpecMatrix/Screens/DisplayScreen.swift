@@ -12,7 +12,7 @@ struct DisplayScreen: View {
 
     var body: some View {
         SpecScreen(
-            title: "Display Information",
+            title: "Display",
             hiddenNotice: isVisible ? nil : HiddenNotice(title: "Display Information Hidden")
         ) {
             ScreenInfoView(screenInfo: screenInfo)

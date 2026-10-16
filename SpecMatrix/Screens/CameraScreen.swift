@@ -12,7 +12,7 @@ struct CameraScreen: View {
 
     var body: some View {
         SpecScreen(
-            title: "Camera System",
+            title: "Camera",
             hiddenNotice: isVisible ? nil : HiddenNotice(title: "Camera Information Hidden")
         ) {
             CameraInfoView(camera: device.backCamera, systemImage: "camera.fill.badge.ellipsis")
@@ -34,7 +34,7 @@ struct CameraInfoView: View {
                     Text(feature)
                 } icon: {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(SpecColors.good)
                 }
                 .accessibilityLabel("Feature: \(feature)")
             }

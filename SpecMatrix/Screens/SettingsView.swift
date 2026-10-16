@@ -111,12 +111,27 @@ struct SettingsView: View {
 }
 
 /// A row that leaves the app: a title, then either a detail (such as the address) or a trailing arrow.
+/// At accessibility text sizes the detail moves below the title, where it can wrap instead of being
+/// truncated beside it.
 private struct ExternalLinkLabel: View {
     let title: String
     let systemImage: String
     var detail: String?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
+        if let detail, dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 4) {
+                Label(title, systemImage: systemImage)
+                Text(detail)
+                    .foregroundStyle(.secondary)
+            }
+        } else {
+            row
+        }
+    }
+
+    private var row: some View {
         HStack {
             Label(title, systemImage: systemImage)
             Spacer()

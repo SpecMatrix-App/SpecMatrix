@@ -1,18 +1,83 @@
 # Phase 3 handoff: Liquid Glass and iOS UI modernization
 
-Last updated: 2026-10-16, after the Phase 3.5 finalization (owner-approved changes). Nothing in the
-finalization is committed; it starts from commit `5f9ea1a`.
+Last updated: 2026-10-16, Phase 3 closeout audit. All Phase 3 and 3.5 work is committed: finalization
+in `ffc5855`, CI fixes in `0b6be75` and `dd85147`. The audit changed only this file.
 
-**Status: partially validated. Phase 3 is not complete.** All four approved changes are implemented and
-build. The package tests and the camera source check pass, and the theme fix and the new tests were
-verified on iOS 27. These remain open:
+**Status: Phase 3 is complete, with documented limitations.** No genuine blocker remains (§C4). The
+limitations below are recorded, not resolved; nothing listed as **not run** has been run.
 
-- The final app-test run across iOS 17, 18, 26 and 27 was **not run**: the owner stopped simulator use because the simulators crash and spike CPU.
-- Two UI tests have unverified fixes: the section-toggle test's scroll helper and the tab-bar test's expected-failure marker.
-- The iOS 26 tab-bar shrinking is **not working**, cause undetermined (§F5).
+Labels used below: **passed**, **failed**, **blocked**, **not run**, **not available**, **owner-reported**.
+§C is the closeout audit; F1–F9 record the finalization; §1–§11 are the earlier Phase 3.5 validation
+record, kept for history. Where they disagree, §C is current.
 
-Labels used below: **passed**, **failed**, **blocked**, **not run**, **not available**. Sections F1–F7
-cover the finalization; §1–§11 below them are the earlier Phase 3.5 validation record, kept for reference.
+## C. Closeout audit (2026-10-16)
+
+No simulator, UI or device tests were run for this audit. It reviews existing evidence only.
+
+### C1. Completed, with evidence
+
+| Item | Evidence |
+|---|---|
+| Modernized UI: five tabs on shared components, system Liquid Glass bars on iOS 26+, standard bars on 17–18, all OS checks in `PlatformCompatibility.swift` | Hosted tests **passed** on iOS 17.0, 18.0, 26.0, 27.0 (§2, before the finalization). Rendered screenshots reviewed on all four (§4). Real-screen UI tour **passed** on iOS 26 (§2). |
+| Settings storage observable, same key and format | `settingsChangesReachViewsThatReadThem`, `displaySettingsKeepTheirStoredFormat` **passed** on all four runtimes (§3) |
+| Battery and memory monitors scoped to their sections | `memorySamplesDoNotRedrawOtherSections`, `memoryMonitorStillPublishesFrequently` **passed** on all four runtimes (§3) |
+| Theme restored on launch | Hosted theme tests **passed** on iOS 27. UI relaunch test **passed** on iOS 26 (F2). |
+| `App-prefs:` button removed; written steps kept | UI test **passed** on iOS 26 (F3) |
+| Sourced camera catalog, 36 iPhones; no invented values | Package tests **passed** (124/124). Verifier 112/112; 5/5 planted errors caught. App camera tests **passed** on iOS 27 (F4). |
+| Test targets on the Personal Team with new bundle IDs | Device `build-for-testing` **passed**, all three bundles signed `8QU4WRDSA4` (F1, F6) |
+| Builds with Xcode 26 (CI) and 27.1 (local) | **CI passed at `dd85147`, owner-reported** (see C2). Local generic-simulator `build-for-testing` **passed**, no warnings. |
+| App works on real iPhones | **Owner-reported:** the app works on the owner's iPhone 15 running iOS 27.2 Developer Beta and on other iPhones. Not automated. |
+
+### C2. CI evidence
+
+- **Owner-reported:** the `CI` workflow succeeded on commit `dd85147`.
+- **Not seen directly:** the run's log, link, test count and simulator runtime. The `gh` CLI isn't installed here.
+- **What a pass implies** (`.github/workflows/ci.yml`, runner `macos-26`, Xcode 26):
+  - `swift test` for SpecMatrixKit passed and ran at least one test;
+  - the app built;
+  - `xcodebuild test -only-testing:SpecMatrixTests` passed on the newest available iPhone simulator;
+  - that test run includes the finalization's theme and camera tests.
+- **What CI doesn't run:** UI tests; snapshot tests, which skip themselves without `SPECMATRIX_SNAPSHOT_DIR`.
+- **The two CI fixes:**
+  - `0b6be75` renamed locals that shared a method's name (`let entry = try entry(…)`), which Xcode 26's compiler rejects. In the decoder it renamed the helpers to `validMegapixels`, `validApertures` and `validFeatures`. No behavior change.
+  - `dd85147` pinned the app target's `IPHONEOS_DEPLOYMENT_TARGET` to `17.0`. It had been `$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)`, which is 17.0 under Xcode 27 but 15.0 under Xcode 26, below the package's iOS 17 minimum. The intended minimum (iOS 17) is unchanged.
+
+### C3. Known limitations (documented, not blocking)
+
+1. **Tab bar doesn't shrink on scroll (iOS 26+).**
+   - The `tabBarMinimizeBehavior(.onScrollDown)` setting is applied but has no visible effect on the iOS 26.0 simulator. The cause is undetermined (F5).
+   - The standard tab bar works normally, so nothing regressed.
+   - The UI test is marked `XCTExpectFailure`; that version is **not run**.
+2. **UI test coverage is partial.**
+   - Of the finalization's five UI tests, three **passed** on iOS 26 and two have fixes that are **not run** (F6).
+   - The full UI target hangs on this Mac (launch-test configurations), and iOS 27 UI tests fail at runner bootstrap (§5). UI tests on iOS 17/18 are **not run**.
+3. **Hosted app tests after the finalization:** **passed** on iOS 27 locally and on CI's simulator (C2). **Not run** on iOS 17.0 or 18.0. The earlier hosted suite passed on both (§2), and the finalization's code compiles for the 17.0 deployment target.
+4. **Camera screen is not visually verified with catalog data.**
+   - Its strings are covered by exact-value tests (F4), and it uses the same `SpecSection` / `SpecRow` components reviewed on all four OS versions.
+   - The Camera-tab images in `docs/phase3-evidence/screenshots/` predate the catalog and show the removed invented values ("12 MP Main, ƒ/1.8"), so they are superseded.
+5. **Evidence files predate the finalization:** `docs/phase3-evidence/test-results.txt` and the screenshots record the earlier Phase 3.5 runs only.
+6. **Hidden notices** were rendered on iOS 17.0 only (`renderHiddenNotices`). The iOS 26 UI test did confirm that the Network and Camera notices appear (F6).
+7. **Physical devices:** no automated test has run on a device. Device evidence is owner-reported, plus the earlier install and launch on the iPhone 15 Pro (§6).
+8. **Test targets' deployment target stays at 18.2.** Running hosted tests on iOS 17/18 needs `IPHONEOS_DEPLOYMENT_TARGET=17.0` on the command line (§2).
+9. **Catalog identifier citations** name Xcode 27.0 simulator profiles, but Xcode 27.1 is installed. All 68 profiles matched under 27.1 (F7), and the citations were not rewritten.
+10. **Environment:** `xcode-select` points at the Command Line Tools, so commands need `DEVELOPER_DIR`. Simulators on this Mac crash or hang and spike CPU; the owner has stopped simulator use.
+11. **Not tested on hardware:** battery state changes. The network monitor now starts when the Network tab is first shown (§3).
+
+### C4. Genuine blockers
+
+**None.**
+- **Tab bar (C3.1):** an opt-in enhancement that doesn't take effect, not a regression.
+- **Camera screen (C3.4):** its content is covered by exact-value tests, and its layout uses components already reviewed.
+- **Missing runs (C3.2, C3.3):** they are blocked by the environment, and the brief allows closing with them documented.
+
+### C5. Deferred to Phase 4 (optional polish and follow-ups)
+
+1. **Tab bar decision:** keep `specTabBarMinimizesOnScroll()` and check it by scrolling on a device, or remove it and its test.
+2. **"Health" label contrast:** it uses the tint at secondary opacity (§4); a design call.
+3. **Hidden-state background:** plain rather than grouped gray (§4).
+4. **AX5 large-title truncation and header hyphenation:** system behavior; only fixable with shorter copy (§4).
+5. **Refresh the evidence:** camera-screen snapshots, `renderHiddenNotices` on 26/27, and hosted tests on 17.0 and 18.0, once a reliable simulator environment is available.
+6. **CI speed (optional):** the Build and Unit tests steps both compile the app; `build-for-testing` then `test-without-building` would avoid that.
 
 ## F1. Finalization summary
 
@@ -125,6 +190,7 @@ cover the finalization; §1–§11 below them are the earlier Phase 3.5 validati
 | Hosted app tests on iOS 17.0, 18.0, 26.0, and the final run on 27.0 | — | **Not run**: the owner stopped simulator use (crashes, CPU spikes) |
 | Device `build-for-testing -allowProvisioningUpdates` | generic iOS | **Passed**: app, test bundle and UI runner signed by `8QU4WRDSA4` |
 | Final `build-for-testing` | generic iOS Simulator | **Passed**, 0 errors, no compiler warnings |
+| CI workflow at `dd85147` (package tests, app build, hosted app tests) | GitHub `macos-26`, Xcode 26 | **Passed, owner-reported** (C2) |
 
 **Screenshots:** none were reviewed for the new camera screen. The snapshot run was not done (see the row above). The iOS 26 UI-test screenshots (Network hidden, Camera hidden, Dark selected and after relaunch, Battery Health alert, before and after scrolling) were exported and the tab-bar pair reviewed (F5). They were not copied into `docs/phase3-evidence/`.
 
@@ -150,13 +216,13 @@ cover the finalization; §1–§11 below them are the earlier Phase 3.5 validati
   - `Foundation/CatalogDeviceInfo.swift`: camera summaries;
   - `Screens/CameraScreen.swift`: reads the catalog;
   - `Screens/SpecsScreen.swift`: alert button removed.
-- **Project:** `project.pbxproj`, test targets only: `DEVELOPMENT_TEAM = 8QU4WRDSA4` and bundle IDs `com.zacharyaflalo.specmatrix.Tests` / `.UITests`. The app target, deployment targets and the project-level team are unchanged.
+- **Project:** `project.pbxproj`, test targets only: `DEVELOPMENT_TEAM = 8QU4WRDSA4` and bundle IDs `com.zacharyaflalo.specmatrix.Tests` / `.UITests`. The app target, deployment targets and the project-level team were unchanged in `ffc5855`. Later, CI fix `dd85147` pinned the app target's deployment target to `17.0` (C2).
 - **Tests:**
   - `SpecMatrixTests/SpecMatrixTests.swift`: the camera tests;
   - `SpecMatrixTests/InterfaceBehaviorTests.swift`: the theme tests;
   - new `SpecMatrixUITests/InterfaceUITests.swift`.
 
-## F9. Remaining work before Phase 3 is complete
+## F9. Remaining work (superseded by §C3–§C5)
 
 1. **Hosted app tests:** run `xcodebuild … test -only-testing:SpecMatrixTests` on iOS 17.0, 18.0 and 26.0 (17/18 with `IPHONEOS_DEPLOYMENT_TARGET=17.0`), and again on 27.0 after the final edits.
 2. **UI tests:** run `SpecMatrixUITests/InterfaceUITests` on iOS 26 to confirm the helper fix and the expected-failure marker. Skip `SpecMatrixUITestsLaunchTests` and `ScreenTourUITests`; the launch test runs once per appearance and orientation and is what hangs.
@@ -172,7 +238,7 @@ cover the finalization; §1–§11 below them are the earlier Phase 3.5 validati
 | Simulator runtimes | iOS 17.0 (21A328), 18.0 (22A3351), 26.0 (23A343), 27.0 (24A434) |
 | Physical devices | **Zachary's iPhone 15 Pro** (iPhone16,1, iOS 27.2, Developer Mode on): used. "Marc's iPhone 18 Pro" is also paired but was **not used**, because it isn't the owner's device. |
 | Scheme / targets | Scheme `SpecMatrix`; targets `SpecMatrix`, `SpecMatrixTests` (hosted, Swift Testing) and `SpecMatrixUITests` (XCTest). Package scheme `SpecMatrixKit`. |
-| Deployment targets | App: `$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)`, which resolves to **17.0**. Both test targets: **18.2**. Package: iOS 17, macOS 13. **Unchanged.** |
+| Deployment targets | App: `$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)`, which resolved to **17.0** under Xcode 27. It has been explicit `17.0` since `dd85147` (C2). Both test targets: **18.2**. Package: iOS 17, macOS 13. |
 
 ## 2. Results
 
@@ -272,9 +338,8 @@ All are JPEG, at most 1000 px tall.
   - An empty list (hidden state) shows a plain background instead of the grouped gray.
 - **Not observed: tab-bar minimization (`tabBarMinimizeBehavior(.onScrollDown)`, iOS 26+).**
   - In the iOS 26 UI tour, the tab bar stayed full size after scrolling down.
-  - The cause is **undetermined**: it may be how XCUITest scrolls, or the modifier may not take effect with `.tabItem`-based tabs.
-  - It needs a manual check by scrolling on a device or simulator before any code change.
-- **Pre-existing data, not caused by Phase 3:** the iPhone 17 and 17 Pro simulators show the camera table's invented fallback values ("12 MP Main, ƒ/1.8"); see decision 3 in §7.
+  - The cause is **undetermined**. The later investigation (F5) ruled out the scroll gesture and the `.tabItem` API.
+- **Pre-existing data, not caused by Phase 3:** the iPhone 17 and 17 Pro simulators show the camera table's invented fallback values ("12 MP Main, ƒ/1.8"); see decision 3 in §7. *Superseded:* the table was replaced by the sourced catalog (F4), so these Camera-tab screenshots are out of date (C3.4).
 
 ## 5. UI-test setup diagnosis
 
@@ -308,7 +373,7 @@ Two environmental factors were noted but not proven to be the cause:
 | iOS 18.0 (simulator) | **Passed** | **Passed** | **Passed** (14/14) | **Passed** (rendered) | **Not run** |
 | iOS 26.0 (simulator) | **Passed** | **Passed** | **Passed** (14/14) | **Passed** (rendered and real screen) | **Passed** (launch and tab tour) |
 | iOS 27.0 (simulator) | **Passed** | **Passed** | **Passed** (14/14) | **Passed** (rendered) | **Blocked** (environment) |
-| iOS 27.2 (iPhone 15 Pro, physical) | **Passed** (device build, signed `8QU4WRDSA4`) | **Passed** (installed with `devicectl`; the first install failed with "Connection invalid" and the one retry succeeded; launched and still running after 15 s; no SpecMatrix crash logs) | **Blocked** (test signing, decision 4) | **Not run** (no capture method) | **Not run** |
+| iOS 27.2 (iPhone 15 Pro, physical) | **Passed** (device build, signed `8QU4WRDSA4`) | **Passed** (installed with `devicectl`; the first install failed with "Connection invalid" and the one retry succeeded; launched and still running after 15 s; no SpecMatrix crash logs) | **Not run**. At the time, test signing blocked it; signing is now configured (F1), and the owner chose not to repeat device testing. | **Not run** (no capture method) | **Not run** |
 
 **Availability:** every `#available` check is in `SpecMatrix/DesignSystem/PlatformCompatibility.swift`, and there are only two (`tabBarMinimizeBehavior`, `navigationSubtitle`, both iOS 26.0 in the SDK). A grep finds no other checks in the app. The 17.0 deployment target makes the compiler reject any unguarded newer API.
 
@@ -368,7 +433,7 @@ The owner approved theme restoration, removing the button, a sourced camera cata
 - `docs/phase3-evidence/` (new): screenshots and `test-results.txt`.
 - This file.
 
-**Not changed:** the project file, schemes, deployment targets, signing, bundle IDs, CI, the package, and stored data formats.
+**Not changed in Phase 3.5 validation:** the project file, schemes, deployment targets, signing, bundle IDs, CI, the package, and stored data formats. The finalization and CI fixes later changed the package, test signing and the app's deployment-target setting (F8, C2).
 
 ## 9. Remaining work before Phase 3 is complete (superseded by F9)
 
@@ -412,11 +477,12 @@ xcodebuild -scheme SpecMatrix -destination 'platform=iOS Simulator,name=iPhone 1
 - **UIKit-only code to route through SpecMatrixKit** (`DeviceInfoStore`) before a Mac build:
   - `UIDevice`;
   - `UIScreen.main` (deprecated in 26);
-  - `UIDevice.modelIdentifier()`, used by `CatalogDeviceInfo` and `CameraInfo`.
+  - `UIDevice.modelIdentifier()`, used by `CatalogDeviceInfo`. The old `CameraInfo` table was removed in F4.
 - **Swift versions:** keep the app target on Swift 5 and SpecMatrixKit on Swift 6. Keep monitors owned by the sections that display them.
 - **Custom glass** belongs only on future floating controls: group it in `GlassEffectContainer`, add a `.regularMaterial` fallback in the compatibility file, and use `ToolbarSpacer` (26+) for toolbar groups.
 - **Catalog:** schema 3 with `cameras`. An iPad build would need iPad camera data, which isn't recorded.
 - **Testing:**
   - the test targets' 18.2 deployment target blocks iOS 17/18 test runs without the command-line override;
   - align them with 17.0 when deployment-target changes are approved;
-  - resolve decision 4 for device runs.
+  - test signing is configured (F1); device test runs have not been done;
+  - the deferred items in §C5.

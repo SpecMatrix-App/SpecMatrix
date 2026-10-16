@@ -12,7 +12,7 @@ struct NetworkScreen: View {
 
     var body: some View {
         SpecScreen(
-            title: "Network Status",
+            title: "Network",
             hiddenNotice: isVisible ? nil : HiddenNotice(title: "Network Information Hidden")
         ) {
             NetworkInfoView(networkInfo: networkMonitor.networkInfo)

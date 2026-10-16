@@ -85,15 +85,15 @@ xcodebuild test -scheme SpecMatrixKit -destination 'platform=iOS Simulator,name=
 **Running on a physical device** requires signing with your own Apple ID or team in Xcode (*Signing & Capabilities*).
 
 ## Requirements
-- iOS 18.2 or later.
+- iOS 17.0 or later.
 
 ## Compatibility
 Currently, the app is designed to work only on iPhones. Support for other devices will be added in future updates.
 
 ## App Metadata
 - **App Name**: SpecMatrix
-- **Bundle Identifier**: `com.zacdevv.SpecMatrix`
-- **Version**: 1.0
+- **Bundle Identifier**: `com.zacharyaflalo.specmatrix`
+- **Version**: 2.0
 - **Build Number**: 1
 
 ## Assets
