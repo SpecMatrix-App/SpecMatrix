@@ -197,7 +197,7 @@ struct IdentifierResolutionTests {
 @Suite("Duplicate and conflicting entries")
 struct DuplicateEntryTests {
     private func decode(_ entries: [[String: Any]]) -> Result<DeviceCatalog, CatalogLoadError> {
-        let root: [String: Any] = ["schemaVersion": 2, "catalogVersion": "2026.01.0", "entries": entries]
+        let root: [String: Any] = ["schemaVersion": 3, "catalogVersion": "2026.01.0", "entries": entries]
         return DeviceCatalog.decode(try! JSONSerialization.data(withJSONObject: root), policy: Fixture.policy)
     }
 

@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "catalogVersion": "2026.10.2",
+  "schemaVersion": 3,
+  "catalogVersion": "2026.10.3",
   "entries": [
     {
       "id": "iphone-xs",
@@ -23,15 +23,52 @@
         "pixelHeight": 2436,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide-angle",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ],
+              "opticalZoom": 2
+            }
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 7,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone XS - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111881",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -71,7 +108,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -96,15 +133,52 @@
         "pixelHeight": 2688,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide-angle",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ],
+              "opticalZoom": 2
+            }
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 7,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone XS Max - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111880",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -136,7 +210,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -160,15 +234,44 @@
         "pixelHeight": 1792,
         "pixelsPerInch": 326
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 7,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone XR - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111868",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -208,7 +311,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -231,15 +334,52 @@
         "pixelHeight": 1792,
         "pixelsPerInch": 326
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 11 - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111865",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -270,7 +410,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -290,15 +430,60 @@
         "pixelHeight": 2436,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.0
+              ],
+              "opticalZoom": 2
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 11 Pro - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111879",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -337,7 +522,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -357,15 +542,60 @@
         "pixelHeight": 2688,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.0
+              ],
+              "opticalZoom": 2
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 11 Pro Max - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111878",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -404,7 +634,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -427,15 +657,43 @@
         "pixelHeight": 1334,
         "pixelsPerInch": 326
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "megapixels": 7,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone SE (2nd generation) - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111882",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -466,7 +724,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -489,15 +747,53 @@
         "pixelHeight": 2340,
         "pixelsPerInch": 476
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 12 mini - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111877",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -528,7 +824,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -551,15 +847,53 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 12 - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111876",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -590,7 +924,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -611,15 +945,61 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.0
+              ],
+              "opticalZoom": 2
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 12 Pro - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111875",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -659,7 +1039,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -680,15 +1060,61 @@
         "pixelHeight": 2778,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ],
+              "opticalZoom": 2.5
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 12 Pro Max - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111874",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -728,7 +1154,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -751,15 +1177,53 @@
         "pixelHeight": 2340,
         "pixelsPerInch": 476
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 13 mini - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111873",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -790,7 +1254,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -813,15 +1277,53 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 13 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111872",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -852,7 +1354,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -876,15 +1378,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 3
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.5
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 13 Pro - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111871",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -915,7 +1463,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -939,15 +1487,61 @@
         "pixelsPerInch": 458,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 3
+            },
+            {
+              "name": "Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.5
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 13 Pro Max - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111870",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -978,7 +1572,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1001,15 +1595,43 @@
         "pixelHeight": 1334,
         "pixelsPerInch": 326
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.8
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "megapixels": 7,
+          "apertures": [
+            2.2
+          ],
+          "features": [
+            "flash",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone SE (3rd generation) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111866",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1040,7 +1662,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1063,15 +1685,53 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.5
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 14 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111850",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1102,7 +1762,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1125,15 +1785,53 @@
         "pixelHeight": 2778,
         "pixelsPerInch": 458
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 12,
+              "apertures": [
+                1.5
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 14 Plus - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111854",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1164,7 +1862,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1188,15 +1886,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "3x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 3
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 14 Pro - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111849",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1227,7 +1971,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1251,15 +1995,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "3x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 3
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 14 Pro Max - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111846",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1290,7 +2080,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1313,15 +2103,53 @@
         "pixelHeight": 2556,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 15 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111831",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1352,7 +2180,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1375,15 +2203,53 @@
         "pixelHeight": 2796,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.4
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 15 Plus - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111830",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1414,7 +2280,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1438,15 +2304,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "3x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 3
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 15 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111829",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1477,7 +2389,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1501,15 +2413,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "5x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 5
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 15 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111828",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1540,7 +2498,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1563,15 +2521,53 @@
         "pixelHeight": 2556,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 16 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121029",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1602,7 +2598,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1625,15 +2621,53 @@
         "pixelHeight": 2796,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 12,
+              "apertures": [
+                2.2
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 16 Plus - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121030",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1664,7 +2698,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1688,15 +2722,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "5x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 5
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 16 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121031",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1727,7 +2807,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1751,15 +2831,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "5x Telephoto",
+              "megapixels": 12,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 5
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 16 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121032",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1790,7 +2916,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1813,15 +2939,46 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 16e - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/122208",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1852,7 +3009,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1877,15 +3034,53 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            },
+            {
+              "name": "Fusion Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 17 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125089",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1924,7 +3119,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -1949,15 +3144,46 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone Air - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125092",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -1996,7 +3222,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -2021,15 +3247,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Fusion Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "Fusion Telephoto",
+              "megapixels": 48,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 4
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 17 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125090",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -2068,7 +3340,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -2093,15 +3365,61 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.78
+              ]
+            },
+            {
+              "name": "Fusion Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "Fusion Telephoto",
+              "megapixels": 48,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 4
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 17 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125091",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -2140,7 +3458,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -2163,15 +3481,46 @@
         "pixelHeight": 2532,
         "pixelsPerInch": 460
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.6
+              ]
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "TrueDepth",
+          "megapixels": 12,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 17e - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/126470",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -2202,7 +3551,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -2224,15 +3573,64 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.48,
+                1.8,
+                2.8,
+                4.0
+              ]
+            },
+            {
+              "name": "Fusion Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "Fusion Telephoto",
+              "megapixels": 48,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 4
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 18 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/148590",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -2255,7 +3653,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {
@@ -2278,15 +3676,64 @@
         "pixelsPerInch": 460,
         "maximumRefreshRateHz": 120
       },
+      "cameras": {
+        "rear": {
+          "lenses": [
+            {
+              "name": "Fusion Main",
+              "megapixels": 48,
+              "apertures": [
+                1.48,
+                1.8,
+                2.8,
+                4.0
+              ]
+            },
+            {
+              "name": "Fusion Ultra Wide",
+              "megapixels": 48,
+              "apertures": [
+                2.2
+              ]
+            },
+            {
+              "name": "Fusion Telephoto",
+              "megapixels": 48,
+              "apertures": [
+                2.8
+              ],
+              "opticalZoom": 4
+            }
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        },
+        "front": {
+          "name": "Center Stage",
+          "megapixels": 18,
+          "apertures": [
+            1.9
+          ],
+          "features": [
+            "flash",
+            "nightMode",
+            "portraitMode"
+          ]
+        }
+      },
       "sources": [
         {
           "title": "iPhone 18 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/148591",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-16",
           "supports": [
             "marketingName",
             "chip",
-            "display"
+            "display",
+            "cameras"
           ]
         },
         {
@@ -2309,7 +3756,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-16"
       }
     },
     {

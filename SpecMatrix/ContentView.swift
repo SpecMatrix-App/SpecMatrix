@@ -122,6 +122,9 @@ enum AppTheme: String, CaseIterable {
     case dark = "Dark"
     case system = "System"
     
+    /// The `UserDefaults` key holding the chosen theme's raw value ("Light", "Dark" or "System").
+    static let storageKey = "selectedTheme"
+    
     var colorScheme: ColorScheme? {
         switch self {
         case .light: return .light
@@ -434,136 +437,6 @@ struct ScreenInfo {
     }
 }
 
-// First, add camera info structure
-struct CameraInfo {
-    struct Camera {
-        let position: String
-        let resolution: String
-        let aperture: String
-        let hasFlash: Bool
-        let hasNightMode: Bool
-        let hasPortraitMode: Bool
-        
-        var features: [String] {
-            var features: [String] = []
-            if hasFlash { features.append("Flash") }
-            if hasNightMode { features.append("Night Mode") }
-            if hasPortraitMode { features.append("Portrait Mode") }
-            return features
-        }
-    }
-    
-    let backCamera: Camera
-    let frontCamera: Camera
-}
-
-// Add this implementation for CameraInfo.getInfo()
-extension CameraInfo {
-    static func getInfo() -> CameraInfo {
-        let identifier = UIDevice.modelIdentifier()
-        print("Camera identifier: \(identifier)")
-        
-        switch identifier {
-        case "iPhone17,1": // iPhone 16 Pro
-            return CameraInfo(
-                backCamera: Camera(
-                    position: "Back",
-                    resolution: "48 MP Main (f/1.78)\n12 MP Ultra Wide (f/2.2)\n12 MP 3x Telephoto",
-                    aperture: "ƒ/1.78, ƒ/2.2, ƒ/2.8",
-                    hasFlash: true,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                ),
-                frontCamera: Camera(
-                    position: "Front",
-                    resolution: "12 MP TrueDepth",
-                    aperture: "ƒ/1.9",
-                    hasFlash: false,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                )
-            )
-        case "iPhone17,2": // iPhone 16 Pro Max
-            return CameraInfo(
-                backCamera: Camera(
-                    position: "Back",
-                    resolution: "48 MP Main (f/1.78)\n12 MP Ultra Wide (f/2.2)\n12 MP 5x Telephoto",
-                    aperture: "ƒ/1.78, ƒ/2.2, ƒ/2.8",
-                    hasFlash: true,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                ),
-                frontCamera: Camera(
-                    position: "Front",
-                    resolution: "12 MP TrueDepth",
-                    aperture: "ƒ/1.9",
-                    hasFlash: false,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                )
-            )
-        case "iPhone17,3", "iPhone17,4": // iPhone 16, 16 Plus
-            return CameraInfo(
-                backCamera: Camera(
-                    position: "Back",
-                    resolution: "48 MP Main (f/1.6)\n12 MP Ultra Wide (f/2.4)",
-                    aperture: "ƒ/1.6, ƒ/2.4",
-                    hasFlash: true,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                ),
-                frontCamera: Camera(
-                    position: "Front",
-                    resolution: "12 MP TrueDepth",
-                    aperture: "ƒ/1.9",
-                    hasFlash: false,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                )
-            )
-        case "iPhone16,1", "iPhone16,3": // iPhone 15 Pro
-            return CameraInfo(
-                backCamera: Camera(
-                    position: "Back",
-                    resolution: "48 MP Main (f/1.78)\n12 MP Ultra Wide (f/2.2)\n12 MP 3x Telephoto",
-                    aperture: "ƒ/1.78, ƒ/2.2, ƒ/2.8",
-                    hasFlash: true,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                ),
-                frontCamera: Camera(
-                    position: "Front",
-                    resolution: "12 MP TrueDepth",
-                    aperture: "ƒ/1.9",
-                    hasFlash: false,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                )
-            )
-        default:
-            print("Unrecognized device identifier: \(identifier)")
-            return CameraInfo(
-                backCamera: Camera(
-                    position: "Back",
-                    resolution: "12 MP Main",
-                    aperture: "ƒ/1.8",
-                    hasFlash: true,
-                    hasNightMode: true,
-                    hasPortraitMode: true
-                ),
-                frontCamera: Camera(
-                    position: "Front",
-                    resolution: "12 MP TrueDepth",
-                    aperture: "ƒ/2.2",
-                    hasFlash: false,
-                    hasNightMode: false,
-                    hasPortraitMode: true
-                )
-            )
-        }
-    }
-}
-
 // Add MemoryMonitor class
 class MemoryMonitor: ObservableObject {
     @Published var memoryInfo: MemoryInfo
@@ -675,7 +548,8 @@ class BatteryMonitor: ObservableObject {
 }
 
 struct ContentView: View {
-    @State private var selectedTheme: AppTheme = .system
+    /// Restored on launch; a missing or unrecognised stored value means System.
+    @AppStorage private var selectedTheme: AppTheme
     @State private var selectedTab: Int
     @CodableAppStorage(wrappedValue: DisplaySettings(), "displaySettings") private var displaySettings
     
@@ -731,16 +605,11 @@ struct ContentView: View {
         )
     }()
     
-    // Add camera info property
-    let cameraInfo = CameraInfo.getInfo()
     
-    /// `initialTab` is the tag of the tab shown first (0 = Specs).
-    init(initialTab: Int = 0) {
+    /// `initialTab` is the tag of the tab shown first (0 = Specs). `preferences` holds the saved theme.
+    init(initialTab: Int = 0, preferences: UserDefaults = .standard) {
         _selectedTab = State(initialValue: initialTab)
-    }
-    
-    private func saveTheme(_ theme: AppTheme) {
-        UserDefaults.standard.set(theme.rawValue, forKey: "selectedTheme")
+        _selectedTheme = AppStorage(wrappedValue: .system, AppTheme.storageKey, store: preferences)
     }
     
     var body: some View {
@@ -757,7 +626,7 @@ struct ContentView: View {
                 .tabItem { Label("Display", systemImage: "display") }
                 .tag(2)
             
-            CameraScreen(isVisible: displaySettings.showCamera, cameraInfo: cameraInfo)
+            CameraScreen(isVisible: displaySettings.showCamera, device: .current())
                 .tabItem { Label("Camera", systemImage: "camera") }
                 .tag(3)
             
@@ -770,9 +639,6 @@ struct ContentView: View {
         .onAppear {
             print("DEBUG - ContentView appeared")
             print("DEBUG - Current device model:", getDetailedDeviceModel())
-        }
-        .onChange(of: selectedTheme) { oldValue, newValue in
-            saveTheme(newValue)
         }
     }
 }

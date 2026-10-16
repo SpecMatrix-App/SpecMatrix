@@ -17,6 +17,7 @@ public enum CatalogField: String, Sendable, Hashable, CaseIterable, Comparable {
     case releaseDate
     case chip
     case display
+    case cameras
 
     public static func < (lhs: CatalogField, rhs: CatalogField) -> Bool {
         allCases.firstIndex(of: lhs)! < allCases.firstIndex(of: rhs)!
@@ -91,6 +92,46 @@ public struct DisplaySpecification: Sendable, Hashable {
     public let maximumRefreshRate: RefreshRate?
 }
 
+/// A camera capability, recorded only when the manufacturer's specifications state it.
+/// For a front camera, `flash` is a screen flash (Apple's Retina Flash).
+public enum CameraFeature: String, Sendable, Hashable, CaseIterable {
+    case flash
+    case nightMode
+    case portraitMode
+}
+
+/// One physical rear camera, named as the manufacturer names it (e.g. "Ultra Wide", "Fusion Main",
+/// "5x Telephoto"). Crops of another sensor (Apple's "2x Telephoto enabled by quad-pixel sensor",
+/// "optical-quality 8x Telephoto") are not separate cameras and are not recorded.
+public struct CameraLens: Sendable, Hashable {
+    public let name: String
+    public let megapixels: Int
+    /// One aperture as an f-number, or several for a variable-aperture camera.
+    public let apertures: [Double]
+    /// Optical zoom relative to the main camera, for telephoto cameras (e.g. 3 for 3x).
+    public let opticalZoom: Double?
+}
+
+public struct RearCameraSystem: Sendable, Hashable {
+    /// In the order the manufacturer lists them.
+    public let lenses: [CameraLens]
+    public let features: Set<CameraFeature>
+}
+
+public struct FrontCamera: Sendable, Hashable {
+    /// The manufacturer's name for the camera ("TrueDepth", "Center Stage"), when it gives one.
+    public let name: String?
+    public let megapixels: Int
+    public let apertures: [Double]
+    public let features: Set<CameraFeature>
+}
+
+/// Camera specifications as published for a device. Either side may be absent (not recorded).
+public struct CameraSpecification: Sendable, Hashable {
+    public let rear: RearCameraSystem?
+    public let front: FrontCamera?
+}
+
 /// A validated catalog entry describing one product, which may have several hardware identifiers.
 public struct CatalogEntry: Sendable, Hashable {
     public let id: String
@@ -100,6 +141,7 @@ public struct CatalogEntry: Sendable, Hashable {
     public let releaseDate: CalendarDate?
     public let chip: ChipSpecification?
     public let display: DisplaySpecification?
+    public let cameras: CameraSpecification?
     public let sources: [CatalogSource]
     public let verification: CatalogVerification
 
@@ -114,6 +156,7 @@ public struct CatalogEntry: Sendable, Hashable {
         if releaseDate != nil { fields.insert(.releaseDate) }
         if chip != nil { fields.insert(.chip) }
         if display != nil { fields.insert(.display) }
+        if cameras != nil { fields.insert(.cameras) }
         return fields
     }
 }

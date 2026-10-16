@@ -137,7 +137,7 @@ private func waitUntil(_ description: String, _ condition: () -> Bool) async {
 }
 
 private let catalog = DeviceCatalog.decode(Data("""
-{"schemaVersion":2,"catalogVersion":"2026.01.0","entries":[{"id":"test-phone","identifiers":["TestPhone1,1"],
+{"schemaVersion":3,"catalogVersion":"2026.01.0","entries":[{"id":"test-phone","identifiers":["TestPhone1,1"],
 "family":"TestPhone","marketingName":"Test Phone",
 "sources":[{"title":"Fixture","url":"https://example.com/x","accessed":"2026-10-15","supports":["identifiers","marketingName"]}],
 "verification":{"status":"secondary-sources-only","verifiedOn":"2026-10-15"}}]}

@@ -66,15 +66,16 @@ Not provided, because no supported public API exists:
 - carrier name;
 - iOS Wi-Fi details.
 
-## Catalog (schema version 2)
+## Catalog (schema version 3)
 
 The bundled file is `Sources/SpecMatrixCore/Resources/DeviceCatalog.json`. The current version is
-**2026.10.2**, and every entry was checked against its sources on 2026-10-15.
+**2026.10.3**. Every entry was checked against its sources on 2026-10-15, and the 36 iPhone entries
+again on 2026-10-16, when their camera specifications were added.
 
 The catalog is the app's single source of product information. The diagnostics screen reads it
 through `HardwareResolver`, and the legacy screens read it through
-`SpecMatrix/Foundation/CatalogDeviceInfo.swift`. No other code maps identifiers to models (camera
-specifications are the one exception; see *Known limitations*).
+`SpecMatrix/Foundation/CatalogDeviceInfo.swift`. No other code maps identifiers to models; the
+camera screen reads the catalog's `cameras` too.
 
 ### Coverage
 
@@ -114,12 +115,13 @@ How many entries record each field:
 | Display diagonal, resolution, pixel density | 36 | 32 | 29 | Mac mini, Mac Studio and Mac Pro have no built-in display |
 | Maximum refresh rate | 14 | 4 | 13 | Recorded only where Apple states a rate ("up to 120Hz"). Pages for older ProMotion iPads say "ProMotion technology" without a rate. Non-ProMotion models publish no rate. |
 | Release date | 11 | 0 | 0 | Recorded only where an Apple Newsroom article states the in-store date |
+| Cameras (rear cameras, front camera, features) | 36 | 0 | 0 | Recorded for iPhone only, the app's one platform; iPad and Mac cameras are out of scope |
 
 Apple sometimes uses one name for different hardware: "Mac Studio (2023)" covers M2 Max (`Mac14,13`)
 and M2 Ultra (`Mac14,14`). Such entries keep Apple's name and are told apart by chip. The decoder
 rejects a shared name unless every entry names a different chip.
 
-Not in the schema, so not recorded: RAM, storage configurations, cameras, and per-SKU variants.
+Not in the schema, so not recorded: RAM, storage configurations, and per-SKU variants.
 Apple does not publish iPhone RAM. iPad and Mac RAM and core counts vary by configuration under
 one identifier.
 
@@ -127,7 +129,15 @@ one identifier.
 
 - **Required:** `id` (lowercase slug), `identifiers`, `family`, `marketingName`, `sources`, `verification`.
 - **Optional:** `releaseDate`, `chip` (`name` plus core counts), and `display` (`diagonalInches`,
-  `pixelWidth`/`pixelHeight` in portrait, `pixelsPerInch`, `maximumRefreshRateHz`).
+  `pixelWidth`/`pixelHeight` in portrait, `pixelsPerInch`, `maximumRefreshRateHz`), and `cameras`.
+- **`cameras`** has `rear` (`lenses`, each with `name`, `megapixels`, `apertures` and, for telephoto
+  cameras, `opticalZoom`; plus `features`) and `front` (optional `name`, `megapixels`, `apertures`,
+  `features`). Names are Apple's ("Wide-angle", "Fusion Main", "5x Telephoto"). `apertures` lists one
+  f-number, or several for a variable aperture (iPhone 18 Pro: ƒ/1.48–ƒ/4.0). `features` holds only
+  what the page states, from `flash` (rear: True Tone flash; front: Retina Flash), `nightMode` and
+  `portraitMode` ("Portrait mode" or "portraits with Focus and Depth Control"). Crops of another
+  sensor ("2x Telephoto (enabled by quad-pixel sensor)", "Also enables 12MP optical-quality 8x
+  Telephoto") are not separate cameras and are not recorded.
 - **`diagonalInches`** is the screen measured as a rectangle, as Apple publishes it. For
   rounded-corner screens this is the footnote figure ("measured as a standard rectangular shape, the
   screen is 6.12 inches"), not the marketing size ("6.1-inch"). Newer iPad pages give only the
@@ -151,6 +161,7 @@ field group. A GPU core count cites the tech-specs page, not the identifier list
 | Name, chip, display | Apple's tech-specs page for the exact model (`support.apple.com/en-us/<id>`), found through Apple's tech-specs index | Each value matched in the page text |
 | Chip (5 older iPhones) | Apple Newsroom launch article, where the tech-specs page gives no core counts | Sentence naming the counts for that model |
 | Release date | Apple Newsroom launch article | "in stores" or "availability beginning" sentence, with the article's year |
+| Cameras (iPhone) | The same Apple tech-specs page, "Camera" and "TrueDepth Camera" / "Front Camera" sections (accessed 2026-10-16) | Each megapixel figure, aperture and zoom matched within the right section; each side's feature list must equal what the section states |
 | Identifiers (iPhone, iPad) | (1) Xcode 27.0 (27A266a) Simulator device types, whose `representedModelIdentifiers` Apple ships with Xcode; plus (2) the adamawolf identifier gist and/or EveryMac identifier pages | Exact identifier strings |
 | Identifiers, grouping and chip (Mac) | (1) Apple's "Identify your MacBook Air / MacBook Pro / iMac / Mac mini / Mac Studio / Mac Pro model" pages, which list each model's "Model Identifier" and often its chip; plus (2) EveryMac's per-family Mac identifier pages | Only the page section for that model counts |
 
@@ -178,13 +189,16 @@ Loading is all-or-nothing, and every issue is reported with its JSON path. An in
 never loads partially.
 
 **Structure**
-- The schema version must be 2; version 1 files are rejected.
+- The schema version must be 3; earlier versions are rejected.
 - Unknown keys and wrong JSON types are rejected, and so are integers too large to represent.
 - `catalogVersion` must have the form `YYYY.MM.N`.
 
 **Values**
 - Numbers must be positive and dates valid.
 - Resolution must be in portrait (width ≤ height), with width and height given together.
+- Cameras: each recorded side has at least one camera; megapixels are positive; apertures are
+  f-numbers from 0.95 to 22, each listed once; optical zoom is above 1; rear camera names are
+  unique; features are known and listed once.
 
 **Identity**
 - Entry IDs must be unique slugs.
@@ -225,6 +239,10 @@ That is the intended behaviour, not a crash or a guess.
 1. **Specifications:** open Apple's tech-specs page for the exact model and copy only the values
    it states. Use the measured-as-rectangle diagonal and record resolution in portrait. Leave out
    anything the page doesn't state, anything ambiguous, and anything that varies by configuration.
+   For an iPhone, also copy its cameras from the page's "Camera" and "TrueDepth Camera" / "Front
+   Camera" sections: each physical camera as Apple names it, its megapixels and aperture(s), the
+   telephoto's optical zoom, and the features those sections state. Until an iPhone has `cameras`,
+   the camera screen shows "Unknown".
 2. **Identifiers:**
    - iPhone and iPad: take them from the Xcode Simulator device type's `profile.plist`
      (`representedModelIdentifiers`).
@@ -275,8 +293,12 @@ development tool, not part of the app or CI.
   by reading the page, and the verifier doesn't re-check that.
 - **No "no display" state:** Mac mini, Mac Studio and Mac Pro have no `display` section, so their
   display values resolve to `.unknown`. The schema cannot yet say "this hardware has no display".
-- **Camera specifications** are not in the catalog. The legacy camera screen still uses its own
-  hardcoded table in `ContentView.swift`, which has not been audited.
+- **Cameras record only what the screen shows:** megapixels, apertures, telephoto zoom and three
+  features. Focal lengths, video formats, crop "telephotos" and other camera features are not
+  recorded. iPad and Mac cameras are not recorded.
+- **Xcode citations:** identifier sources cite the Xcode 27.0 (27A266a) simulator profiles. With a
+  different Xcode installed the verifier reports the profile check as not done. On 2026-10-16, with
+  Xcode 27.1 (27A9275), all 68 cited profiles listed exactly the catalogued identifiers.
 
 Test fixtures in `Tests/SpecMatrixCoreTests/Fixtures` are synthetic (`TestPhone…` identifiers and
 `example.*` domains) and are never bundled with the app.

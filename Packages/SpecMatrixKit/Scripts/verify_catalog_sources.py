@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Checks DeviceCatalog.json against the sources it cites.
 
-For every entry and every field group (identifiers, marketingName, releaseDate, chip, display):
+For every entry and every field group (identifiers, marketingName, releaseDate, chip, display, cameras):
   * each recorded value must appear in at least one source attributed to that group;
   * each attributed source must confirm at least one value of the group (no decorative citations);
   * each hardware identifier must be confirmed by sources from at least two publishers.
+Camera values are checked within the page's rear camera section ("Camera") or front camera section
+("TrueDepth Camera" / "Front Camera"), and each side's feature list must equal the features that
+section states (flash, Night mode, Portrait mode), so a stated feature cannot be left out.
 
 Web sources are fetched with curl (cached under --cache). Xcode Simulator sources are read from
 the locally installed device type profiles; their `representedModelIdentifiers` must equal the
@@ -74,6 +77,74 @@ def inches(value):
     return f'{value:g}'.replace('.', r'\.')
 
 
+def rear_section(text):
+    start = re.search(r'\bCamera (?=(?:Dual|Triple|Pro |Advanced|2-in-1|\d+MP))', text)
+    if not start:
+        return ''
+    end = text.find('Video Recording', start.end())
+    return text[start.start():end if end > 0 else start.end() + 3000]
+
+
+def front_section(text):
+    start = re.search(r'\b(?:TrueDepth Camera|Front Camera) (?=\d+MP)', text)
+    if not start:
+        return ''
+    ends = [i for i in (text.find(marker, start.end()) for marker in ('Face ID', 'Touch ID', 'Apple Pay')) if i > 0]
+    return text[start.start():min(ends) if ends else start.end() + 1500]
+
+
+def f_number(value):
+    text = f'{value:.2f}'.rstrip('0')
+    return re.escape(text + '0' if text.endswith('.') else text)  # Apple writes ƒ/2.0 and ƒ/1.78
+
+
+FEATURE_PATTERNS = {
+    'rear': {'flash': r'True Tone flash', 'nightMode': r'Night mode(?! Time-lapse| portraits)',
+             'portraitMode': r'Portrait mode|[Pp]ortraits with'},
+    'front': {'flash': r'Retina Flash', 'nightMode': r'Night mode(?! Time-lapse| portraits)',
+              'portraitMode': r'Portrait mode|[Pp]ortraits with'},
+}
+
+
+def stated_features(section, side):
+    return sorted(f for f, pattern in FEATURE_PATTERNS[side].items() if re.search(pattern, section))
+
+
+def camera_claims(cameras):
+    out = []
+    rear = cameras.get('rear')
+    if rear:
+        for lens in rear['lenses']:
+            name, mp = lens['name'], lens['megapixels']
+            label = re.escape(name)
+            guard = r'(?<!Ultra )(?<!Deep )\b'
+            out.append(('cameras', f'rear {name} {mp}MP', lambda t, label=label, mp=mp, guard=guard: bool(
+                re.search(rf'\b{mp}MP {label}\b', rear_section(t))
+                or (re.search(rf'\b(?:Dual|Triple|Pro) {mp}MP\b', rear_section(t))
+                    and re.search(rf'{guard}{label}:', rear_section(t))))))
+            apertures = ', '.join(f'ƒ/{f_number(a)}' for a in lens['apertures'])
+            out.append(('cameras', f'rear {name} {apertures.replace(chr(92), "")}', lambda t, label=label, a=apertures, guard=guard: bool(
+                re.search(rf'{guard}{label}\b[^ƒ]{{0,60}}\(?{a}(?![\d])', rear_section(t)))))
+            if 'opticalZoom' in lens:
+                z = f'{lens["opticalZoom"]:g}'.replace('.', r'\.')
+                out.append(('cameras', f'rear {name} {lens["opticalZoom"]:g}x', lambda t, z=z: bool(
+                    re.search(rf'\b{z}x optical zoom(?: in\b|;)|\({z}x\)|\b{z}x Telephoto\b', rear_section(t)))))
+        out.append(('cameras', f'rear features {sorted(rear["features"])}',
+                    lambda t, f=sorted(rear['features']): stated_features(rear_section(t), 'rear') == f))
+    front = cameras.get('front')
+    if front:
+        mp, apertures = front['megapixels'], ', '.join(f'ƒ/{f_number(a)}' for a in front['apertures'])
+        out.append(('cameras', f'front {mp}MP', lambda t, mp=mp: bool(re.search(rf'\b{mp}MP\b', front_section(t)))))
+        out.append(('cameras', f'front {apertures.replace(chr(92), "")}',
+                    lambda t, a=apertures: bool(re.search(rf'{a}(?![\d])', front_section(t)))))
+        if 'name' in front:
+            out.append(('cameras', f'front name {front["name"]}',
+                        lambda t, n=re.escape(front['name']): bool(re.search(rf'\b{n}\b', front_section(t)))))
+        out.append(('cameras', f'front features {sorted(front["features"])}',
+                    lambda t, f=sorted(front['features']): stated_features(front_section(t), 'front') == f))
+    return out
+
+
 def claims(entry):
     """(group, description, regex or callable) for every recorded value."""
     out = [('marketingName', f'name "{entry["marketingName"]}"', None)]
@@ -109,6 +180,8 @@ def claims(entry):
         if 'maximumRefreshRateHz' in display:
             out.append(('display', f'{display["maximumRefreshRateHz"]} Hz',
                         rf'\bto {display["maximumRefreshRateHz"]} ?Hz\b'))
+    if entry.get('cameras'):
+        out += camera_claims(entry['cameras'])
     return out
 
 
@@ -122,6 +195,8 @@ def confirms(claim, text, title, url, scoped=False):
     if group == 'releaseDate':
         year, regex = pattern
         return f'/newsroom/{year}/' in url and re.search(regex, text) is not None
+    if callable(pattern):
+        return pattern(text)
     if claim[1].startswith('diagonal'):
         return confirms_diagonal(pattern, text)
     return re.search(pattern, text) is not None

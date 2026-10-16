@@ -34,7 +34,7 @@ private func catalogJSON(status: String = "verified", sources: [[String: Any]], 
         "sources": sources, "verification": ["status": status, "verifiedOn": "2026-10-15"],
     ]
     if let display { entry["display"] = display }
-    let root: [String: Any] = ["schemaVersion": 2, "catalogVersion": catalogVersion, "entries": [entry]]
+    let root: [String: Any] = ["schemaVersion": 3, "catalogVersion": catalogVersion, "entries": [entry]]
     return try! JSONSerialization.data(withJSONObject: root)
 }
 
@@ -46,7 +46,7 @@ private func web(_ url: String, _ supports: [String]) -> [String: Any] {
 struct CatalogDecodingTests {
     @Test func loadsValidCatalog() throws {
         let catalog = try Fixture.catalog("valid-catalog").get()
-        #expect(catalog.schemaVersion == 2)
+        #expect(catalog.schemaVersion == 3)
         #expect(catalog.catalogVersion == "2026.01.0")
         #expect(catalog.entries.count == 2)
     }
@@ -101,17 +101,17 @@ struct CatalogDecodingTests {
     }
 
     @Test func rejectsUnsupportedSchemaVersion() throws {
-        #expect(try Fixture.catalog("unsupported-schema") == .failure(.unsupportedSchemaVersion(found: 3, supported: 2)))
+        #expect(try Fixture.catalog("unsupported-schema") == .failure(.unsupportedSchemaVersion(found: 4, supported: 3)))
         #expect(DeviceCatalog.decode(Data(#"{"catalogVersion":"x","entries":[]}"#.utf8))
-                == .failure(.unsupportedSchemaVersion(found: nil, supported: 2)))
+                == .failure(.unsupportedSchemaVersion(found: nil, supported: 3)))
         #expect(DeviceCatalog.decode(Data(#"{"schemaVersion":1.5,"catalogVersion":"x","entries":[]}"#.utf8))
-                == .failure(.unsupportedSchemaVersion(found: nil, supported: 2)))
+                == .failure(.unsupportedSchemaVersion(found: nil, supported: 3)))
     }
 
     /// Schema 1 sources carried no field attribution; a version 1 file must not be read as version 2.
     @Test func rejectsSchemaVersion1Catalogs() {
         let v1 = #"{"schemaVersion":1,"catalogVersion":"2026.10.0","entries":[]}"#
-        #expect(DeviceCatalog.decode(Data(v1.utf8)) == .failure(.unsupportedSchemaVersion(found: 1, supported: 2)))
+        #expect(DeviceCatalog.decode(Data(v1.utf8)) == .failure(.unsupportedSchemaVersion(found: 1, supported: 3)))
     }
 
     @Test func rejectsWrongValueTypes() throws {
@@ -122,7 +122,7 @@ struct CatalogDecodingTests {
     }
 
     @Test func rejectsIntegersThatOverflow() {
-        let json = #"{"schemaVersion":2,"catalogVersion":"2026.01.0","entries":[{"id":"x","identifiers":["TestPhone1,1"],"family":"TestPhone","marketingName":"X","display":{"pixelWidth":99999999999999999999,"pixelHeight":2}}]}"#
+        let json = #"{"schemaVersion":3,"catalogVersion":"2026.01.0","entries":[{"id":"x","identifiers":["TestPhone1,1"],"family":"TestPhone","marketingName":"X","display":{"pixelWidth":99999999999999999999,"pixelHeight":2}}]}"#
         // JSONDecoder reports this without a coding path, so only the rejection is asserted.
         guard case .failure(.malformedJSON) = DeviceCatalog.decode(Data(json.utf8)) else {
             Issue.record("Expected malformedJSON"); return
@@ -353,7 +353,7 @@ struct BundledCatalogTests {
     @Test func loadsAndValidatesUnderTheApplePolicy() throws {
         let catalog = try catalog()
         #expect(catalog.schemaVersion == DeviceCatalog.supportedSchemaVersion)
-        #expect(catalog.catalogVersion == "2026.10.2")
+        #expect(catalog.catalogVersion == "2026.10.3")
     }
 
     /// Pins the documented coverage so that an accidental deletion fails a test.

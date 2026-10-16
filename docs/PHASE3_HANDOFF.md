@@ -1,15 +1,168 @@
 # Phase 3 handoff: Liquid Glass and iOS UI modernization
 
-Last updated: 2026-10-16, after Phase 3.5 (validation). Nothing is committed.
+Last updated: 2026-10-16, after the Phase 3.5 finalization (owner-approved changes). Nothing in the
+finalization is committed; it starts from commit `5f9ea1a`.
 
-**Status: partially validated.** Phase 3 is **not complete**. The modernized UI builds, every hosted app test passes on iOS 17.0, 18.0, 26.0 and 27.0 simulators, and the screenshots have been reviewed. These remain open:
+**Status: partially validated. Phase 3 is not complete.** All four approved changes are implemented and
+build. The package tests and the camera source check pass, and the theme fix and the new tests were
+verified on iOS 27. These remain open:
 
-- UI interaction tests run on iOS 26 only.
-- Physical-device testing is limited to install and launch.
-- Tab-bar minimization was not observed.
-- Four owner decisions are pending (§7).
+- The final app-test run across iOS 17, 18, 26 and 27 was **not run**: the owner stopped simulator use because the simulators crash and spike CPU.
+- Two UI tests have unverified fixes: the section-toggle test's scroll helper and the tab-bar test's expected-failure marker.
+- The iOS 26 tab-bar shrinking is **not working**, cause undetermined (§F5).
 
-Labels used below: **passed**, **failed**, **blocked**, **not run**, **not available**.
+Labels used below: **passed**, **failed**, **blocked**, **not run**, **not available**. Sections F1–F7
+cover the finalization; §1–§11 below them are the earlier Phase 3.5 validation record, kept for reference.
+
+## F1. Finalization summary
+
+| Approved change | Status | Evidence |
+|---|---|---|
+| 1. Restore the saved theme on launch | **Implemented and passing** | `savedThemeIsRestored`, `systemMissingAndInvalidThemesFollowTheSystem` and `choosingAThemeStoresItsRawValue` passed on iOS 27; `savedThemeIsRestored` passed on the rerun after its test fix (F2, F6); UI test `testThemeChoiceIsRestoredAfterRelaunch` **passed** on iOS 26 |
+| 2. Remove the `App-prefs:` button from the Battery Health alert | **Implemented and passing** | UI test `testBatteryHealthAlertExplainsTheStepsWithoutASettingsLink` **passed** on iOS 26: one OK button, written steps present, no "Open Settings" |
+| 3. Sourced camera catalog | **Implemented and passing** | 36 iPhones; verifier 112/112, including every camera value; 5/5 planted errors caught; package tests pass |
+| 4. Test-target signing on the Personal Team | **Implemented; device signing verified by build** | Device `build-for-testing` **passed** and signed all three bundles with team `8QU4WRDSA4`. Not run on a device, at the owner's request. |
+| 5. Physical-device testing | **Not repeated**, at the owner's request | Owner reports the app works on their iPhone 15 running iOS 27.2 Developer Beta and on other iPhones. This is owner-reported, not automated. |
+
+## F2. Theme restoration
+
+- **Implementation:**
+  - `ContentView` now reads the theme with `@AppStorage(AppTheme.storageKey)`, using the same key (`selectedTheme`) and format (the raw-value string "Light", "Dark" or "System") the old code wrote.
+  - It is read before the first frame, so there is no visible switch from System.
+  - A missing or unrecognised value falls back to `.system`.
+  - The write-only `saveTheme` / `onChange` pair was removed, so there is one source of truth.
+  - `ContentView(initialTab:preferences:)` takes an injectable `UserDefaults` for tests.
+- **Tests:**
+  - Hosted, all **passed** on iOS 27:
+    - `savedThemeIsRestored`: Dark and Light;
+    - `systemMissingAndInvalidThemesFollowTheSystem`: "System", absent, "Purple" and "" under both system appearances;
+    - `choosingAThemeStoresItsRawValue`.
+  - UI, **passed** on iOS 26: `testThemeChoiceIsRestoredAfterRelaunch` picks Dark, terminates, relaunches and finds Dark selected.
+- **Test correction:** the first version of `savedThemeIsRestored` read the test window's trait collection and **failed** for Dark. SwiftUI applies `preferredColorScheme` to the hosting controller's view, not to a test-created window. The test now reads the hosting view and **passed**. This was a test fix, not a product change.
+
+## F3. Battery Health alert
+
+- The "Open Settings" button (`App-prefs:`, an undocumented scheme) is removed.
+- The alert keeps its title and written steps ("To view battery health: 1. Open Settings 2. Tap Battery 3. Tap Battery Health"), with a single **OK** (cancel role).
+- No other battery behavior changed.
+- UI test **passed** on iOS 26: the alert appears from the Health row, shows the steps, has exactly one button, and dismisses.
+
+## F4. Camera catalog
+
+**Audit of the old table** (`CameraInfo.getInfo()` in `ContentView.swift`, now removed):
+- **Coverage:** it held only `iPhone17,1`, `17,2`, `17,3`/`17,4` and `iPhone16,1`, plus `iPhone16,3`.
+- **`iPhone16,3` is not an Apple identifier.** It is absent from the Xcode simulator profiles, which give iPhone 15 Pro `iPhone16,1` and 15 Pro Max `iPhone16,2`, and from the identifier gist. Checked 2026-10-16.
+- **Every other model** got invented generic values ("12 MP Main, ƒ/1.8").
+- **Wrong against Apple's pages:**
+  - iPhone 16 Pro: 12MP Ultra Wide (Apple: 48MP) and 3x telephoto (Apple: 5x);
+  - iPhone 16 and 16 Plus: Ultra Wide ƒ/2.4 (Apple: ƒ/2.2).
+
+**New data:**
+- **Where it lives:** an optional `cameras` group in `DeviceCatalog.json`, now **schema 3, catalog 2026.10.3**.
+- **Coverage:** all **36 iPhone entries**, iPhone XS / XR through iPhone 18 Pro Max, which is every model the app's iOS 17+ minimum supports.
+- **Fields:**
+  - each physical rear camera (Apple's name, megapixels, aperture or apertures, telephoto optical zoom);
+  - the front camera (name if Apple gives one, megapixels, aperture);
+  - per side, the features Apple states (flash / Retina Flash, Night mode, Portrait mode).
+- **Sources:** each iPhone's Apple tech-specs page (`support.apple.com/en-us/<id>`, the page each entry already cites, now also supporting `cameras`), accessed 2026-10-16. Field-level attribution is in the JSON; the method is in `Packages/SpecMatrixKit/README.md`.
+
+**Validation:**
+- **Decoder rules:** each side has at least one camera; megapixels positive; f-numbers 0.95–22, each listed once; zoom above 1; unique rear camera names; known features; unknown keys rejected; `cameras` must be attributed to a source.
+- **`verify_catalog_sources.py`:**
+  - checks every camera value inside the right page section;
+  - requires each side's feature list to **equal** what the page states;
+  - run: **112/112 passed** (with the profile citations pointed at the installed Xcode, see F7);
+  - mutation test: **5/5 planted errors caught**, including the old table's two real errors.
+
+**App:**
+- `CatalogDeviceInfo` formats the camera screen:
+  - "48 MP Main" lines, with zoom appended when the name lacks it ("12 MP Telephoto (2x)");
+  - f-numbers as Apple prints them (ƒ/2.0, ƒ/1.78), and a variable aperture as "ƒ/1.48–4.0";
+  - "Retina Flash" for the front.
+- Any model or side without catalog data shows **Unknown** and no features, never another phone's data.
+
+**Tests:**
+- **Package** (`CameraCatalogTests.swift`, 10 test functions), all passing:
+  - exact values for 15 Pro, 16 Pro, 16/16 Plus, XS, 18 Pro, SE (3rd generation) and Air;
+  - coverage and attribution for all 36 iPhones;
+  - `iPhone16,3` and `iPhone16,4` not catalogued;
+  - the 11 decoder rule cases;
+  - unknown keys and attribution.
+- **App:** `camerasForIPhone16_1ComeFromTheCatalog`, `cameraFormatsAcrossModels` and `camerasAreUnknownWithoutCatalogData` **passed** on iOS 27.
+
+**Remaining unknowns:**
+- Only what the screen shows is recorded: no focal lengths, video specs or crop "telephotos".
+- iPad and Mac cameras are not recorded.
+- iPhone models older than the XS are out of scope, because they can't run iOS 17.
+
+## F5. Tab bar on iOS 26+
+
+**Not working; cause undetermined.**
+
+**Evidence** (iOS 26.0 simulator, iPhone 17 Pro, UI test `testTabBarMinimizesWhileScrollingDown`):
+- **The gesture scrolls:** a slow, held drag on the list scrolled it by more than a screen, and the large title collapsed into the inline title (screenshot).
+- **The bar didn't change:** its frame was (0, 791, 402×83) before and after, the Network tab stayed tappable, and the screenshot shows the full bar.
+- **The setting is applied:** `tabBarMinimizeBehavior(.onScrollDown)` is applied to the `TabView` on the iOS 26 path.
+
+**What was ruled out:**
+- **The gesture:** see above.
+- **The `.tabItem` vs `Tab` API:** a temporary switch to the iOS 18 `Tab` API made no difference. It was reverted, and `ContentView.swift` was restored byte for byte.
+
+**Conclusion:** this is either system or simulator behavior the app can't control through this API, or a cause I haven't found. No workaround or private API was added.
+
+**Test:** the UI test is marked `XCTExpectFailure` with this explanation, so it will flag itself if the bar starts shrinking. That version of the test has **not been run**.
+
+## F6. Test results (finalization)
+
+| Run | Destination | Result |
+|---|---|---|
+| `swift test --package-path Packages/SpecMatrixKit` | macOS | **Passed**, 124/124 (core 102, platform 11, state 11) |
+| `verify_catalog_sources.py` | network | **Passed**, 112/112 (with the profile citations rewritten to the installed Xcode 27.1 in a scratch copy, see F7) |
+| Hosted app tests, run 01 | iPhone 17, iOS 27.0 | 18 passed, **1 failed** (`savedThemeIsRestored`, a test bug, see F2), 2 skipped (snapshot tests, by design) |
+| `savedThemeIsRestored` after the test fix | iPhone 17, iOS 27.0 | **Passed** |
+| UI tests (`InterfaceUITests`), run 04 | iPhone 17 Pro, iOS 26.0 | 3 **passed** (Hide/Show All, theme relaunch, battery alert); 2 **failed**: the section-toggle test (scroll helper couldn't reach a row near the top; helper fixed, **not run**) and the tab bar (F5; now an expected failure, **not run**) |
+| Full UI target re-run (run 06) | iOS 26.0 | **Stopped** by the owner: UI runs hang. No results. |
+| Hosted app tests on iOS 17.0, 18.0, 26.0, and the final run on 27.0 | — | **Not run**: the owner stopped simulator use (crashes, CPU spikes) |
+| Device `build-for-testing -allowProvisioningUpdates` | generic iOS | **Passed**: app, test bundle and UI runner signed by `8QU4WRDSA4` |
+| Final `build-for-testing` | generic iOS Simulator | **Passed**, 0 errors, no compiler warnings |
+
+**Screenshots:** none were reviewed for the new camera screen. The snapshot run was not done (see the row above). The iOS 26 UI-test screenshots (Network hidden, Camera hidden, Dark selected and after relaunch, Battery Health alert, before and after scrolling) were exported and the tab-bar pair reviewed (F5). They were not copied into `docs/phase3-evidence/`.
+
+## F7. Environment changes noticed
+
+- **Xcode is now 27.1 (27A9275).** The catalog's identifier sources cite the Xcode 27.0 simulator profiles, so the verifier reports those profile checks as not done.
+  - On 2026-10-16 all 68 cited profiles listed exactly the catalogued identifiers under 27.1.
+  - The citations were not rewritten.
+- **Test signing:** Xcode's signed-in team is "Zachary Aflalo (Personal Team)", `8QU4WRDSA4`, a free provisioning team. It holds one development certificate.
+
+## F8. Files changed in the finalization
+
+- **Package:**
+  - `Catalog/CatalogEntry.swift`: the camera types and `CatalogField.cameras`;
+  - `Catalog/CatalogDecoder.swift`: schema 3, camera decoding and rules;
+  - `Catalog/DeviceCatalog.swift`: `supportedSchemaVersion = 3`;
+  - `Resources/DeviceCatalog.json`: cameras for 36 iPhones; version 2026.10.3; iPhone Apple sources dated 2026-10-16;
+  - `Scripts/verify_catalog_sources.py`: camera checks;
+  - `README.md`: the camera schema, sources, rules and limitations;
+  - tests: the new `CameraCatalogTests.swift`; fixtures and expectations moved to schema 3; catalog version 2026.10.3.
+- **App:**
+  - `ContentView.swift`: theme via `@AppStorage`; the camera table removed;
+  - `Foundation/CatalogDeviceInfo.swift`: camera summaries;
+  - `Screens/CameraScreen.swift`: reads the catalog;
+  - `Screens/SpecsScreen.swift`: alert button removed.
+- **Project:** `project.pbxproj`, test targets only: `DEVELOPMENT_TEAM = 8QU4WRDSA4` and bundle IDs `com.zacharyaflalo.specmatrix.Tests` / `.UITests`. The app target, deployment targets and the project-level team are unchanged.
+- **Tests:**
+  - `SpecMatrixTests/SpecMatrixTests.swift`: the camera tests;
+  - `SpecMatrixTests/InterfaceBehaviorTests.swift`: the theme tests;
+  - new `SpecMatrixUITests/InterfaceUITests.swift`.
+
+## F9. Remaining work before Phase 3 is complete
+
+1. **Hosted app tests:** run `xcodebuild … test -only-testing:SpecMatrixTests` on iOS 17.0, 18.0 and 26.0 (17/18 with `IPHONEOS_DEPLOYMENT_TARGET=17.0`), and again on 27.0 after the final edits.
+2. **UI tests:** run `SpecMatrixUITests/InterfaceUITests` on iOS 26 to confirm the helper fix and the expected-failure marker. Skip `SpecMatrixUITestsLaunchTests` and `ScreenTourUITests`; the launch test runs once per appearance and orientation and is what hangs.
+3. **Camera screen snapshots:** render and review them with `TEST_RUNNER_SPECMATRIX_SNAPSHOT_DIR`.
+4. **Tab bar:** decide whether shrinking is still wanted. If it is, check it by hand on a device; otherwise remove `specTabBarMinimizesOnScroll()` and its test.
+5. **Design call:** the contrast of the "Health" label, still open from Phase 3.5.
 
 ## 1. Environment (2026-10-16)
 
@@ -159,9 +312,9 @@ Two environmental factors were noted but not proven to be the cause:
 
 **Availability:** every `#available` check is in `SpecMatrix/DesignSystem/PlatformCompatibility.swift`, and there are only two (`tabBarMinimizeBehavior`, `navigationSubtitle`, both iOS 26.0 in the SDK). A grep finds no other checks in the app. The 17.0 deployment target makes the compiler reject any unguarded newer API.
 
-## 7. Owner decisions needed
+## 7. Owner decisions (resolved; see F1–F4)
 
-Nothing below has been changed.
+The owner approved theme restoration, removing the button, a sourced camera catalog and the test signing. The text below is the original question record.
 
 1. **Remember the theme between launches?**
    - Now: `ContentView` writes the picked theme to `UserDefaults` key `selectedTheme` but never reads it, so every launch starts on "System".
@@ -217,7 +370,7 @@ Nothing below has been changed.
 
 **Not changed:** the project file, schemes, deployment targets, signing, bundle IDs, CI, the package, and stored data formats.
 
-## 9. Remaining work before Phase 3 is complete
+## 9. Remaining work before Phase 3 is complete (superseded by F9)
 
 1. **Tab-bar minimization:** check it by hand on iOS 26+ by scrolling a long tab. If it doesn't minimize, investigate before changing code (§4).
 2. **Owner decisions:** get answers to §7, then implement the chosen options with tests.
@@ -246,7 +399,7 @@ xcodebuild -scheme SpecMatrix -destination 'platform=iOS Simulator,name=iPhone 1
   - toolbars;
   - alerts;
   - picker and menu presentation.
-- **The only opt-in behavior** is the tab bar shrinking while scrolling (iOS 26+), which wasn't observed (§4).
+- **The only opt-in behavior** is the tab bar shrinking while scrolling (iOS 26+), which doesn't take effect (F5).
 - **No custom `glassEffect` surfaces.** Content is lists of facts, and glass belongs to controls, not content.
 - **Fallback on iOS 17–18:** the standard bars and list styling, with no blur or opacity imitations of glass.
 
@@ -262,6 +415,7 @@ xcodebuild -scheme SpecMatrix -destination 'platform=iOS Simulator,name=iPhone 1
   - `UIDevice.modelIdentifier()`, used by `CatalogDeviceInfo` and `CameraInfo`.
 - **Swift versions:** keep the app target on Swift 5 and SpecMatrixKit on Swift 6. Keep monitors owned by the sections that display them.
 - **Custom glass** belongs only on future floating controls: group it in `GlassEffectContainer`, add a `.regularMaterial` fallback in the compatibility file, and use `ToolbarSpacer` (26+) for toolbar groups.
+- **Catalog:** schema 3 with `cameras`. An iPad build would need iPad camera data, which isn't recorded.
 - **Testing:**
   - the test targets' 18.2 deployment target blocks iOS 17/18 test runs without the command-line override;
   - align them with 17.0 when deployment-target changes are approved;

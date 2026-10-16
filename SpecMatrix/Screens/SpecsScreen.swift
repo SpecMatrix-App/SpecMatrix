@@ -69,13 +69,9 @@ struct BatteryInfoView: View {
             }
             .accessibilityHint("Shows how to find battery health in Settings")
         }
+        // Apple offers no documented link to the Battery page in Settings, so the alert only explains the steps.
         .alert("Battery Health", isPresented: $showingSettingsGuide) {
-            Button("Open Settings") {
-                if let url = URL(string: "App-prefs:") {
-                    UIApplication.shared.open(url)
-                }
-            }
-            Button("Cancel", role: .cancel) { }
+            Button("OK", role: .cancel) { }
         } message: {
             Text("To view battery health:\n1. Open Settings\n2. Tap Battery\n3. Tap Battery Health")
         }

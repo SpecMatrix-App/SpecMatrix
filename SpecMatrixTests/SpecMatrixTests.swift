@@ -105,6 +105,47 @@ struct AppIntegrationTests {
         #expect(failed.chipName == "Unknown")
     }
 
+    // MARK: Cameras (catalog)
+
+    @Test func camerasForIPhone16_1ComeFromTheCatalog() {
+        let device = CatalogDeviceInfo(identifier: "iPhone16,1", catalog: AppEnvironment.catalog)
+        #expect(device.backCamera == .init(title: "Back Camera", resolution: "48 MP Main\n12 MP Ultra Wide\n12 MP 3x Telephoto",
+                                           aperture: "ƒ/1.78, ƒ/2.2, ƒ/2.8",
+                                           features: ["Flash", "Night Mode", "Portrait Mode"]))
+        #expect(device.frontCamera == .init(title: "Front Camera", resolution: "12 MP TrueDepth", aperture: "ƒ/1.9",
+                                            features: ["Retina Flash", "Night Mode", "Portrait Mode"]))
+    }
+
+    /// Units and formats: "N MP <name>" lines, zoom appended when the name lacks it, Apple's f-number
+    /// precision (ƒ/2.0, ƒ/1.78), a variable aperture as a range, and only the features Apple lists.
+    @Test func cameraFormatsAcrossModels() {
+        let catalog = AppEnvironment.catalog
+        let xs = CatalogDeviceInfo(identifier: "iPhone11,2", catalog: catalog)
+        #expect(xs.backCamera.resolution == "12 MP Wide-angle\n12 MP Telephoto (2x)")
+        #expect(xs.backCamera.features == ["Flash", "Portrait Mode"])
+        #expect(CatalogDeviceInfo(identifier: "iPhone12,3", catalog: catalog).backCamera.aperture == "ƒ/2.4, ƒ/1.8, ƒ/2.0")
+        #expect(CatalogDeviceInfo(identifier: "iPhone13,4", catalog: catalog).backCamera.resolution
+                == "12 MP Ultra Wide\n12 MP Wide\n12 MP Telephoto (2.5x)")
+        #expect(CatalogDeviceInfo(identifier: "iPhone19,2", catalog: catalog).backCamera.aperture == "ƒ/1.48–4.0, ƒ/2.2, ƒ/2.8")
+        let se = CatalogDeviceInfo(identifier: "iPhone14,6", catalog: catalog)
+        #expect(se.frontCamera.resolution == "7 MP")
+        #expect(se.frontCamera.features == ["Retina Flash", "Portrait Mode"])
+        #expect(CatalogDeviceInfo(identifier: "iPhone18,3", catalog: catalog).frontCamera.resolution == "18 MP Center Stage")
+    }
+
+    /// Models without catalog camera data get "Unknown", never another phone's cameras or defaults.
+    @Test func camerasAreUnknownWithoutCatalogData() {
+        let unknown = ["Watch7,3", "iPhone16,3", "iPhone10,1", "iPad16,4", "arm64", ""].map {
+            CatalogDeviceInfo(identifier: $0, catalog: AppEnvironment.catalog)
+        } + [CatalogDeviceInfo(identifier: "iPhone16,1", catalog: .failure(.resourceMissing("DeviceCatalog.json")))]
+        for device in unknown {
+            for camera in [device.backCamera, device.frontCamera] {
+                #expect(camera.resolution == "Unknown" && camera.aperture == "Unknown" && camera.features.isEmpty,
+                        "\(device.identifier)")
+            }
+        }
+    }
+
     // MARK: Interface
 
     /// Every SF Symbol the interface names exists; an unknown name renders as nothing.

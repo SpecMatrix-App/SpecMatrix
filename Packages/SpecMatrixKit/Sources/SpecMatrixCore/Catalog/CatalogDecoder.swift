@@ -1,9 +1,9 @@
 import Foundation
 
-/// Decodes and validates catalog JSON (schema version 2).
+/// Decodes and validates catalog JSON (schema version 3).
 ///
 /// Validation rules:
-/// 1. The data must be a JSON object with an integer `schemaVersion` equal to 2.
+/// 1. The data must be a JSON object with an integer `schemaVersion` equal to 3.
 ///    Other versions are rejected before any further parsing.
 /// 2. Keys not defined by the schema are rejected, so typos cannot silently drop data.
 /// 3. Values must have the declared JSON types (e.g. integers for core counts).
@@ -13,6 +13,9 @@ import Foundation
 /// 5. Field values: numbers positive; dates valid `YYYY-MM-DD`; entry IDs unique lowercase slugs;
 ///    identifiers well-formed, unique across the catalog, and matching the entry's family;
 ///    marketing names unique unless the entries name different chips; resolution in portrait.
+///    Cameras: each side records at least one camera; megapixels positive; apertures are f-numbers
+///    from 0.95 to 22, listed at least once; optical zoom above 1; rear camera names unique;
+///    features from `CameraFeature`, each listed once.
 /// 6. Sources: each has a title, an `accessed` date, a non-empty `supports` list, and exactly one
 ///    location — an HTTPS `url`, or an `xcodeSimulatorDeviceType` with its `xcodeVersion`
 ///    (which may only support `identifiers`). Sources are unique within an entry.
@@ -96,6 +99,7 @@ struct RawEntry: Decodable {
     let releaseDate: String?
     let chip: RawChip?
     let display: RawDisplay?
+    let cameras: RawCameras?
     let sources: [RawSource]?
     let verification: RawVerification?
 }
@@ -114,6 +118,30 @@ struct RawDisplay: Decodable {
     let pixelHeight: Int?
     let pixelsPerInch: Int?
     let maximumRefreshRateHz: Int?
+}
+
+struct RawCameras: Decodable {
+    let rear: RawRearCameras?
+    let front: RawFrontCamera?
+}
+
+struct RawRearCameras: Decodable {
+    let lenses: [RawLens]?
+    let features: [String]?
+}
+
+struct RawLens: Decodable {
+    let name: String?
+    let megapixels: Int?
+    let apertures: [Double]?
+    let opticalZoom: Double?
+}
+
+struct RawFrontCamera: Decodable {
+    let name: String?
+    let megapixels: Int?
+    let apertures: [Double]?
+    let features: [String]?
 }
 
 struct RawSource: Decodable {
@@ -135,9 +163,13 @@ struct RawVerification: Decodable {
 private enum UnknownKeyCheck {
     static let rootKeys: Set<String> = ["schemaVersion", "catalogVersion", "entries"]
     static let entryKeys: Set<String> = ["id", "identifiers", "family", "marketingName", "releaseDate",
-                                         "chip", "display", "sources", "verification"]
+                                         "chip", "display", "cameras", "sources", "verification"]
     static let chipKeys: Set<String> = ["name", "performanceCores", "efficiencyCores", "gpuCores", "neuralEngineCores"]
     static let displayKeys: Set<String> = ["diagonalInches", "pixelWidth", "pixelHeight", "pixelsPerInch", "maximumRefreshRateHz"]
+    static let cameraKeys: Set<String> = ["rear", "front"]
+    static let rearKeys: Set<String> = ["lenses", "features"]
+    static let lensKeys: Set<String> = ["name", "megapixels", "apertures", "opticalZoom"]
+    static let frontKeys: Set<String> = ["name", "megapixels", "apertures", "features"]
     static let sourceKeys: Set<String> = ["title", "url", "xcodeSimulatorDeviceType", "xcodeVersion", "accessed", "supports"]
     static let verificationKeys: Set<String> = ["status", "verifiedOn"]
 
@@ -152,6 +184,19 @@ private enum UnknownKeyCheck {
             }
             if let display = entry["display"] as? [String: Any] {
                 issues += unexpected(in: display, allowed: displayKeys, path: path + ".display")
+            }
+            if let cameras = entry["cameras"] as? [String: Any] {
+                issues += unexpected(in: cameras, allowed: cameraKeys, path: path + ".cameras")
+                if let rear = cameras["rear"] as? [String: Any] {
+                    issues += unexpected(in: rear, allowed: rearKeys, path: path + ".cameras.rear")
+                    for (lensIndex, lens) in (rear["lenses"] as? [Any] ?? []).enumerated() {
+                        guard let lens = lens as? [String: Any] else { continue }
+                        issues += unexpected(in: lens, allowed: lensKeys, path: path + ".cameras.rear.lenses[\(lensIndex)]")
+                    }
+                }
+                if let front = cameras["front"] as? [String: Any] {
+                    issues += unexpected(in: front, allowed: frontKeys, path: path + ".cameras.front")
+                }
             }
             if let verification = entry["verification"] as? [String: Any] {
                 issues += unexpected(in: verification, allowed: verificationKeys, path: path + ".verification")
@@ -259,6 +304,7 @@ private struct Validator {
         let releaseDate = raw.releaseDate.flatMap { date(from: $0, path: path + ".releaseDate") }
         let chip = raw.chip.flatMap { validate($0, path: path + ".chip") }
         let display = raw.display.map { validate($0, path: path + ".display") }
+        let cameras = raw.cameras.map { validate($0, path: path + ".cameras") }
         let sources = validate(raw.sources, path: path + ".sources")
         let verification = validate(raw.verification, path: path + ".verification")
 
@@ -268,6 +314,7 @@ private struct Validator {
         if raw.releaseDate != nil { populated.insert(.releaseDate) }
         if raw.chip != nil { populated.insert(.chip) }
         if raw.display != nil { populated.insert(.display) }
+        if raw.cameras != nil { populated.insert(.cameras) }
         checkAttribution(sources, populated: populated, path: path)
 
         if let verification {
@@ -286,7 +333,7 @@ private struct Validator {
               let id, let family, let marketingName, let verification
         else { return nil }
         return CatalogEntry(id: id, identifiers: identifiers, family: family, marketingName: marketingName,
-                            releaseDate: releaseDate, chip: chip, display: display,
+                            releaseDate: releaseDate, chip: chip, display: display, cameras: cameras,
                             sources: sources.map(\.source), verification: verification)
     }
 
@@ -342,6 +389,90 @@ private struct Validator {
             }
         }
         return DisplaySpecification(diagonal: diagonal, resolution: resolution, pixelDensity: density, maximumRefreshRate: refresh)
+    }
+
+    private mutating func validate(_ raw: RawCameras, path: String) -> CameraSpecification {
+        if raw.rear == nil, raw.front == nil {
+            issue(path, "Record at least one of rear and front, or omit cameras.")
+        }
+        var rear: RearCameraSystem?
+        if let rawRear = raw.rear {
+            var lenses: [CameraLens] = []
+            var names: Set<String> = []
+            if let rawLenses = rawRear.lenses, !rawLenses.isEmpty {
+                for (index, rawLens) in rawLenses.enumerated() {
+                    let lensPath = "\(path).rear.lenses[\(index)]"
+                    let name = nonEmpty(rawLens.name, path: lensPath + ".name")
+                    if let name, !names.insert(name).inserted { issue(lensPath + ".name", "Duplicate camera name \"\(name)\".") }
+                    let megapixels = megapixels(rawLens.megapixels, path: lensPath + ".megapixels")
+                    let apertures = apertures(rawLens.apertures, path: lensPath + ".apertures")
+                    if let zoom = rawLens.opticalZoom, !(zoom > 1) {
+                        issue(lensPath + ".opticalZoom", "Must be greater than 1 (found \(zoom)).")
+                    }
+                    if let name, let megapixels, let apertures {
+                        lenses.append(CameraLens(name: name, megapixels: megapixels, apertures: apertures, opticalZoom: rawLens.opticalZoom))
+                    }
+                }
+            } else {
+                issue(path + ".rear.lenses", "At least one camera is required.")
+            }
+            rear = RearCameraSystem(lenses: lenses, features: features(rawRear.features, path: path + ".rear.features"))
+        }
+        var front: FrontCamera?
+        if let rawFront = raw.front {
+            let frontPath = path + ".front"
+            var name: String?
+            if let rawName = rawFront.name { name = nonEmpty(rawName, path: frontPath + ".name") }
+            let megapixels = megapixels(rawFront.megapixels, path: frontPath + ".megapixels")
+            let apertures = apertures(rawFront.apertures, path: frontPath + ".apertures")
+            let features = features(rawFront.features, path: frontPath + ".features")
+            if let megapixels, let apertures {
+                front = FrontCamera(name: name, megapixels: megapixels, apertures: apertures, features: features)
+            }
+        }
+        return CameraSpecification(rear: rear, front: front)
+    }
+
+    private mutating func megapixels(_ value: Int?, path: String) -> Int? {
+        guard let value else {
+            issue(path, "Required field is missing.")
+            return nil
+        }
+        guard value > 0 else {
+            issue(path, "Must be a positive integer (found \(value)).")
+            return nil
+        }
+        return value
+    }
+
+    private mutating func apertures(_ values: [Double]?, path: String) -> [Double]? {
+        guard let values, !values.isEmpty else {
+            issue(path, "At least one aperture is required.")
+            return nil
+        }
+        var valid = true
+        for value in values where !(0.95...22).contains(value) {
+            issue(path, "\(value) is not a plausible f-number.")
+            valid = false
+        }
+        if Set(values).count != values.count {
+            issue(path, "An aperture is listed twice.")
+            valid = false
+        }
+        return valid ? values : nil
+    }
+
+    private mutating func features(_ values: [String]?, path: String) -> Set<CameraFeature> {
+        var features: Set<CameraFeature> = []
+        for text in values ?? [] {
+            guard let feature = CameraFeature(rawValue: text) else {
+                let allowed = CameraFeature.allCases.map(\.rawValue).joined(separator: ", ")
+                issue(path, "\"\(text)\" is not one of: \(allowed).")
+                continue
+            }
+            if !features.insert(feature).inserted { issue(path, "\"\(text)\" is listed twice.") }
+        }
+        return features
     }
 
     /// Valid sources, each paired with its index in the raw array so later issues point at it.

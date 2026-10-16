@@ -60,7 +60,7 @@ public struct CatalogPolicy: Sendable, Equatable {
 /// every issue is reported. The bundled catalog is authored with the app, so a single
 /// invalid entry indicates a defect that should fail tests rather than be skipped silently.
 public struct DeviceCatalog: Sendable, Equatable {
-    public static let supportedSchemaVersion = 2
+    public static let supportedSchemaVersion = 3
     public static let bundledResourceName = "DeviceCatalog"
 
     public let schemaVersion: Int
