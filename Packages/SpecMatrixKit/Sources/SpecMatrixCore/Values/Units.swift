@@ -47,7 +47,8 @@ public struct RefreshRate: Sendable, Hashable, Comparable, CustomStringConvertib
     public var description: String { "\(hertz) Hz" }
 }
 
-/// A positive display diagonal in inches, as marketed by the manufacturer.
+/// A positive display diagonal in inches, measured as a rectangle as published by the manufacturer
+/// (see `DisplaySpecification.diagonal`).
 public struct DisplayDiagonal: Sendable, Hashable, CustomStringConvertible {
     public let inches: Double
 

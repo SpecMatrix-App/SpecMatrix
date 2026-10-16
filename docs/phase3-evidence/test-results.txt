@@ -1,0 +1,79 @@
+== 05-tests-ios27-retry
+   interfaceSymbolsExist() -> Passed
+   runningModelResolvesThroughTheBundledCatalog() -> Passed
+   compositionRootCreatesAnIdleStoreWithoutStartingWork() -> Passed
+   legacyScreensShowCatalogValuesForIPhone16_1() -> Passed
+   displaySettingsKeepTheirStoredFormat() -> Passed
+   legacyScreensShowUnknownInsteadOfGuessing() -> Passed
+   legacyScreensUseTheRightModelForEachIdentifier() -> Passed
+   batteryLevelText() -> Passed
+   bundledCatalogLoadsInsideTheApp() -> Passed
+   liveRefreshProducesAReportWithConsistentProvenance() -> Passed
+   renderEveryTab(_:) -> Passed
+   settingsChangesReachViewsThatReadThem() -> Passed
+   memorySamplesDoNotRedrawOtherSections() -> Passed
+   memoryMonitorStillPublishesFrequently() -> Passed
+runtime: iPhone 17 27.0
+== 06-tests-ios26
+   renderEveryTab(_:) -> Passed
+   interfaceSymbolsExist() -> Passed
+   legacyScreensUseTheRightModelForEachIdentifier() -> Passed
+   bundledCatalogLoadsInsideTheApp() -> Passed
+   legacyScreensShowUnknownInsteadOfGuessing() -> Passed
+   displaySettingsKeepTheirStoredFormat() -> Passed
+   runningModelResolvesThroughTheBundledCatalog() -> Passed
+   liveRefreshProducesAReportWithConsistentProvenance() -> Passed
+   batteryLevelText() -> Passed
+   legacyScreensShowCatalogValuesForIPhone16_1() -> Passed
+   compositionRootCreatesAnIdleStoreWithoutStartingWork() -> Passed
+   settingsChangesReachViewsThatReadThem() -> Passed
+   memorySamplesDoNotRedrawOtherSections() -> Passed
+   memoryMonitorStillPublishesFrequently() -> Passed
+runtime: iPhone 17 Pro 26.0
+== 09-tests-ios18
+   interfaceSymbolsExist() -> Passed
+   compositionRootCreatesAnIdleStoreWithoutStartingWork() -> Passed
+   runningModelResolvesThroughTheBundledCatalog() -> Passed
+   liveRefreshProducesAReportWithConsistentProvenance() -> Passed
+   legacyScreensShowUnknownInsteadOfGuessing() -> Passed
+   legacyScreensUseTheRightModelForEachIdentifier() -> Passed
+   bundledCatalogLoadsInsideTheApp() -> Passed
+   legacyScreensShowCatalogValuesForIPhone16_1() -> Passed
+   displaySettingsKeepTheirStoredFormat() -> Passed
+   batteryLevelText() -> Passed
+   renderEveryTab(_:) -> Passed
+   settingsChangesReachViewsThatReadThem() -> Passed
+   memorySamplesDoNotRedrawOtherSections() -> Passed
+   memoryMonitorStillPublishesFrequently() -> Passed
+runtime: iPhone 16 Pro 18.0
+== 10-tests-ios17
+   liveRefreshProducesAReportWithConsistentProvenance() -> Passed
+   legacyScreensShowCatalogValuesForIPhone16_1() -> Passed
+   bundledCatalogLoadsInsideTheApp() -> Passed
+   batteryLevelText() -> Passed
+   interfaceSymbolsExist() -> Passed
+   displaySettingsKeepTheirStoredFormat() -> Passed
+   runningModelResolvesThroughTheBundledCatalog() -> Passed
+   legacyScreensUseTheRightModelForEachIdentifier() -> Passed
+   legacyScreensShowUnknownInsteadOfGuessing() -> Passed
+   compositionRootCreatesAnIdleStoreWithoutStartingWork() -> Passed
+   renderEveryTab(_:) -> Passed
+   settingsChangesReachViewsThatReadThem() -> Passed
+   memorySamplesDoNotRedrawOtherSections() -> Passed
+   memoryMonitorStillPublishesFrequently() -> Passed
+runtime: iPhone 15 Pro 17.0
+== 13-snapshots-ios17
+   renderEveryTab(_:) -> Passed
+   renderHiddenNotices() -> Passed
+runtime: iPhone 15 Pro 17.0
+== 14-uitests-ios26
+   testScreenTour() -> Passed
+   testLaunch() -> Passed
+runtime: iPhone 17 Pro 26.0
+== swift test --package-path Packages/SpecMatrixKit
+✔ Test run with 11 tests in 1 suite passed after 0.029 seconds.
+✔ Test run with 11 tests in 4 suites passed after 0.001 seconds.
+✔ Test run with 92 tests in 14 suites passed after 0.182 seconds.
+== device test attempt (iPhone 15 Pro, iOS 27.2): blocked by signing
+/Users/zac/Desktop/SpecMatrix/SpecMatrix.xcodeproj: error: No profiles for 'com.zacdevv.SpecMatrixUITests.xctrunner' were found: Xcode couldn't find any iOS App Development provisioning profiles matching 'com.zacdevv.SpecMatrixUITests.xctrunner'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass -allowProvisioningUpdates to xcodebuild. (in target 'SpecMatrixUITests' from project 'SpecMatrix')
+/Users/zac/Desktop/SpecMatrix/SpecMatrix.xcodeproj: error: No signing certificate "iOS Development" found: No "iOS Development" signing certificate matching team ID "LSYVL36ZN3" with a private key was found. (in target 'SpecMatrixTests' from project 'SpecMatrix')

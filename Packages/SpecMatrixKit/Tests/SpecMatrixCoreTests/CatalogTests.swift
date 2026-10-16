@@ -353,7 +353,7 @@ struct BundledCatalogTests {
     @Test func loadsAndValidatesUnderTheApplePolicy() throws {
         let catalog = try catalog()
         #expect(catalog.schemaVersion == DeviceCatalog.supportedSchemaVersion)
-        #expect(catalog.catalogVersion == "2026.10.1")
+        #expect(catalog.catalogVersion == "2026.10.2")
     }
 
     /// Pins the documented coverage so that an accidental deletion fails a test.
@@ -361,11 +361,13 @@ struct BundledCatalogTests {
     @Test func coverageMatchesTheDocumentedCounts() throws {
         let entries = try catalog().entries
         let byFamily = Dictionary(grouping: entries, by: \.family)
-        #expect(entries.count == 68)
+        #expect(entries.count == 112)
         #expect(byFamily["iPhone"]?.count == 36)
         #expect(byFamily["iPad"]?.count == 32)
-        #expect(byFamily["Mac"] == nil)
-        #expect(entries.reduce(0) { $0 + $1.identifiers.count } == 110)
+        #expect(byFamily["Mac"]?.count == 44)
+        #expect(Set(byFamily.keys) == ["iPhone", "iPad", "Mac"])
+        #expect(entries.reduce(0) { $0 + $1.identifiers.count } == 168)
+        #expect(byFamily["Mac"]?.reduce(0) { $0 + $1.identifiers.count } == 58)
         #expect(entries.allSatisfy { $0.verification.status == .verified })
     }
 
@@ -378,11 +380,17 @@ struct BundledCatalogTests {
         }
     }
 
-    /// Each identifier entry cites Apple's simulator profile plus at least one independent reference.
-    @Test func identifiersCiteAppleSimulatorProfilesAndAnIndependentReference() throws {
+    /// Identifiers cite Apple first-party data — the Xcode Simulator profile for iPhone and iPad, Apple's
+    /// "Identify your Mac" page for Macs — plus at least one independent reference.
+    @Test func identifiersCiteAppleDataAndAnIndependentReference() throws {
         for entry in try catalog().entries {
             let sources = entry.sources(supporting: .identifiers)
-            #expect(sources.contains { if case .xcodeSimulatorDeviceType = $0.location { true } else { false } }, "\(entry.id)")
+            let simulatorProfile = sources.contains { if case .xcodeSimulatorDeviceType = $0.location { true } else { false } }
+            if entry.family == "Mac" {
+                #expect(sources.contains { $0.url?.host == "support.apple.com" }, "\(entry.id)")
+            } else {
+                #expect(simulatorProfile, "\(entry.id)")
+            }
             #expect(sources.contains { $0.publisher != "apple.com" }, "\(entry.id)")
         }
     }
@@ -396,7 +404,10 @@ struct BundledCatalogTests {
             "iPhone16,3", "iPhone16,4", // invented by the legacy app
             "iPad7,7",     // between iPad Pro (10.5-inch) and iPad (6th generation)
             "iPad17,5",    // after the last iPad Pro (M5) identifier
-            "Mac14,2",     // Macs are not catalogued yet
+            "Mac16,4",     // between catalogued iMac Mac16,3 and MacBook Pro Mac16,5
+            "MacBookPro16,1", "iMac20,1", // Intel Macs: not catalogued (Apple silicon only)
+            // Product families SpecMatrix does not target.
+            "Watch7,3", "AppleTV14,1", "RealityDevice14,1", "iPod9,1",
         ]
         for raw in notCatalogued {
             #expect(catalog.lookup(identifier(raw)) == .notFound(identifier(raw)), "\(raw)")

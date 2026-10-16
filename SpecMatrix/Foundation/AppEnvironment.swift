@@ -13,7 +13,8 @@ import UIKit
 @MainActor
 enum AppEnvironment {
     /// Loaded once. A load failure is surfaced as catalog errors, never replaced by fallback data.
-    static let catalog: Result<DeviceCatalog, CatalogLoadError> = DeviceCatalog.loadBundled()
+    /// Immutable and `Sendable`, so it is readable from any isolation domain.
+    nonisolated static let catalog: Result<DeviceCatalog, CatalogLoadError> = DeviceCatalog.loadBundled()
 
     static func makeDeviceInfoStore() -> DeviceInfoStore {
         DeviceInfoStore(

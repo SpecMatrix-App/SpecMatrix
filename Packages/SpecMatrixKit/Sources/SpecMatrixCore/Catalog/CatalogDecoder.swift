@@ -12,7 +12,7 @@ import Foundation
 ///    means "not recorded", never zero.
 /// 5. Field values: numbers positive; dates valid `YYYY-MM-DD`; entry IDs unique lowercase slugs;
 ///    identifiers well-formed, unique across the catalog, and matching the entry's family;
-///    marketing names unique; resolution in portrait.
+///    marketing names unique unless the entries name different chips; resolution in portrait.
 /// 6. Sources: each has a title, an `accessed` date, a non-empty `supports` list, and exactly one
 ///    location — an HTTPS `url`, or an `xcodeSimulatorDeviceType` with its `xcodeVersion`
 ///    (which may only support `identifiers`). Sources are unique within an entry.
@@ -178,7 +178,7 @@ private struct Validator {
     var issues: [CatalogIssue] = []
     private var seenEntryIDs: Set<String> = []
     private var seenIdentifiers: [HardwareIdentifier: String] = [:]
-    private var seenMarketingNames: [String: String] = [:]
+    private var seenMarketingNames: [String: [(entry: String, chip: String?)]] = [:]
 
     /// Identifier prefixes allowed for each family. A family not listed must equal its prefix.
     private static let identifierPrefixes: [String: Set<String>] = [
@@ -246,11 +246,15 @@ private struct Validator {
 
         let marketingName = nonEmpty(raw.marketingName, path: path + ".marketingName")
         if let marketingName {
-            if let owner = seenMarketingNames[marketingName] {
-                issue(path + ".marketingName", "\"\(marketingName)\" is already used by entry \"\(owner)\".")
-            } else {
-                seenMarketingNames[marketingName] = id ?? path
+            // Apple reuses some names for different hardware (e.g. two "Mac Studio (2023)" models with
+            // M2 Max or M2 Ultra). A shared name is accepted only when every entry names a different chip.
+            let chipName = raw.chip?.name
+            let owners = seenMarketingNames[marketingName, default: []]
+            if let owner = owners.first(where: { chipName == nil || $0.chip == nil || $0.chip == chipName }) {
+                issue(path + ".marketingName",
+                      "\"\(marketingName)\" is already used by entry \"\(owner.entry)\" and is not distinguished by chip.")
             }
+            seenMarketingNames[marketingName, default: []].append((id ?? path, chipName))
         }
         let releaseDate = raw.releaseDate.flatMap { date(from: $0, path: path + ".releaseDate") }
         let chip = raw.chip.flatMap { validate($0, path: path + ".chip") }

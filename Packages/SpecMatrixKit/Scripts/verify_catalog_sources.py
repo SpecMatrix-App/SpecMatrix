@@ -38,12 +38,13 @@ MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 def normalize(text):
     text = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', text, flags=re.S)
     text = html.unescape(re.sub(r'<[^>]+>', ' ', text))
+    text = text.replace('­', '')  # soft hyphens, as in "perform­ance"
     for dash in '‐‑‒–—':
         text = text.replace(dash, '-')
     return re.sub(r'[\s   ]+', ' ', text)
 
 
-def fetch(url, cache, offline):
+def fetch(url, cache, offline, identifiers=()):
     path = os.path.join(cache, hashlib.sha256(url.encode()).hexdigest()[:24] + '.html')
     if not os.path.exists(path):
         if offline:
@@ -56,7 +57,13 @@ def fetch(url, cache, offline):
     with open(path, encoding='utf-8', errors='ignore') as handle:
         raw = handle.read()
     title = re.search(r'<title[^>]*>(.*?)</title>', raw, re.S)
-    return normalize(raw), normalize(title.group(1)) if title else ''
+    # Apple's "Identify your Mac" pages describe many models, one <h2> section each. Only the sections
+    # listing this entry's identifiers count, so a value stated for a different model is not accepted.
+    if 'Model Identifier' in raw and identifiers:
+        sections = [s for s in re.split(r'(?=<h2[ >])', raw)
+                    if any(re.search(rf'(?<![\w,]){re.escape(i)}(?!\d)', normalize(s)) for i in identifiers)]
+        return normalize(' '.join(sections)), '', True
+    return normalize(raw), normalize(title.group(1)) if title else '', False
 
 
 def number(n):
@@ -76,7 +83,8 @@ def claims(entry):
                     (year, rf'(?:in stores|availab\w*)[^.]*{MONTHS[month - 1]} {day}\b')))
     chip = entry.get('chip')
     if chip:
-        out.append(('chip', f'chip {chip["name"]}', rf'\b(?:Apple )?{re.escape(chip["name"])} chip\b'))
+        name = re.escape(chip['name'])
+        out.append(('chip', f'chip {chip["name"]}', rf'(?:\b(?:Apple )?{name} chip\b|\bChip: {name}\b)'))
         patterns = {
             # Apple writes "2 performance and 4 efficiency cores".
             'performanceCores': r'\b{n}[ -]performance\b',
@@ -104,11 +112,13 @@ def claims(entry):
     return out
 
 
-def confirms(claim, text, title, url):
+def confirms(claim, text, title, url, scoped=False):
     group, _, pattern = claim
     if group == 'marketingName':
         key = lambda s: re.sub(r'[,\s]+', ' ', s).strip().lower()
-        return key(title).startswith(key(claim[1][6:-1]))
+        name = key(claim[1][6:-1])
+        # A spec page names its model in the title; a scoped identification section names it in its heading.
+        return key(title).startswith(name) or (scoped and name in key(text))
     if group == 'releaseDate':
         year, regex = pattern
         return f'/newsroom/{year}/' in url and re.search(regex, text) is not None
@@ -129,6 +139,8 @@ def confirms_diagonal(value, text):
         return any(float(figure) == value for figure in device_specific)
     if re.search(rectangle + r'[^.]*?\b' + d + r' inches', text):
         return True
+    if re.search(rf'Actual diagonal screen size is {d} in\b', text):  # iMac: "24-inch" class, 23.5 in actual
+        return True
     return re.search(rf'\b{d}-inch \(diagonal\)', text) is not None
 
 
@@ -147,7 +159,7 @@ def verify(entry, cache, offline, installed_xcode):
         supports = set(source['supports'])
         if 'url' in source:
             try:
-                text, title = fetch(source['url'], cache, offline)
+                text, title, scoped = fetch(source['url'], cache, offline, entry['identifiers'])
             except RuntimeError as error:
                 problems.append(str(error))
                 continue
@@ -169,13 +181,14 @@ def verify(entry, cache, offline, installed_xcode):
                                 f'entry has {sorted(entry["identifiers"])}')
             found = [i for i in entry['identifiers'] if i in represented]
             text = title = ''
+            scoped = False
         if 'identifiers' in supports:
             if not found:
                 problems.append(f'{source["title"]}: lists none of the identifiers')
             for identifier in found:
                 identifier_publishers[identifier].add(publisher(source))
         for group in supports - {'identifiers'}:
-            hits = [c for c in entry_claims if c[0] == group and confirms(c, text, title, source.get('url', ''))]
+            hits = [c for c in entry_claims if c[0] == group and confirms(c, text, title, source.get('url', ''), scoped)]
             if not hits:
                 problems.append(f'{source["title"]}: confirms nothing for {group}')
             confirmed.update(c[1] for c in hits)

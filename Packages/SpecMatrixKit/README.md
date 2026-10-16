@@ -69,13 +69,23 @@ Not provided, because no supported public API exists:
 ## Catalog (schema version 2)
 
 The bundled file is `Sources/SpecMatrixCore/Resources/DeviceCatalog.json`. The current version is
-**2026.10.1**, and every entry was checked against its sources on 2026-10-15.
+**2026.10.2**, and every entry was checked against its sources on 2026-10-15.
+
+The catalog is the app's single source of product information. The diagnostics screen reads it
+through `HardwareResolver`, and the legacy screens read it through
+`SpecMatrix/Foundation/CatalogDeviceInfo.swift`. No other code maps identifiers to models (camera
+specifications are the one exception; see *Known limitations*).
 
 ### Coverage
 
-The catalog covers every iPhone and iPad that supports iOS 17 / iPadOS 17 (the app's minimum),
-plus later models. It is **not** a list of every Apple device: Macs, older iPhones and iPads, and
-other device types are not catalogued.
+In scope are the devices SpecMatrix can run on:
+- every iPhone and iPad that supports iOS 17 / iPadOS 17 (the app's minimum), plus later models;
+- every Apple-silicon Mac (the planned macOS 13+, Apple-silicon-only app).
+
+It is **not** a list of every Apple device. Out of scope, and resolving to `.unknown`:
+- older iPhones and iPads, which cannot run SpecMatrix;
+- Intel Macs;
+- Apple Watch, Apple TV, Apple Vision Pro and iPod touch, for which SpecMatrix has no app.
 
 | Family | Models | Identifiers | Range |
 |---|---|---|---|
@@ -84,21 +94,30 @@ other device types are not catalogued.
 | iPad mini | 3 | 6 | iPad mini (5th generation) → iPad mini (A17 Pro) |
 | iPad Air | 9 | 18 | iPad Air (3rd generation) → iPad Air 13-inch (M4) |
 | iPad Pro | 14 | 36 | iPad Pro (10.5-inch) → iPad Pro 13-inch (M5) |
-| Mac | 0 | 0 | Not catalogued yet |
-| **Total** | **68** | **110** | All 68 entries are `verified` |
+| MacBook Air | 9 | 9 | MacBook Air (M1, 2020) → MacBook Air (15-inch, M5) |
+| MacBook Pro | 15 | 27 | MacBook Pro (13-inch, M1, 2020) → MacBook Pro (16-inch, M5 Pro or M5 Max) |
+| iMac | 5 | 6 | iMac (24-inch, M1, 2021) → iMac (24-inch, 2024, Four ports) |
+| Mac mini | 6 | 7 | Mac mini (M1, 2020) → Mac mini (M6) |
+| Mac Studio | 8 | 8 | Mac Studio (2022) → Mac Studio (M5 Max / M5 Ultra) |
+| Mac Pro | 1 | 1 | Mac Pro (2023), tower and rack (one identifier) |
+| **Total** | **112** | **168** | All 112 entries are `verified` |
 
 How many entries record each field:
 
-| Field | iPhone (36) | iPad (32) | Why fields are missing |
-|---|---|---|---|
-| Chip name | 36 | 32 | |
-| Performance cores | 30 | 13 | Not published for older models; varies with storage on M4/M5 iPad Pro; called "super cores" on A20 Pro and M5 |
-| Efficiency cores | 32 | 17 | Not published for older models |
-| GPU cores | 32 | 19 | Not published for iPhone 11 Pro and 12 Pro models, or most iPads before 2021 |
-| Neural Engine cores | 32 | 19 | Not published for older models; "Dual 16-core" on A20 Pro is ambiguous |
-| Display diagonal, resolution, pixel density | 36 | 32 | |
-| Maximum refresh rate | 14 | 4 | Recorded only where Apple states a rate ("up to 120Hz"). Pages for older ProMotion iPads say "ProMotion technology" without a rate. Non-ProMotion models publish no rate. |
-| Release date | 11 | 0 | Recorded only where an Apple Newsroom article states the in-store date |
+| Field | iPhone (36) | iPad (32) | Mac (44) | Why fields are missing |
+|---|---|---|---|---|
+| Chip name | 36 | 32 | 33 | Not recorded where Apple groups identifiers as "M4 Pro or M4 Max" and similar |
+| Performance cores | 30 | 13 | 23 | Not published for older models; varies by configuration under one identifier; Apple calls them "super cores" on A20 Pro and M5-generation chips, and M5 Pro/Max and M6 have different core tiers |
+| Efficiency cores | 32 | 17 | 29 | Not published for older models; varies by configuration |
+| GPU cores | 32 | 19 | 16 | Not published for iPhone 11 Pro and 12 Pro models or most iPads before 2021; Mac GPUs vary by configuration (e.g. 8- or 10-core) |
+| Neural Engine cores | 32 | 19 | 32 | Not published for older models; "Dual 16-core" on A20 Pro and M6 is ambiguous |
+| Display diagonal, resolution, pixel density | 36 | 32 | 29 | Mac mini, Mac Studio and Mac Pro have no built-in display |
+| Maximum refresh rate | 14 | 4 | 13 | Recorded only where Apple states a rate ("up to 120Hz"). Pages for older ProMotion iPads say "ProMotion technology" without a rate. Non-ProMotion models publish no rate. |
+| Release date | 11 | 0 | 0 | Recorded only where an Apple Newsroom article states the in-store date |
+
+Apple sometimes uses one name for different hardware: "Mac Studio (2023)" covers M2 Max (`Mac14,13`)
+and M2 Ultra (`Mac14,14`). Such entries keep Apple's name and are told apart by chip. The decoder
+rejects a shared name unless every entry names a different chip.
 
 Not in the schema, so not recorded: RAM, storage configurations, cameras, and per-SKU variants.
 Apple does not publish iPhone RAM. iPad and Mac RAM and core counts vary by configuration under
@@ -132,7 +151,8 @@ field group. A GPU core count cites the tech-specs page, not the identifier list
 | Name, chip, display | Apple's tech-specs page for the exact model (`support.apple.com/en-us/<id>`), found through Apple's tech-specs index | Each value matched in the page text |
 | Chip (5 older iPhones) | Apple Newsroom launch article, where the tech-specs page gives no core counts | Sentence naming the counts for that model |
 | Release date | Apple Newsroom launch article | "in stores" or "availability beginning" sentence, with the article's year |
-| Identifiers | (1) Xcode 27.0 (27A266a) Simulator device types, whose `representedModelIdentifiers` Apple ships with Xcode; plus (2) the adamawolf identifier gist and/or EveryMac identifier pages | Exact identifier strings |
+| Identifiers (iPhone, iPad) | (1) Xcode 27.0 (27A266a) Simulator device types, whose `representedModelIdentifiers` Apple ships with Xcode; plus (2) the adamawolf identifier gist and/or EveryMac identifier pages | Exact identifier strings |
+| Identifiers, grouping and chip (Mac) | (1) Apple's "Identify your MacBook Air / MacBook Pro / iMac / Mac mini / Mac Studio / Mac Pro model" pages, which list each model's "Model Identifier" and often its chip; plus (2) EveryMac's per-family Mac identifier pages | Only the page section for that model counts |
 
 Rules applied:
 - **No borrowing:** values are never copied between models, even ones sharing a chip name. The same
@@ -197,12 +217,21 @@ neighbouring model.
 
 ### Adding or changing a device
 
+**When Apple releases a device**, its identifiers usually appear in the next Xcode's Simulator
+device types (iPhone, iPad) or on Apple's "Identify your Mac" page (Mac). Until an entry is added,
+the new device resolves to `.unknown`, and the legacy screens show "Unknown model (<identifier>)".
+That is the intended behaviour, not a crash or a guess.
+
 1. **Specifications:** open Apple's tech-specs page for the exact model and copy only the values
    it states. Use the measured-as-rectangle diagonal and record resolution in portrait. Leave out
    anything the page doesn't state, anything ambiguous, and anything that varies by configuration.
-2. **Identifiers:** take them from the Xcode Simulator device type's `profile.plist`
-   (`representedModelIdentifiers`), and cite at least one web reference that lists every identifier
-   under the correct model name.
+2. **Identifiers:**
+   - iPhone and iPad: take them from the Xcode Simulator device type's `profile.plist`
+     (`representedModelIdentifiers`).
+   - Mac: take them from the model's section of Apple's "Identify your Mac" page. Keep Apple's
+     grouping, and record a chip only if Apple ties exactly one chip to those identifiers.
+
+   Cite at least one web reference that lists every identifier under the correct model name.
 3. **Sources:** add each source with a `supports` list naming only the field groups it backs.
 4. **Dates:** set `accessed` and `verifiedOn` to the day the sources were checked, and bump
    `catalogVersion`.
@@ -237,8 +266,17 @@ development tool, not part of the app or CI.
     EveryMac only.
 - **Pages can change:** Apple's tech-specs pages are not versioned, so a later edit by Apple would
   not be detected until the verifier is run again.
-- **Not catalogued:** Macs. Per-configuration CPU and GPU counts under one identifier, and the
-  missing macOS display reader, make them a separate piece of work.
+- **Not identified in the schema:** where Apple groups several chips under one entry (for
+  example "MacBook Pro (14-inch, M4 Pro or M4 Max, 2024)": `Mac16,6`, `Mac16,8`), EveryMac assigns a
+  chip to each identifier, but Apple does not. Those entries record no chip rather than rely on a
+  secondary source.
+- **Configuration checks are manual:** the verifier confirms that each value is stated by its
+  source. Whether a core count is the same for every configuration under an identifier was judged
+  by reading the page, and the verifier doesn't re-check that.
+- **No "no display" state:** Mac mini, Mac Studio and Mac Pro have no `display` section, so their
+  display values resolve to `.unknown`. The schema cannot yet say "this hardware has no display".
+- **Camera specifications** are not in the catalog. The legacy camera screen still uses its own
+  hardcoded table in `ContentView.swift`, which has not been audited.
 
 Test fixtures in `Tests/SpecMatrixCoreTests/Fixtures` are synthetic (`TestPhone…` identifiers and
 `example.*` domains) and are never bundled with the app.
