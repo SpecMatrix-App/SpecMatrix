@@ -404,8 +404,8 @@ private struct Validator {
                     let lensPath = "\(path).rear.lenses[\(index)]"
                     let name = nonEmpty(rawLens.name, path: lensPath + ".name")
                     if let name, !names.insert(name).inserted { issue(lensPath + ".name", "Duplicate camera name \"\(name)\".") }
-                    let megapixels = megapixels(rawLens.megapixels, path: lensPath + ".megapixels")
-                    let apertures = apertures(rawLens.apertures, path: lensPath + ".apertures")
+                    let megapixels = validMegapixels(rawLens.megapixels, path: lensPath + ".megapixels")
+                    let apertures = validApertures(rawLens.apertures, path: lensPath + ".apertures")
                     if let zoom = rawLens.opticalZoom, !(zoom > 1) {
                         issue(lensPath + ".opticalZoom", "Must be greater than 1 (found \(zoom)).")
                     }
@@ -416,16 +416,16 @@ private struct Validator {
             } else {
                 issue(path + ".rear.lenses", "At least one camera is required.")
             }
-            rear = RearCameraSystem(lenses: lenses, features: features(rawRear.features, path: path + ".rear.features"))
+            rear = RearCameraSystem(lenses: lenses, features: validFeatures(rawRear.features, path: path + ".rear.features"))
         }
         var front: FrontCamera?
         if let rawFront = raw.front {
             let frontPath = path + ".front"
             var name: String?
             if let rawName = rawFront.name { name = nonEmpty(rawName, path: frontPath + ".name") }
-            let megapixels = megapixels(rawFront.megapixels, path: frontPath + ".megapixels")
-            let apertures = apertures(rawFront.apertures, path: frontPath + ".apertures")
-            let features = features(rawFront.features, path: frontPath + ".features")
+            let megapixels = validMegapixels(rawFront.megapixels, path: frontPath + ".megapixels")
+            let apertures = validApertures(rawFront.apertures, path: frontPath + ".apertures")
+            let features = validFeatures(rawFront.features, path: frontPath + ".features")
             if let megapixels, let apertures {
                 front = FrontCamera(name: name, megapixels: megapixels, apertures: apertures, features: features)
             }
@@ -433,7 +433,7 @@ private struct Validator {
         return CameraSpecification(rear: rear, front: front)
     }
 
-    private mutating func megapixels(_ value: Int?, path: String) -> Int? {
+    private mutating func validMegapixels(_ value: Int?, path: String) -> Int? {
         guard let value else {
             issue(path, "Required field is missing.")
             return nil
@@ -445,7 +445,7 @@ private struct Validator {
         return value
     }
 
-    private mutating func apertures(_ values: [Double]?, path: String) -> [Double]? {
+    private mutating func validApertures(_ values: [Double]?, path: String) -> [Double]? {
         guard let values, !values.isEmpty else {
             issue(path, "At least one aperture is required.")
             return nil
@@ -462,7 +462,7 @@ private struct Validator {
         return valid ? values : nil
     }
 
-    private mutating func features(_ values: [String]?, path: String) -> Set<CameraFeature> {
+    private mutating func validFeatures(_ values: [String]?, path: String) -> Set<CameraFeature> {
         var features: Set<CameraFeature> = []
         for text in values ?? [] {
             guard let feature = CameraFeature(rawValue: text) else {

@@ -32,17 +32,17 @@ struct IdentifierResolutionTests {
     /// iPhone16,1 is the iPhone 15 Pro. It was missing from the 8-model catalog of 2026.10.0, and
     /// the legacy screens used a separate hardcoded table instead of the catalog.
     @Test func iPhone16_1IsTheIPhone15Pro() throws {
-        let entry = try #require(entry("iPhone16,1"))
-        #expect(entry.id == "iphone-15-pro")
-        #expect(entry.marketingName == "iPhone 15 Pro")
-        #expect(entry.family == "iPhone")
-        #expect(entry.identifiers.map(\.rawValue) == ["iPhone16,1"])
-        #expect(entry.chip == ChipSpecification(name: "A17 Pro", performanceCores: 2, efficiencyCores: 4,
+        let resolved = try #require(entry("iPhone16,1"))
+        #expect(resolved.id == "iphone-15-pro")
+        #expect(resolved.marketingName == "iPhone 15 Pro")
+        #expect(resolved.family == "iPhone")
+        #expect(resolved.identifiers.map(\.rawValue) == ["iPhone16,1"])
+        #expect(resolved.chip == ChipSpecification(name: "A17 Pro", performanceCores: 2, efficiencyCores: 4,
                                                 gpuCores: 6, neuralEngineCores: 16))
-        #expect(entry.display?.diagonal == DisplayDiagonal(inches: 6.12))
-        #expect(entry.display?.resolution == PixelDimensions(width: 1179, height: 2556))
-        #expect(entry.display?.pixelDensity == PixelDensity(pixelsPerInch: 460))
-        #expect(entry.display?.maximumRefreshRate == RefreshRate(hertz: 120))
+        #expect(resolved.display?.diagonal == DisplayDiagonal(inches: 6.12))
+        #expect(resolved.display?.resolution == PixelDimensions(width: 1179, height: 2556))
+        #expect(resolved.display?.pixelDensity == PixelDensity(pixelsPerInch: 460))
+        #expect(resolved.display?.maximumRefreshRate == RefreshRate(hertz: 120))
     }
 
     /// The legacy ContentView table mapped these identifiers to the wrong products (or invented them).

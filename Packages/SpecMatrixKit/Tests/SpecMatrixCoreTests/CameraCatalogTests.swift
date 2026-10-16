@@ -26,11 +26,11 @@ struct BundledCameraTests {
     }
 
     @Test func iPhone15ProCameras() throws {
-        let cameras = try cameras("iPhone16,1")
-        #expect(cameras.rear?.lenses == [lens("Main", 48, [1.78]), lens("Ultra Wide", 12, [2.2]),
+        let iPhone15Pro = try cameras("iPhone16,1")
+        #expect(iPhone15Pro.rear?.lenses == [lens("Main", 48, [1.78]), lens("Ultra Wide", 12, [2.2]),
                                          lens("3x Telephoto", 12, [2.8], zoom: 3)])
-        #expect(cameras.rear?.features == [.flash, .nightMode, .portraitMode])
-        #expect(cameras.front == FrontCamera(name: "TrueDepth", megapixels: 12, apertures: [1.9],
+        #expect(iPhone15Pro.rear?.features == [.flash, .nightMode, .portraitMode])
+        #expect(iPhone15Pro.front == FrontCamera(name: "TrueDepth", megapixels: 12, apertures: [1.9],
                                              features: [.flash, .nightMode, .portraitMode]))
     }
 

@@ -351,9 +351,9 @@ struct BundledCatalogTests {
     private enum CatalogTestError: Error { case missing(String) }
 
     @Test func loadsAndValidatesUnderTheApplePolicy() throws {
-        let catalog = try catalog()
-        #expect(catalog.schemaVersion == DeviceCatalog.supportedSchemaVersion)
-        #expect(catalog.catalogVersion == "2026.10.3")
+        let loaded = try catalog()
+        #expect(loaded.schemaVersion == DeviceCatalog.supportedSchemaVersion)
+        #expect(loaded.catalogVersion == "2026.10.3")
     }
 
     /// Pins the documented coverage so that an accidental deletion fails a test.
@@ -372,10 +372,10 @@ struct BundledCatalogTests {
     }
 
     @Test func everyIdentifierResolvesToItsOwnEntry() throws {
-        let catalog = try catalog()
-        for entry in catalog.entries {
+        let loaded = try catalog()
+        for entry in loaded.entries {
             for id in entry.identifiers {
-                #expect(catalog.lookup(id) == .found(entry), "\(id) does not resolve to \(entry.id)")
+                #expect(loaded.lookup(id) == .found(entry), "\(id) does not resolve to \(entry.id)")
             }
         }
     }
@@ -396,7 +396,7 @@ struct BundledCatalogTests {
     }
 
     @Test func identifiersThatAreNotCataloguedStayUnknown() throws {
-        let catalog = try catalog()
+        let loaded = try catalog()
         let notCatalogued = [
             "iPhone10,1",  // iPhone 8: not supported by iOS 17, not catalogued
             "iPhone19,1",  // between catalogued iPhone18,5 and iPhone19,2
@@ -410,12 +410,12 @@ struct BundledCatalogTests {
             "Watch7,3", "AppleTV14,1", "RealityDevice14,1", "iPod9,1",
         ]
         for raw in notCatalogued {
-            #expect(catalog.lookup(identifier(raw)) == .notFound(identifier(raw)), "\(raw)")
+            #expect(loaded.lookup(identifier(raw)) == .notFound(identifier(raw)), "\(raw)")
             let spec = HardwareResolver.resolve(
                 identity: .measured(DeviceIdentity(identifier: identifier(raw), environment: .device),
                                     MeasurementSource(api: "Test", environment: .device)),
-                catalog: .success(catalog))
-            #expect(spec.provenances.allSatisfy { $0 == .unknown }, "\(raw) inherited catalog values")
+                catalog: .success(loaded))
+            #expect(spec.provenances.allSatisfy { $0 == .unknown }, "\(raw) inherited loaded values")
         }
     }
 
@@ -424,23 +424,23 @@ struct BundledCatalogTests {
     /// Regression: the catalog records the diagonal measured as a rectangle (6.27 in), as Apple
     /// publishes for every rounded-corner screen, not the rounded marketing size (6.3-inch).
     @Test func iPhone16ProMatchesAppleSpecifications() throws {
-        let entry = try entry("iPhone17,1")
-        #expect(entry.marketingName == "iPhone 16 Pro")
-        #expect(entry.chip?.name == "A18 Pro")
-        #expect(entry.chip?.neuralEngineCores == 16)   // the legacy app said 18
-        #expect(entry.chip?.gpuCores == 6)
-        #expect(entry.display?.diagonal == DisplayDiagonal(inches: 6.27))
-        #expect(entry.display?.pixelDensity == PixelDensity(pixelsPerInch: 460))
+        let resolved = try entry("iPhone17,1")
+        #expect(resolved.marketingName == "iPhone 16 Pro")
+        #expect(resolved.chip?.name == "A18 Pro")
+        #expect(resolved.chip?.neuralEngineCores == 16)   // the legacy app said 18
+        #expect(resolved.chip?.gpuCores == 6)
+        #expect(resolved.display?.diagonal == DisplayDiagonal(inches: 6.27))
+        #expect(resolved.display?.pixelDensity == PixelDensity(pixelsPerInch: 460))
     }
 
     @Test func iPhone16UsesA18WithFiveCoreGPU() throws {
-        let entry = try entry("iPhone17,3")
-        #expect(entry.chip?.name == "A18")          // the legacy app said "A18 Bionic"
-        #expect(entry.chip?.gpuCores == 5)          // the legacy app said 6 in one table
-        #expect(entry.display?.diagonal == DisplayDiagonal(inches: 6.12))
-        #expect(entry.display?.pixelDensity == PixelDensity(pixelsPerInch: 460)) // the legacy app said 458
+        let resolved = try entry("iPhone17,3")
+        #expect(resolved.chip?.name == "A18")          // the legacy app said "A18 Bionic"
+        #expect(resolved.chip?.gpuCores == 5)          // the legacy app said 6 in one table
+        #expect(resolved.display?.diagonal == DisplayDiagonal(inches: 6.12))
+        #expect(resolved.display?.pixelDensity == PixelDensity(pixelsPerInch: 460)) // the legacy app said 458
         // Apple does not state a refresh rate for non-ProMotion models; the catalog must not invent one.
-        #expect(entry.display?.maximumRefreshRate == nil)
+        #expect(resolved.display?.maximumRefreshRate == nil)
     }
 
     /// The same chip name can ship with different GPU core counts; each model keeps its own.
@@ -455,13 +455,13 @@ struct BundledCatalogTests {
     /// Apple describes the A20 Pro CPU as "2 super cores and 4 efficiency cores" and its Neural Engine
     /// as "Dual 16-core"; neither maps onto the schema without interpretation, so both are unrecorded.
     @Test func iPhone18ProRecordsOnlyUnambiguousChipFields() throws {
-        let entry = try entry("iPhone19,2")
-        #expect(entry.marketingName == "iPhone 18 Pro")
-        #expect(entry.chip?.name == "A20 Pro")
-        #expect(entry.chip?.performanceCores == nil)
-        #expect(entry.chip?.efficiencyCores == 4)
-        #expect(entry.chip?.gpuCores == 7)
-        #expect(entry.chip?.neuralEngineCores == nil)
+        let resolved = try entry("iPhone19,2")
+        #expect(resolved.marketingName == "iPhone 18 Pro")
+        #expect(resolved.chip?.name == "A20 Pro")
+        #expect(resolved.chip?.performanceCores == nil)
+        #expect(resolved.chip?.efficiencyCores == 4)
+        #expect(resolved.chip?.gpuCores == 7)
+        #expect(resolved.chip?.neuralEngineCores == nil)
         #expect(try self.entry("iPhone19,7").marketingName == "iPhone 18 Pro Max")
     }
 
@@ -479,11 +479,11 @@ struct BundledCatalogTests {
     }
 
     @Test func iPadValuesAreStoredInPortrait() throws {
-        let entry = try entry("iPad16,4")
-        #expect(entry.marketingName == "iPad Pro 11-inch (M4)")
-        #expect(entry.display?.resolution == PixelDimensions(width: 1668, height: 2420))
-        #expect(entry.display?.diagonal == DisplayDiagonal(inches: 11.1))
-        #expect(entry.display?.maximumRefreshRate == RefreshRate(hertz: 120))
+        let resolved = try entry("iPad16,4")
+        #expect(resolved.marketingName == "iPad Pro 11-inch (M4)")
+        #expect(resolved.display?.resolution == PixelDimensions(width: 1668, height: 2420))
+        #expect(resolved.display?.diagonal == DisplayDiagonal(inches: 11.1))
+        #expect(resolved.display?.maximumRefreshRate == RefreshRate(hertz: 120))
     }
 
     /// Apple's pages for older ProMotion iPads say "ProMotion technology" without a rate.
@@ -509,8 +509,8 @@ struct BundledCatalogTests {
     }
 
     @Test func chipValuesCiteOnlyAppleSources() throws {
-        let catalog = try catalog()
-        let spec = HardwareResolver.specification(for: try entry("iPhone13,3"), catalogVersion: catalog.catalogVersion)
+        let loaded = try catalog()
+        let spec = HardwareResolver.specification(for: try entry("iPhone13,3"), catalogVersion: loaded.catalogVersion)
         guard case .catalog(16, let reference) = spec.neuralEngineCores else {
             Issue.record("Expected a 16-core Neural Engine from the catalog"); return
         }
