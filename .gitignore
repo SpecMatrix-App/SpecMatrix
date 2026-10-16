@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Xcode user-specific data (per-user UI state, breakpoints, scheme order)
+xcuserdata/
+*.xcuserstate
+
+# Xcode build products and results
+build/
+DerivedData/
+*.xcresult
+
+# Exported or archived app bundles
+*.ipa
+*.xcarchive
+*.dSYM.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/

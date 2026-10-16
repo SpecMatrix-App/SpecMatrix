@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "test-1",
+  "entries": [
+    {
+      "id": "Test Phone",
+      "identifiers": ["TestPhone1,1", "arm64"],
+      "family": "TestPhone",
+      "marketingName": "  ",
+      "releaseDate": "2026-02-30",
+      "chip": { "name": "Test Chip", "performanceCores": -2, "gpuCores": 0 },
+      "display": { "diagonalInches": -6.1, "pixelWidth": 2556, "pixelHeight": 1179, "pixelsPerInch": 0, "maximumRefreshRateHz": 0 },
+      "sources": [ { "title": "Fixture source", "url": "http://example.com/insecure", "accessed": "yesterday" } ],
+      "verification": { "status": "probably", "verifiedOn": "2026-10-15" }
+    },
+    {
+      "id": "test-duplicate",
+      "identifiers": ["TestPhone1,1"],
+      "family": "TestPhone",
+      "marketingName": "Duplicate Identifier Phone",
+      "display": { "pixelWidth": 1179 },
+      "sources": [],
+      "verification": { "status": "verified", "verifiedOn": "2026-10-15" }
+    },
+    {
+      "id": "test-missing",
+      "identifiers": ["TestPhone3,1"],
+      "family": "TestPhone"
+    }
+  ]
+}

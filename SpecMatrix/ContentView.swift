@@ -595,8 +595,7 @@ struct NetworkInfo {
     let isConnected: Bool
     let type: String
     let cellularInfo: CellularInfo?
-    let speed: Double // in Mbps
-    
+
     struct CellularInfo {
         let carrier: String
         let technology: String
@@ -634,16 +633,6 @@ struct NetworkInfo {
     var statusColor: Color {
         isConnected ? .green : .red
     }
-    
-    var speedDescription: String {
-        if !isConnected {
-            return "Not Connected"
-        }
-        if speed == 0 {
-            return "Measuring..."
-        }
-        return String(format: "%.1f Mbps", speed)
-    }
 }
 
 // Add NetworkMonitor class
@@ -652,14 +641,12 @@ class NetworkMonitor: ObservableObject {
     private var monitor: NWPathMonitor?
     private let queue = DispatchQueue(label: "NetworkMonitor")
     private let telephonyInfo = CTTelephonyNetworkInfo()
-    private var speedTimer: Timer?
-    
+
     init() {
         networkInfo = NetworkInfo(
             isConnected: false,
             type: "Unknown",
-            cellularInfo: nil,
-            speed: 0
+            cellularInfo: nil
         )
         setupMonitor()
     }
@@ -683,15 +670,11 @@ class NetworkMonitor: ObservableObject {
             let updatedInfo = NetworkInfo(
                 isConnected: isConnected,
                 type: type,
-                cellularInfo: cellularInfo,
-                speed: 0
+                cellularInfo: cellularInfo
             )
-            
+
             DispatchQueue.main.async {
                 self?.networkInfo = updatedInfo
-                if isConnected {
-                    self?.startSpeedTimer()
-                }
             }
         }
         
@@ -726,44 +709,7 @@ class NetworkMonitor: ObservableObject {
         )
     }
     
-    private func startSpeedTimer() {
-        speedTimer?.invalidate()
-        speedTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.measureSpeed()
-        }
-    }
-    
-    private func measureSpeed() {
-        let url = URL(string: "https://www.apple.com/favicon.ico")!
-        let startTime = Date()
-        
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let data = data,
-                  let response = response as? HTTPURLResponse,
-                  response.statusCode == 200 else {
-                return
-            }
-            
-            let endTime = Date()
-            let duration = endTime.timeIntervalSince(startTime)
-            let bytesPerSecond = Double(data.count) / duration
-            let megabitsPerSecond = (bytesPerSecond * 8) / 1_000_000
-            
-            DispatchQueue.main.async {
-                if let currentInfo = self?.networkInfo {
-                    self?.networkInfo = NetworkInfo(
-                        isConnected: currentInfo.isConnected,
-                        type: currentInfo.type,
-                        cellularInfo: currentInfo.cellularInfo,
-                        speed: megabitsPerSecond
-                    )
-                }
-            }
-        }.resume()
-    }
-    
     deinit {
-        speedTimer?.invalidate()
         monitor?.cancel()
     }
 }
@@ -788,7 +734,6 @@ struct NetworkInfoView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     InfoRow(label: "Status", value: networkInfo.statusDescription)
                     InfoRow(label: "Type", value: networkInfo.type)
-                    InfoRow(label: "Speed", value: networkInfo.speedDescription)
                 }
             }
             .padding(.horizontal, 5)
@@ -1694,6 +1639,14 @@ struct SettingsView: View {
                     }
                 }
                 
+                #if DEBUG
+                Section(header: Text("Developer")) {
+                    NavigationLink("Foundation Diagnostics") {
+                        FoundationDiagnosticsView()
+                    }
+                }
+                #endif
+
                 Section {
                     HStack {
                         Text("Created by:")

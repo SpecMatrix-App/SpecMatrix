@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "test-1",
+  "entries": [
+    {
+      "id": "test-phone", "identifiers": ["TestPhone1,1"], "family": "TestPhone", "marketingName": "Test Phone",
+      "ramGB": 8,
+      "sources": [ { "title": "Fixture source", "url": "https://example.com/a", "accessed": "2026-10-15" } ],
+      "verification": { "status": "verified", "verifiedOn": "2026-10-15" }
+    }
+  ]
+}

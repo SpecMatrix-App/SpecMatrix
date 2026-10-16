@@ -6,7 +6,7 @@ SpecMatrix is an iOS application designed to provide an innovative solution for 
 
 ## Features
 - **Network Monitoring**:
-  - Monitor network speed on both Cellular and WiFi connections.
+  - Show connection status and type (Wi‑Fi or Cellular).
 - **Device Information**:
   - Display detailed information about the device, including GPU and CPU specifications.
 - **Performance Tracking**:
@@ -39,6 +39,50 @@ OR
    Alternatively, you can use a certificate (.p12 and .mobileprovision) from an Apple Developer account, [KravaSign](https://kravasign.com), or another certificate-providing service. Certificates are required for sideloading because Apple restricts the installation of apps outside the App Store for security reasons. These certificates verify the app's authenticity and allow it to be installed on your device. After obtaining the certificate, you can use an app like [Feather Sign](https://github.com/khcrysalis/Feather) to sign and install the app.
 
 3. Follow the instructions provided by the sideloading app or signing tool to complete the installation.
+
+## Building and Testing
+
+The project uses one shared Xcode scheme, `SpecMatrix`, which builds the app and both test bundles (`SpecMatrixTests`, `SpecMatrixUITests`). The project has no package dependencies.
+
+**Requirements:** a version of Xcode that can open this project (it was created with Xcode 16.2) and an iOS Simulator runtime of iOS 18.2 or later. The commands below were verified with Xcode 27.0 and the iOS 27.0 simulator.
+
+If `xcode-select -p` prints `/Library/Developer/CommandLineTools`, `xcodebuild` will not work. Either select Xcode with `sudo xcode-select -s /Applications/Xcode.app`, or prefix each command with `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
+
+List the available simulators with `xcrun simctl list devices available`. Replace `iPhone 17` below with any iPhone simulator from that list.
+
+```bash
+# Build for the simulator (no signing required)
+xcodebuild build -project SpecMatrix.xcodeproj -scheme SpecMatrix \
+  -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
+
+# Run the unit tests
+xcodebuild test -project SpecMatrix.xcodeproj -scheme SpecMatrix \
+  -destination 'platform=iOS Simulator,name=iPhone 17' \
+  -only-testing:SpecMatrixTests CODE_SIGNING_ALLOWED=NO
+```
+
+**UI tests.** The UI tests can't run with `CODE_SIGNING_ALLOWED=NO`, because the UI test runner app must be signed. To run them on a simulator without a development team, use ad-hoc signing:
+
+```bash
+xcodebuild test -project SpecMatrix.xcodeproj -scheme SpecMatrix \
+  -destination 'platform=iOS Simulator,name=iPhone 17' \
+  -only-testing:SpecMatrixUITests \
+  CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=
+```
+
+The UI tests launch the app several times (`testLaunchPerformance`), so expect them to take several minutes.
+
+**Foundation package tests.** Most unit tests live in the local package `Packages/SpecMatrixKit` (see its [README](Packages/SpecMatrixKit/README.md)). The `-only-testing:SpecMatrixTests` command above does not run them.
+
+```bash
+# macOS (fast)
+swift test --package-path Packages/SpecMatrixKit
+
+# iOS Simulator (run from Packages/SpecMatrixKit)
+xcodebuild test -scheme SpecMatrixKit -destination 'platform=iOS Simulator,name=iPhone 17'
+```
+
+**Running on a physical device** requires signing with your own Apple ID or team in Xcode (*Signing & Capabilities*).
 
 ## Requirements
 - iOS 18.2 or later.

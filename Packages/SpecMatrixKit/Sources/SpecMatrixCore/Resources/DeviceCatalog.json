@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2026.10.0",
+  "entries": [
+    {
+      "id": "iphone-16",
+      "identifiers": [
+        "iPhone17,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 16",
+      "chip": {
+        "name": "A18",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.1,
+        "pixelWidth": 1179,
+        "pixelHeight": 2556,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 16 - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/121029",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-16-plus",
+      "identifiers": [
+        "iPhone17,4"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 16 Plus",
+      "chip": {
+        "name": "A18",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.7,
+        "pixelWidth": 1290,
+        "pixelHeight": 2796,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 16 Plus - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/121030",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-16-pro",
+      "identifiers": [
+        "iPhone17,1"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 16 Pro",
+      "chip": {
+        "name": "A18 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.3,
+        "pixelWidth": 1206,
+        "pixelHeight": 2622,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 16 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/121031",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-16-pro-max",
+      "identifiers": [
+        "iPhone17,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 16 Pro Max",
+      "chip": {
+        "name": "A18 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.9,
+        "pixelWidth": 1320,
+        "pixelHeight": 2868,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 16 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/121032",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-17",
+      "identifiers": [
+        "iPhone18,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 17",
+      "releaseDate": "2025-09-19",
+      "chip": {
+        "name": "A19",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.3,
+        "pixelWidth": 1206,
+        "pixelHeight": 2622,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 17 - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/125089",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple debuts iPhone 17 (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2025/09/apple-debuts-iphone-17/",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-air",
+      "identifiers": [
+        "iPhone18,4"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone Air",
+      "releaseDate": "2025-09-19",
+      "chip": {
+        "name": "A19 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.5,
+        "pixelWidth": 1260,
+        "pixelHeight": 2736,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone Air - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/125092",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Introducing iPhone Air (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2025/09/introducing-iphone-air-a-powerful-new-iphone-with-a-breakthrough-design/",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-17-pro",
+      "identifiers": [
+        "iPhone18,1"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 17 Pro",
+      "releaseDate": "2025-09-19",
+      "chip": {
+        "name": "A19 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.3,
+        "pixelWidth": 1206,
+        "pixelHeight": 2622,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 17 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/125090",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple unveils iPhone 17 Pro and iPhone 17 Pro Max (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-17-pro-max",
+      "identifiers": [
+        "iPhone18,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 17 Pro Max",
+      "releaseDate": "2025-09-19",
+      "chip": {
+        "name": "A19 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.9,
+        "pixelWidth": 1320,
+        "pixelHeight": 2868,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 17 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/125091",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple unveils iPhone 17 Pro and iPhone 17 Pro Max (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15"
+        },
+        {
+          "title": "Apple device identifiers (adamawolf gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15"
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    }
+  ]
+}
