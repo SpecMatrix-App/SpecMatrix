@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "catalogVersion": "test-1",
+  "schemaVersion": 2,
+  "catalogVersion": "2026.01.0",
   "entries": [
     {
       "id": "Test Phone",
@@ -10,7 +10,7 @@
       "releaseDate": "2026-02-30",
       "chip": { "name": "Test Chip", "performanceCores": -2, "gpuCores": 0 },
       "display": { "diagonalInches": -6.1, "pixelWidth": 2556, "pixelHeight": 1179, "pixelsPerInch": 0, "maximumRefreshRateHz": 0 },
-      "sources": [ { "title": "Fixture source", "url": "http://example.com/insecure", "accessed": "yesterday" } ],
+      "sources": [ { "title": "Fixture source", "url": "http://example.com/insecure", "accessed": "yesterday", "supports": ["chip"] } ],
       "verification": { "status": "probably", "verifiedOn": "2026-10-15" }
     },
     {

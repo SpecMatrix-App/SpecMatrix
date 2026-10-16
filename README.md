@@ -72,7 +72,7 @@ xcodebuild test -project SpecMatrix.xcodeproj -scheme SpecMatrix \
 
 The UI tests launch the app several times (`testLaunchPerformance`), so expect them to take several minutes.
 
-**Foundation package tests.** Most unit tests live in the local package `Packages/SpecMatrixKit` (see its [README](Packages/SpecMatrixKit/README.md)). The `-only-testing:SpecMatrixTests` command above does not run them.
+**Foundation package tests.** Most unit tests live in the local package `Packages/SpecMatrixKit` (see its [README](Packages/SpecMatrixKit/README.md)). The `-only-testing:SpecMatrixTests` command above does not run them; CI runs the macOS command below as a separate step. The package README also explains how to add a device to the hardware catalog and how to re-check the catalog against its sources.
 
 ```bash
 # macOS (fast)

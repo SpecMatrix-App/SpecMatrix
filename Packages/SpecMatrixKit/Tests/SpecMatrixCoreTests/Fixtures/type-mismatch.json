@@ -1,12 +1,34 @@
 {
-  "schemaVersion": 1,
-  "catalogVersion": "test-1",
+  "schemaVersion": 2,
+  "catalogVersion": "2026.01.0",
   "entries": [
     {
-      "id": "test-phone", "identifiers": ["TestPhone1,1"], "family": "TestPhone", "marketingName": "Test Phone",
-      "chip": { "name": "Test Chip", "gpuCores": "five" },
-      "sources": [ { "title": "Fixture source", "url": "https://example.com/a", "accessed": "2026-10-15" } ],
-      "verification": { "status": "verified", "verifiedOn": "2026-10-15" }
+      "id": "test-phone",
+      "identifiers": [
+        "TestPhone1,1"
+      ],
+      "family": "TestPhone",
+      "marketingName": "Test Phone",
+      "chip": {
+        "name": "Test Chip",
+        "gpuCores": "five"
+      },
+      "sources": [
+        {
+          "title": "Fixture source",
+          "url": "https://example.com/a",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers",
+            "marketingName",
+            "chip"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
     }
   ]
 }

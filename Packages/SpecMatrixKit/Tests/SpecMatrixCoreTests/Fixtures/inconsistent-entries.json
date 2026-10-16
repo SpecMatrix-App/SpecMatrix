@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "catalogVersion": "2026.13.0",
+  "entries": [
+    {
+      "id": "test-phone-a",
+      "identifiers": ["TestPhone1,1", "TestPad1,1"],
+      "family": "TestPhone",
+      "marketingName": "Test Phone A",
+      "releaseDate": "2026-12-01",
+      "chip": { "name": "Test Chip A", "neuralEngineCores": 16 },
+      "display": { "diagonalInches": 6.12, "pixelWidth": 1179, "pixelHeight": 2556, "pixelsPerInch": 400 },
+      "sources": [
+        { "title": "Fixture specifications", "url": "https://example.com/a", "accessed": "2026-10-16",
+          "supports": ["marketingName", "releaseDate", "chip", "display"] },
+        { "title": "Same page cited twice", "url": "https://example.com/a", "accessed": "2026-10-15",
+          "supports": ["identifiers"] }
+      ],
+      "verification": { "status": "verified", "verifiedOn": "2026-10-15" }
+    },
+    {
+      "id": "test-phone-b",
+      "identifiers": ["TestPhone2,1"],
+      "family": "TestPhone",
+      "marketingName": "Test Phone A",
+      "sources": [
+        { "title": "Both locations", "url": "https://example.com/b", "xcodeSimulatorDeviceType": "Test Phone B",
+          "xcodeVersion": "1.0 (1A1)", "accessed": "2026-10-15", "supports": ["identifiers"] },
+        { "title": "No Xcode version", "xcodeSimulatorDeviceType": "Test Phone B", "accessed": "2026-10-15",
+          "supports": ["identifiers"] },
+        { "title": "Simulator claiming a chip", "xcodeSimulatorDeviceType": "Test Phone B", "xcodeVersion": "1.0 (1A1)",
+          "accessed": "2026-10-15", "supports": ["identifiers", "chip"] },
+        { "title": "Unknown and unrecorded fields", "url": "https://example.org/b", "accessed": "2026-10-15",
+          "supports": ["identifiers", "display", "colour"] },
+        { "title": "No location", "accessed": "2026-10-15", "supports": ["identifiers"] },
+        { "title": "Supports nothing", "url": "https://example.org/c", "accessed": "2026-10-15", "supports": [] }
+      ],
+      "verification": { "status": "secondary-sources-only", "verifiedOn": "2026-10-15" }
+    },
+    {
+      "id": "test-phone-c",
+      "identifiers": ["TestPhone3,1"],
+      "family": "TestPhone",
+      "marketingName": "Test Phone C",
+      "chip": { "name": "Shared Chip", "neuralEngineCores": 16 },
+      "sources": [ { "title": "Fixture", "url": "https://example.com/c", "accessed": "2026-10-15",
+                     "supports": ["identifiers", "marketingName", "chip"] } ],
+      "verification": { "status": "secondary-sources-only", "verifiedOn": "2026-10-15" }
+    },
+    {
+      "id": "test-phone-d",
+      "identifiers": ["TestPhone4,1"],
+      "family": "TestPhone",
+      "marketingName": "Test Phone D",
+      "chip": { "name": "Shared Chip", "neuralEngineCores": 8 },
+      "sources": [ { "title": "Fixture", "url": "https://example.com/d", "accessed": "2026-10-15",
+                     "supports": ["identifiers", "marketingName", "chip"] } ],
+      "verification": { "status": "secondary-sources-only", "verifiedOn": "2026-10-15" }
+    }
+  ]
+}

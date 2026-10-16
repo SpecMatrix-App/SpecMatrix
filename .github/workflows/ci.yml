@@ -28,6 +28,13 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
 
+      - name: Package tests (SpecMatrixKit on macOS)
+        shell: bash
+        run: |
+          swift test --package-path Packages/SpecMatrixKit 2>&1 | tee package-tests.log
+          # Fail if no tests ran, so a build that silently runs nothing cannot pass.
+          grep -E 'Test run with [1-9][0-9]* tests' package-tests.log
+
       - name: Select an available iPhone simulator
         run: |
           UDID=$(xcrun simctl list devices available -j | python3 -c '

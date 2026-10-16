@@ -39,13 +39,28 @@ public enum CatalogLookup: Sendable, Equatable {
     case notFound(HardwareIdentifier)
 }
 
+/// Rules that decide whether an entry may claim `CatalogVerificationStatus.verified`.
+public struct CatalogPolicy: Sendable, Equatable {
+    /// The publisher (see `CatalogSource.publisher`) whose sources count as manufacturer-published.
+    public var manufacturerPublisher: String
+    /// The number of independent publishers that must support an entry's identifiers.
+    public var minimumIdentifierPublishers: Int
+
+    public init(manufacturerPublisher: String, minimumIdentifierPublishers: Int = 2) {
+        self.manufacturerPublisher = manufacturerPublisher
+        self.minimumIdentifierPublishers = minimumIdentifierPublishers
+    }
+
+    public static let apple = CatalogPolicy(manufacturerPublisher: "apple.com")
+}
+
 /// A validated, versioned set of device specifications keyed by hardware identifier.
 ///
 /// Loading is all-or-nothing: if any entry is invalid, the whole catalog is rejected and
 /// every issue is reported. The bundled catalog is authored with the app, so a single
 /// invalid entry indicates a defect that should fail tests rather than be skipped silently.
 public struct DeviceCatalog: Sendable, Equatable {
-    public static let supportedSchemaVersion = 1
+    public static let supportedSchemaVersion = 2
     public static let bundledResourceName = "DeviceCatalog"
 
     public let schemaVersion: Int
@@ -87,7 +102,7 @@ public struct DeviceCatalog: Sendable, Equatable {
     }
 
     /// Decodes and validates catalog JSON.
-    public static func decode(_ data: Data) -> Result<DeviceCatalog, CatalogLoadError> {
-        CatalogDecoder.decode(data)
+    public static func decode(_ data: Data, policy: CatalogPolicy = .apple) -> Result<DeviceCatalog, CatalogLoadError> {
+        CatalogDecoder.decode(data, policy: policy)
     }
 }

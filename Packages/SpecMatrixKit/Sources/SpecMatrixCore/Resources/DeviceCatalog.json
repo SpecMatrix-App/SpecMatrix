@@ -1,7 +1,1548 @@
 {
-  "schemaVersion": 1,
-  "catalogVersion": "2026.10.0",
+  "schemaVersion": 2,
+  "catalogVersion": "2026.10.1",
   "entries": [
+    {
+      "id": "iphone-xs",
+      "identifiers": [
+        "iPhone11,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone XS",
+      "releaseDate": "2018-09-21",
+      "chip": {
+        "name": "A12 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 8
+      },
+      "display": {
+        "diagonalInches": 5.85,
+        "pixelWidth": 1125,
+        "pixelHeight": 2436,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone XS - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111881",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "iPhone Xs and iPhone Xs Max bring the best and biggest displays to iPhone (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2018/09/iphone-xs-and-iphone-xs-max-bring-the-best-and-biggest-displays-to-iphone/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate",
+            "chip"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone Xs”",
+          "xcodeSimulatorDeviceType": "iPhone Xs",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-xs-max",
+      "identifiers": [
+        "iPhone11,4",
+        "iPhone11,6"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone XS Max",
+      "releaseDate": "2018-09-21",
+      "chip": {
+        "name": "A12 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 8
+      },
+      "display": {
+        "diagonalInches": 6.46,
+        "pixelWidth": 1242,
+        "pixelHeight": 2688,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone XS Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111880",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "iPhone Xs and iPhone Xs Max bring the best and biggest displays to iPhone (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2018/09/iphone-xs-and-iphone-xs-max-bring-the-best-and-biggest-displays-to-iphone/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate",
+            "chip"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone Xs Max”",
+          "xcodeSimulatorDeviceType": "iPhone Xs Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-xr",
+      "identifiers": [
+        "iPhone11,8"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone XR",
+      "releaseDate": "2018-10-26",
+      "chip": {
+        "name": "A12 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 8
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 828,
+        "pixelHeight": 1792,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPhone XR - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111868",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Apple introduces iPhone XR (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2018/09/apple-introduces-iphone-xr/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate",
+            "chip"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone Xʀ”",
+          "xcodeSimulatorDeviceType": "iPhone Xʀ",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-11",
+      "identifiers": [
+        "iPhone12,1"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 11",
+      "chip": {
+        "name": "A13 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 8
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 828,
+        "pixelHeight": 1792,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPhone 11 - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111865",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 11”",
+          "xcodeSimulatorDeviceType": "iPhone 11",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-11-pro",
+      "identifiers": [
+        "iPhone12,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 11 Pro",
+      "releaseDate": "2019-09-20",
+      "chip": {
+        "name": "A13 Bionic"
+      },
+      "display": {
+        "diagonalInches": 5.85,
+        "pixelWidth": 1125,
+        "pixelHeight": 2436,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone 11 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111879",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "iPhone 11 Pro and iPhone 11 Pro Max: the most powerful and advanced smartphones (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 11 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 11 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-11-pro-max",
+      "identifiers": [
+        "iPhone12,5"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 11 Pro Max",
+      "releaseDate": "2019-09-20",
+      "chip": {
+        "name": "A13 Bionic"
+      },
+      "display": {
+        "diagonalInches": 6.46,
+        "pixelWidth": 1242,
+        "pixelHeight": 2688,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone 11 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111878",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "iPhone 11 Pro and iPhone 11 Pro Max: the most powerful and advanced smartphones (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 11 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 11 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-se-2nd-generation",
+      "identifiers": [
+        "iPhone12,8"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone SE (2nd generation)",
+      "chip": {
+        "name": "A13 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 8
+      },
+      "display": {
+        "diagonalInches": 4.7,
+        "pixelWidth": 750,
+        "pixelHeight": 1334,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPhone SE (2nd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111882",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone SE (2nd generation)”",
+          "xcodeSimulatorDeviceType": "iPhone SE (2nd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-12-mini",
+      "identifiers": [
+        "iPhone13,1"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 12 mini",
+      "chip": {
+        "name": "A14 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 5.42,
+        "pixelWidth": 1080,
+        "pixelHeight": 2340,
+        "pixelsPerInch": 476
+      },
+      "sources": [
+        {
+          "title": "iPhone 12 mini - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111877",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 12 mini”",
+          "xcodeSimulatorDeviceType": "iPhone 12 mini",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-12",
+      "identifiers": [
+        "iPhone13,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 12",
+      "chip": {
+        "name": "A14 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 12 - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111876",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 12”",
+          "xcodeSimulatorDeviceType": "iPhone 12",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-12-pro",
+      "identifiers": [
+        "iPhone13,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 12 Pro",
+      "releaseDate": "2020-10-23",
+      "chip": {
+        "name": "A14 Bionic",
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 12 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111875",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Apple introduces iPhone 12 Pro and iPhone 12 Pro Max with 5G (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2020/10/apple-introduces-iphone-12-pro-and-iphone-12-pro-max-with-5g/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate",
+            "chip"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 12 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 12 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-12-pro-max",
+      "identifiers": [
+        "iPhone13,4"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 12 Pro Max",
+      "releaseDate": "2020-11-13",
+      "chip": {
+        "name": "A14 Bionic",
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.68,
+        "pixelWidth": 1284,
+        "pixelHeight": 2778,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone 12 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111874",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Apple introduces iPhone 12 Pro and iPhone 12 Pro Max with 5G (Apple Newsroom)",
+          "url": "https://www.apple.com/newsroom/2020/10/apple-introduces-iphone-12-pro-and-iphone-12-pro-max-with-5g/",
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate",
+            "chip"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 12 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 12 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-13-mini",
+      "identifiers": [
+        "iPhone14,4"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 13 mini",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 5.42,
+        "pixelWidth": 1080,
+        "pixelHeight": 2340,
+        "pixelsPerInch": 476
+      },
+      "sources": [
+        {
+          "title": "iPhone 13 mini - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111873",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 13 mini”",
+          "xcodeSimulatorDeviceType": "iPhone 13 mini",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-13",
+      "identifiers": [
+        "iPhone14,5"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 13",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 13 - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111872",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 13”",
+          "xcodeSimulatorDeviceType": "iPhone 13",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-13-pro",
+      "identifiers": [
+        "iPhone14,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 13 Pro",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 13 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111871",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 13 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 13 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-13-pro-max",
+      "identifiers": [
+        "iPhone14,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 13 Pro Max",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.68,
+        "pixelWidth": 1284,
+        "pixelHeight": 2778,
+        "pixelsPerInch": 458,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 13 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111870",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 13 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 13 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-se-3rd-generation",
+      "identifiers": [
+        "iPhone14,6"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone SE (3rd generation)",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 4.7,
+        "pixelWidth": 750,
+        "pixelHeight": 1334,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPhone SE (3rd generation) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111866",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone SE (3rd generation)”",
+          "xcodeSimulatorDeviceType": "iPhone SE (3rd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-14",
+      "identifiers": [
+        "iPhone14,7"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 14",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 14 - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111850",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 14”",
+          "xcodeSimulatorDeviceType": "iPhone 14",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-14-plus",
+      "identifiers": [
+        "iPhone14,8"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 14 Plus",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.68,
+        "pixelWidth": 1284,
+        "pixelHeight": 2778,
+        "pixelsPerInch": 458
+      },
+      "sources": [
+        {
+          "title": "iPhone 14 Plus - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111854",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 14 Plus”",
+          "xcodeSimulatorDeviceType": "iPhone 14 Plus",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-14-pro",
+      "identifiers": [
+        "iPhone15,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 14 Pro",
+      "chip": {
+        "name": "A16 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.12,
+        "pixelWidth": 1179,
+        "pixelHeight": 2556,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 14 Pro - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111849",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 14 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 14 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-14-pro-max",
+      "identifiers": [
+        "iPhone15,3"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 14 Pro Max",
+      "chip": {
+        "name": "A16 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.69,
+        "pixelWidth": 1290,
+        "pixelHeight": 2796,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 14 Pro Max - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111846",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 14 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 14 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-15",
+      "identifiers": [
+        "iPhone15,4"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 15",
+      "chip": {
+        "name": "A16 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.12,
+        "pixelWidth": 1179,
+        "pixelHeight": 2556,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 15 - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111831",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 15”",
+          "xcodeSimulatorDeviceType": "iPhone 15",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-15-plus",
+      "identifiers": [
+        "iPhone15,5"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 15 Plus",
+      "chip": {
+        "name": "A16 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.69,
+        "pixelWidth": 1290,
+        "pixelHeight": 2796,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 15 Plus - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111830",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 15 Plus”",
+          "xcodeSimulatorDeviceType": "iPhone 15 Plus",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-15-pro",
+      "identifiers": [
+        "iPhone16,1"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 15 Pro",
+      "chip": {
+        "name": "A17 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.12,
+        "pixelWidth": 1179,
+        "pixelHeight": 2556,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 15 Pro - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111829",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 15 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 15 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-15-pro-max",
+      "identifiers": [
+        "iPhone16,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 15 Pro Max",
+      "chip": {
+        "name": "A17 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 6,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.69,
+        "pixelWidth": 1290,
+        "pixelHeight": 2796,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 15 Pro Max - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111828",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 15 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 15 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
     {
       "id": "iphone-16",
       "identifiers": [
@@ -17,26 +1558,46 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.1,
+        "diagonalInches": 6.12,
         "pixelWidth": 1179,
         "pixelHeight": 2556,
         "pixelsPerInch": 460
       },
       "sources": [
         {
-          "title": "iPhone 16 - Technical Specifications (Apple Support)",
+          "title": "iPhone 16 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121029",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 16”",
+          "xcodeSimulatorDeviceType": "iPhone 16",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -59,26 +1620,46 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.7,
+        "diagonalInches": 6.69,
         "pixelWidth": 1290,
         "pixelHeight": 2796,
         "pixelsPerInch": 460
       },
       "sources": [
         {
-          "title": "iPhone 16 Plus - Technical Specifications (Apple Support)",
+          "title": "iPhone 16 Plus - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121030",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 16 Plus”",
+          "xcodeSimulatorDeviceType": "iPhone 16 Plus",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -101,7 +1682,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.3,
+        "diagonalInches": 6.27,
         "pixelWidth": 1206,
         "pixelHeight": 2622,
         "pixelsPerInch": 460,
@@ -109,19 +1690,39 @@
       },
       "sources": [
         {
-          "title": "iPhone 16 Pro - Technical Specifications (Apple Support)",
+          "title": "iPhone 16 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121031",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 16 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 16 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -144,7 +1745,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.9,
+        "diagonalInches": 6.86,
         "pixelWidth": 1320,
         "pixelHeight": 2868,
         "pixelsPerInch": 460,
@@ -152,19 +1753,101 @@
       },
       "sources": [
         {
-          "title": "iPhone 16 Pro Max - Technical Specifications (Apple Support)",
+          "title": "iPhone 16 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121032",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 16 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 16 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-16e",
+      "identifiers": [
+        "iPhone17,5"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 16e",
+      "chip": {
+        "name": "A18",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 16e - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/122208",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 16e”",
+          "xcodeSimulatorDeviceType": "iPhone 16e",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -188,7 +1871,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.3,
+        "diagonalInches": 6.27,
         "pixelWidth": 1206,
         "pixelHeight": 2622,
         "pixelsPerInch": 460,
@@ -196,24 +1879,47 @@
       },
       "sources": [
         {
-          "title": "iPhone 17 - Technical Specifications (Apple Support)",
+          "title": "iPhone 17 - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125089",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
           "title": "Apple debuts iPhone 17 (Apple Newsroom)",
           "url": "https://www.apple.com/newsroom/2025/09/apple-debuts-iphone-17/",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 17”",
+          "xcodeSimulatorDeviceType": "iPhone 17",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -237,7 +1943,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.5,
+        "diagonalInches": 6.55,
         "pixelWidth": 1260,
         "pixelHeight": 2736,
         "pixelsPerInch": 460,
@@ -245,24 +1951,47 @@
       },
       "sources": [
         {
-          "title": "iPhone Air - Technical Specifications (Apple Support)",
+          "title": "iPhone Air - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125092",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
-          "title": "Introducing iPhone Air (Apple Newsroom)",
+          "title": "Introducing iPhone Air, a powerful new iPhone with a breakthrough design (Apple Newsroom)",
           "url": "https://www.apple.com/newsroom/2025/09/introducing-iphone-air-a-powerful-new-iphone-with-a-breakthrough-design/",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone Air”",
+          "xcodeSimulatorDeviceType": "iPhone Air",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -286,7 +2015,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.3,
+        "diagonalInches": 6.27,
         "pixelWidth": 1206,
         "pixelHeight": 2622,
         "pixelsPerInch": 460,
@@ -294,24 +2023,47 @@
       },
       "sources": [
         {
-          "title": "iPhone 17 Pro - Technical Specifications (Apple Support)",
+          "title": "iPhone 17 Pro - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125090",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
           "title": "Apple unveils iPhone 17 Pro and iPhone 17 Pro Max (Apple Newsroom)",
           "url": "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 17 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 17 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {
@@ -335,7 +2087,7 @@
         "neuralEngineCores": 16
       },
       "display": {
-        "diagonalInches": 6.9,
+        "diagonalInches": 6.86,
         "pixelWidth": 1320,
         "pixelHeight": 2868,
         "pixelsPerInch": 460,
@@ -343,24 +2095,2120 @@
       },
       "sources": [
         {
-          "title": "iPhone 17 Pro Max - Technical Specifications (Apple Support)",
+          "title": "iPhone 17 Pro Max - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125091",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
         },
         {
           "title": "Apple unveils iPhone 17 Pro and iPhone 17 Pro Max (Apple Newsroom)",
           "url": "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "releaseDate"
+          ]
         },
         {
-          "title": "Apple Device Identifiers (iPhone model identifiers) — EveryMac.com",
-          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
-          "accessed": "2026-10-15"
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 17 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 17 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         },
         {
-          "title": "Apple device identifiers (adamawolf gist)",
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
           "url": "https://gist.github.com/adamawolf/3048717",
-          "accessed": "2026-10-15"
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-17e",
+      "identifiers": [
+        "iPhone18,5"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 17e",
+      "chip": {
+        "name": "A19",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 6.06,
+        "pixelWidth": 1170,
+        "pixelHeight": 2532,
+        "pixelsPerInch": 460
+      },
+      "sources": [
+        {
+          "title": "iPhone 17e - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/126470",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 17e”",
+          "xcodeSimulatorDeviceType": "iPhone 17e",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-18-pro",
+      "identifiers": [
+        "iPhone19,2"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 18 Pro",
+      "chip": {
+        "name": "A20 Pro",
+        "efficiencyCores": 4,
+        "gpuCores": 7
+      },
+      "display": {
+        "diagonalInches": 6.27,
+        "pixelWidth": 1206,
+        "pixelHeight": 2622,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 18 Pro - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/148590",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 18 Pro”",
+          "xcodeSimulatorDeviceType": "iPhone 18 Pro",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "iphone-18-pro-max",
+      "identifiers": [
+        "iPhone19,3",
+        "iPhone19,7"
+      ],
+      "family": "iPhone",
+      "marketingName": "iPhone 18 Pro Max",
+      "chip": {
+        "name": "A20 Pro",
+        "efficiencyCores": 4,
+        "gpuCores": 7
+      },
+      "display": {
+        "diagonalInches": 6.86,
+        "pixelWidth": 1320,
+        "pixelHeight": 2868,
+        "pixelsPerInch": 460,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPhone 18 Pro Max - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/148591",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPhone 18 Pro Max”",
+          "xcodeSimulatorDeviceType": "iPhone 18 Pro Max",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPhone By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-iphone-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-6th-generation",
+      "identifiers": [
+        "iPad7,5",
+        "iPad7,6"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (6th generation)",
+      "chip": {
+        "name": "A10 Fusion"
+      },
+      "display": {
+        "diagonalInches": 9.7,
+        "pixelWidth": 1536,
+        "pixelHeight": 2048,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (6th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111957",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (6th generation)”",
+          "xcodeSimulatorDeviceType": "iPad (6th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-7th-generation",
+      "identifiers": [
+        "iPad7,11",
+        "iPad7,12"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (7th generation)",
+      "chip": {
+        "name": "A10 Fusion"
+      },
+      "display": {
+        "diagonalInches": 10.2,
+        "pixelWidth": 1620,
+        "pixelHeight": 2160,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (7th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111911",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (7th generation)”",
+          "xcodeSimulatorDeviceType": "iPad (7th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-8th-generation",
+      "identifiers": [
+        "iPad11,6",
+        "iPad11,7"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (8th generation)",
+      "chip": {
+        "name": "A12 Bionic"
+      },
+      "display": {
+        "diagonalInches": 10.2,
+        "pixelWidth": 1620,
+        "pixelHeight": 2160,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (8th generation) - Technical specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/118451",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (8th generation)”",
+          "xcodeSimulatorDeviceType": "iPad (8th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-9th-generation",
+      "identifiers": [
+        "iPad12,1",
+        "iPad12,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (9th generation)",
+      "chip": {
+        "name": "A13 Bionic"
+      },
+      "display": {
+        "diagonalInches": 10.2,
+        "pixelWidth": 1620,
+        "pixelHeight": 2160,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (9th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111898",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (9th generation)”",
+          "xcodeSimulatorDeviceType": "iPad (9th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-10th-generation",
+      "identifiers": [
+        "iPad13,18",
+        "iPad13,19"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (10th generation)",
+      "chip": {
+        "name": "A14 Bionic",
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (10th generation) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111840",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (10th generation)”",
+          "xcodeSimulatorDeviceType": "iPad (10th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-a16",
+      "identifiers": [
+        "iPad15,7",
+        "iPad15,8"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad (A16)",
+      "chip": {
+        "name": "A16",
+        "gpuCores": 4,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad (A16) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/122240",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad (A16)”",
+          "xcodeSimulatorDeviceType": "iPad (A16)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-mini-5th-generation",
+      "identifiers": [
+        "iPad11,1",
+        "iPad11,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad mini (5th generation)",
+      "chip": {
+        "name": "A12 Bionic"
+      },
+      "display": {
+        "diagonalInches": 7.9,
+        "pixelWidth": 1536,
+        "pixelHeight": 2048,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPad mini (5th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111904",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad mini (5th generation)”",
+          "xcodeSimulatorDeviceType": "iPad mini (5th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-mini-6th-generation",
+      "identifiers": [
+        "iPad14,1",
+        "iPad14,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad mini (6th generation)",
+      "chip": {
+        "name": "A15 Bionic",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 8.3,
+        "pixelWidth": 1488,
+        "pixelHeight": 2266,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPad mini (6th generation) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111886",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad mini (6th generation)”",
+          "xcodeSimulatorDeviceType": "iPad mini (6th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-mini-a17-pro",
+      "identifiers": [
+        "iPad16,1",
+        "iPad16,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad mini (A17 Pro)",
+      "chip": {
+        "name": "A17 Pro",
+        "performanceCores": 2,
+        "efficiencyCores": 4,
+        "gpuCores": 5,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 8.3,
+        "pixelWidth": 1488,
+        "pixelHeight": 2266,
+        "pixelsPerInch": 326
+      },
+      "sources": [
+        {
+          "title": "iPad mini (A17 Pro) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/121456",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad mini (A17 Pro)”",
+          "xcodeSimulatorDeviceType": "iPad mini (A17 Pro)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-3rd-generation",
+      "identifiers": [
+        "iPad11,3",
+        "iPad11,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air (3rd generation)",
+      "chip": {
+        "name": "A12 Bionic"
+      },
+      "display": {
+        "diagonalInches": 10.5,
+        "pixelWidth": 1668,
+        "pixelHeight": 2224,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air (3rd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111939",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air (3rd generation)”",
+          "xcodeSimulatorDeviceType": "iPad Air (3rd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-4th-generation",
+      "identifiers": [
+        "iPad13,1",
+        "iPad13,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air (4th generation)",
+      "chip": {
+        "name": "A14 Bionic"
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air (4th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111905",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air (4th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Air (4th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-5th-generation",
+      "identifiers": [
+        "iPad13,16",
+        "iPad13,17"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air (5th generation)",
+      "chip": {
+        "name": "M1",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 8,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air (5th generation) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/111887",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air (5th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Air (5th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-11-inch-m2",
+      "identifiers": [
+        "iPad14,8",
+        "iPad14,9"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 11-inch (M2)",
+      "chip": {
+        "name": "M2",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 11-inch (M2) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/119894",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 11-inch (M2)”",
+          "xcodeSimulatorDeviceType": "iPad Air 11-inch (M2)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-13-inch-m2",
+      "identifiers": [
+        "iPad14,10",
+        "iPad14,11"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 13-inch (M2)",
+      "chip": {
+        "name": "M2",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 13-inch (M2) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/119893",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 13-inch (M2)”",
+          "xcodeSimulatorDeviceType": "iPad Air 13-inch (M2)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-11-inch-m3",
+      "identifiers": [
+        "iPad15,3",
+        "iPad15,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 11-inch (M3)",
+      "chip": {
+        "name": "M3",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 11-inch (M3) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/122241",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 11-inch (M3)”",
+          "xcodeSimulatorDeviceType": "iPad Air 11-inch (M3)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-13-inch-m3",
+      "identifiers": [
+        "iPad15,5",
+        "iPad15,6"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 13-inch (M3)",
+      "chip": {
+        "name": "M3",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 13‑inch (M3) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/122242",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 13-inch (M3)”",
+          "xcodeSimulatorDeviceType": "iPad Air 13-inch (M3)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-11-inch-m4",
+      "identifiers": [
+        "iPad16,8",
+        "iPad16,9"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 11-inch (M4)",
+      "chip": {
+        "name": "M4",
+        "performanceCores": 3,
+        "efficiencyCores": 5,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 10.86,
+        "pixelWidth": 1640,
+        "pixelHeight": 2360,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 11-inch (M4) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/126471",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 11-inch (M4)”",
+          "xcodeSimulatorDeviceType": "iPad Air 11-inch (M4)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-air-13-inch-m4",
+      "identifiers": [
+        "iPad16,10",
+        "iPad16,11"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Air 13-inch (M4)",
+      "chip": {
+        "name": "M4",
+        "performanceCores": 3,
+        "efficiencyCores": 5,
+        "gpuCores": 9,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Air 13-inch (M4) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/126472",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Air 13-inch (M4)”",
+          "xcodeSimulatorDeviceType": "iPad Air 13-inch (M4)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-10-5-inch",
+      "identifiers": [
+        "iPad7,3",
+        "iPad7,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro (10.5-inch)",
+      "chip": {
+        "name": "A10X Fusion"
+      },
+      "display": {
+        "diagonalInches": 10.5,
+        "pixelWidth": 1668,
+        "pixelHeight": 2224,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro (10.5-inch) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111927",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (10.5-inch)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (10.5-inch)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-12-9-inch-2nd-generation",
+      "identifiers": [
+        "iPad7,1",
+        "iPad7,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro (12.9-inch) (2nd generation)",
+      "chip": {
+        "name": "A10X Fusion"
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro (12.9-inch) (2nd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111964",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (12.9-inch) (2nd generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (12.9-inch) (2nd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-1st-generation",
+      "identifiers": [
+        "iPad8,1",
+        "iPad8,2",
+        "iPad8,3",
+        "iPad8,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (1st generation)",
+      "chip": {
+        "name": "A12X Bionic"
+      },
+      "display": {
+        "diagonalInches": 11,
+        "pixelWidth": 1668,
+        "pixelHeight": 2388,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 11-inch (1st generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111974",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (11-inch) (1st generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (11-inch) (1st generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "iPad Pro 11\" (Wi-Fi Only) Specs, A1980 (EveryMac.com)",
+          "url": "https://everymac.com/systems/apple/ipad/specs/apple-ipad-pro-11-inch-a1980-wi-fi-only-specs.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "iPad Pro 11\" (Wi-Fi/Cellular - US/CA) Specs, A2013 (EveryMac.com)",
+          "url": "https://everymac.com/systems/apple/ipad/specs/apple-ipad-pro-11-inch-a2013-wi-fi-lte-cellular-us-canada-specs.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-12-9-inch-3rd-generation",
+      "identifiers": [
+        "iPad8,5",
+        "iPad8,6",
+        "iPad8,7",
+        "iPad8,8"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 12.9-inch (3rd generation)",
+      "chip": {
+        "name": "A12X Bionic"
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 12.9-inch (3rd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111979",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (12.9-inch) (3rd generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (12.9-inch) (3rd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-2nd-generation",
+      "identifiers": [
+        "iPad8,9",
+        "iPad8,10"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (2nd generation)",
+      "chip": {
+        "name": "A12Z Bionic"
+      },
+      "display": {
+        "diagonalInches": 11,
+        "pixelWidth": 1668,
+        "pixelHeight": 2388,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 11-inch (2nd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/118452",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (11-inch) (2nd generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (11-inch) (2nd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-12-9-inch-4th-generation",
+      "identifiers": [
+        "iPad8,11",
+        "iPad8,12"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 12.9-inch (4th generation)",
+      "chip": {
+        "name": "A12Z Bionic"
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 12.9-inch (4th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111977",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (12.9-inch) (4th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (12.9-inch) (4th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-3rd-generation",
+      "identifiers": [
+        "iPad13,4",
+        "iPad13,5",
+        "iPad13,6",
+        "iPad13,7"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (3rd generation)",
+      "chip": {
+        "name": "M1",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 8,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 11,
+        "pixelWidth": 1668,
+        "pixelHeight": 2388,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro, 11-inch (3rd generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111897",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (11-inch) (3rd generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (11-inch) (3rd generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-12-9-inch-5th-generation",
+      "identifiers": [
+        "iPad13,8",
+        "iPad13,9",
+        "iPad13,10",
+        "iPad13,11"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 12.9-inch (5th generation)",
+      "chip": {
+        "name": "M1",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 8,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro, 12.9-inch (5th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111896",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (12.9-inch) (5th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (12.9-inch) (5th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-4th-generation",
+      "identifiers": [
+        "iPad14,3",
+        "iPad14,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (4th generation)",
+      "chip": {
+        "name": "M2",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 11,
+        "pixelWidth": 1668,
+        "pixelHeight": 2388,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 11-inch (4th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111842",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (11-inch) (4th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (11-inch) (4th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-12-9-inch-6th-generation",
+      "identifiers": [
+        "iPad14,5",
+        "iPad14,6"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 12.9-inch (6th generation)",
+      "chip": {
+        "name": "M2",
+        "performanceCores": 4,
+        "efficiencyCores": 4,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 12.9,
+        "pixelWidth": 2048,
+        "pixelHeight": 2732,
+        "pixelsPerInch": 264
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 12.9-inch (6th generation) - Technical Specifications (Apple Support)",
+          "url": "https://support.apple.com/en-us/111841",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro (12.9-inch) (6th generation)”",
+          "xcodeSimulatorDeviceType": "iPad Pro (12.9-inch) (6th generation)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-m4",
+      "identifiers": [
+        "iPad16,3",
+        "iPad16,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (M4)",
+      "chip": {
+        "name": "M4",
+        "efficiencyCores": 6,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 11.1,
+        "pixelWidth": 1668,
+        "pixelHeight": 2420,
+        "pixelsPerInch": 264,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 11‑inch (M4) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/119892",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro 11-inch (M4)”",
+          "xcodeSimulatorDeviceType": "iPad Pro 11-inch (M4)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "List of Apple's mobile device codes types a.k.a. machine ids (adamawolf, GitHub Gist)",
+          "url": "https://gist.github.com/adamawolf/3048717",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-13-inch-m4",
+      "identifiers": [
+        "iPad16,5",
+        "iPad16,6"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 13-inch (M4)",
+      "chip": {
+        "name": "M4",
+        "efficiencyCores": 6,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 13,
+        "pixelWidth": 2064,
+        "pixelHeight": 2752,
+        "pixelsPerInch": 264,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 13‑inch (M4) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/119891",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro 13-inch (M4)”",
+          "xcodeSimulatorDeviceType": "iPad Pro 13-inch (M4)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-11-inch-m5",
+      "identifiers": [
+        "iPad17,1",
+        "iPad17,2"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 11-inch (M5)",
+      "chip": {
+        "name": "M5",
+        "efficiencyCores": 6,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 11.1,
+        "pixelWidth": 1668,
+        "pixelHeight": 2420,
+        "pixelsPerInch": 264,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 11‑inch (M5) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/125406",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro 11-inch (M5)”",
+          "xcodeSimulatorDeviceType": "iPad Pro 11-inch (M5)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "ipad-pro-13-inch-m5",
+      "identifiers": [
+        "iPad17,3",
+        "iPad17,4"
+      ],
+      "family": "iPad",
+      "marketingName": "iPad Pro 13-inch (M5)",
+      "chip": {
+        "name": "M5",
+        "efficiencyCores": 6,
+        "gpuCores": 10,
+        "neuralEngineCores": 16
+      },
+      "display": {
+        "diagonalInches": 13,
+        "pixelWidth": 2064,
+        "pixelHeight": 2752,
+        "pixelsPerInch": 264,
+        "maximumRefreshRateHz": 120
+      },
+      "sources": [
+        {
+          "title": "iPad Pro 13‑inch (M5) - Tech Specs (Apple Support)",
+          "url": "https://support.apple.com/en-us/125407",
+          "accessed": "2026-10-15",
+          "supports": [
+            "marketingName",
+            "chip",
+            "display"
+          ]
+        },
+        {
+          "title": "Xcode 27.0 (27A266a) Simulator device type “iPad Pro 13-inch (M5)”",
+          "xcodeSimulatorDeviceType": "iPad Pro 13-inch (M5)",
+          "xcodeVersion": "27.0 (27A266a)",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
+        },
+        {
+          "title": "All iPad By Model Identifier (EveryMac.com)",
+          "url": "https://everymac.com/devices/by-identifier/all-ipad-model-identifiers.html",
+          "accessed": "2026-10-15",
+          "supports": [
+            "identifiers"
+          ]
         }
       ],
       "verification": {

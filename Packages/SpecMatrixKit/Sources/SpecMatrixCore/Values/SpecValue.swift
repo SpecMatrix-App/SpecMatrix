@@ -46,9 +46,10 @@ public struct CatalogReference: Sendable, Hashable {
     public let entryID: String
     public let catalogVersion: String
     public let verification: CatalogVerificationStatus
-    public let sources: [URL]
+    /// Only the sources attributed to this value's field, not every source of the entry.
+    public let sources: [CatalogSource]
 
-    public init(entryID: String, catalogVersion: String, verification: CatalogVerificationStatus, sources: [URL]) {
+    public init(entryID: String, catalogVersion: String, verification: CatalogVerificationStatus, sources: [CatalogSource]) {
         self.entryID = entryID
         self.catalogVersion = catalogVersion
         self.verification = verification

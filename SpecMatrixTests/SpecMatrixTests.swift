@@ -53,4 +53,20 @@ struct AppIntegrationTests {
         #expect(report.hardware.provenances.allSatisfy { $0 == .catalog || $0 == .unknown })
         #expect(store.phase == .loaded || { if case .partial = store.phase { return true }; return false }())
     }
+
+    /// The running (or simulated) model's identifier resolves through the catalog bundled in the app:
+    /// a catalogued identifier yields that entry's values, any other identifier yields unknown values.
+    @Test func runningModelResolvesThroughTheBundledCatalog() async throws {
+        let store = AppEnvironment.makeDeviceInfoStore()
+        await store.refresh().value
+        let report = try #require(store.report)
+        let identifier = try #require(report.identity.value?.identifier)
+        switch try AppEnvironment.catalog.get().lookup(identifier) {
+        case .found(let entry):
+            #expect(report.hardware.marketingName.value == entry.marketingName)
+            #expect(report.hardware.chipName.value == entry.chip?.name)
+        case .notFound:
+            #expect(report.hardware.provenances.allSatisfy { $0 == .unknown })
+        }
+    }
 }

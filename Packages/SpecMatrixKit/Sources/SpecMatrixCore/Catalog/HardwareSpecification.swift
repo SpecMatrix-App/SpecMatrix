@@ -71,25 +71,26 @@ public enum HardwareResolver {
     }
 
     static func specification(for entry: CatalogEntry, catalogVersion: String) -> HardwareSpecification {
-        let reference = CatalogReference(entryID: entry.id, catalogVersion: catalogVersion,
-                                         verification: entry.verification.status, sources: entry.sources.map(\.url))
-        func field<T: Sendable & Equatable>(_ value: T?) -> SpecValue<T> {
+        // Each value cites only the sources attributed to its field group.
+        func field<T: Sendable & Equatable>(_ value: T?, _ group: CatalogField) -> SpecValue<T> {
             guard let value else { return .unknown("Not recorded in the catalog entry for \(entry.marketingName).") }
-            return .catalog(value, reference)
+            return .catalog(value, CatalogReference(entryID: entry.id, catalogVersion: catalogVersion,
+                                                    verification: entry.verification.status,
+                                                    sources: entry.sources(supporting: group)))
         }
         var spec = HardwareSpecification(allMissing: .unknown(""))
-        spec.marketingName = field(entry.marketingName)
-        spec.family = field(entry.family)
-        spec.releaseDate = field(entry.releaseDate)
-        spec.chipName = field(entry.chip?.name)
-        spec.performanceCores = field(entry.chip?.performanceCores)
-        spec.efficiencyCores = field(entry.chip?.efficiencyCores)
-        spec.gpuCores = field(entry.chip?.gpuCores)
-        spec.neuralEngineCores = field(entry.chip?.neuralEngineCores)
-        spec.displayDiagonal = field(entry.display?.diagonal)
-        spec.displayResolution = field(entry.display?.resolution)
-        spec.displayPixelDensity = field(entry.display?.pixelDensity)
-        spec.displayMaximumRefreshRate = field(entry.display?.maximumRefreshRate)
+        spec.marketingName = field(entry.marketingName, .marketingName)
+        spec.family = field(entry.family, .marketingName)
+        spec.releaseDate = field(entry.releaseDate, .releaseDate)
+        spec.chipName = field(entry.chip?.name, .chip)
+        spec.performanceCores = field(entry.chip?.performanceCores, .chip)
+        spec.efficiencyCores = field(entry.chip?.efficiencyCores, .chip)
+        spec.gpuCores = field(entry.chip?.gpuCores, .chip)
+        spec.neuralEngineCores = field(entry.chip?.neuralEngineCores, .chip)
+        spec.displayDiagonal = field(entry.display?.diagonal, .display)
+        spec.displayResolution = field(entry.display?.resolution, .display)
+        spec.displayPixelDensity = field(entry.display?.pixelDensity, .display)
+        spec.displayMaximumRefreshRate = field(entry.display?.maximumRefreshRate, .display)
         return spec
     }
 }

@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "catalogVersion": "test-1",
+  "schemaVersion": 2,
+  "catalogVersion": "2026.01.0",
   "entries": [
     {
       "id": "test-phone",
@@ -9,8 +9,15 @@
       "marketingName": "Test Phone",
       "releaseDate": "2026-01-15",
       "chip": { "name": "Test Chip", "performanceCores": 2, "efficiencyCores": 4, "gpuCores": 5, "neuralEngineCores": 16 },
-      "display": { "diagonalInches": 6.1, "pixelWidth": 1179, "pixelHeight": 2556, "pixelsPerInch": 460, "maximumRefreshRateHz": 120 },
-      "sources": [ { "title": "Fixture source", "url": "https://example.com/test-phone", "accessed": "2026-10-15" } ],
+      "display": { "diagonalInches": 6.12, "pixelWidth": 1179, "pixelHeight": 2556, "pixelsPerInch": 460, "maximumRefreshRateHz": 120 },
+      "sources": [
+        { "title": "Fixture specifications", "url": "https://example.com/test-phone", "accessed": "2026-10-15",
+          "supports": ["marketingName", "releaseDate", "chip", "display"] },
+        { "title": "Fixture simulator profile", "xcodeSimulatorDeviceType": "Test Phone", "xcodeVersion": "1.0 (1A1)",
+          "accessed": "2026-10-15", "supports": ["identifiers"] },
+        { "title": "Fixture identifier list", "url": "https://example.org/identifiers", "accessed": "2026-10-14",
+          "supports": ["identifiers"] }
+      ],
       "verification": { "status": "verified", "verifiedOn": "2026-10-15" }
     },
     {
@@ -18,7 +25,10 @@
       "identifiers": ["TestPad2,1"],
       "family": "TestPad",
       "marketingName": "Test Tablet",
-      "sources": [ { "title": "Fixture source", "url": "https://example.com/test-tablet", "accessed": "2026-10-15" } ],
+      "sources": [
+        { "title": "Fixture source", "url": "https://example.net/test-tablet", "accessed": "2026-10-15",
+          "supports": ["identifiers", "marketingName"] }
+      ],
       "verification": { "status": "secondary-sources-only", "verifiedOn": "2026-10-15" }
     }
   ]
