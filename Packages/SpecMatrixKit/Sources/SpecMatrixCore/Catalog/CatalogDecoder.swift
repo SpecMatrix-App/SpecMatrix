@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// Decodes and validates catalog JSON (schema version 3).
 ///

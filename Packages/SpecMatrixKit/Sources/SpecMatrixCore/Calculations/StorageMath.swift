@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// Validated storage calculations. Never produces NaN, infinity, negative values, or percentages outside 0–100 %.
 public enum StorageMath {

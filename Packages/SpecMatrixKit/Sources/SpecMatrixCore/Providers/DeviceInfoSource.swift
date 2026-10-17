@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// Values that describe the device and do not change while the app runs.
 public struct StaticDeviceInfo: Sendable, Equatable {

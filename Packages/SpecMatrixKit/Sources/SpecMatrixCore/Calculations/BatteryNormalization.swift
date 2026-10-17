@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// Converts raw battery values from `UIDevice` into validated values.
 ///

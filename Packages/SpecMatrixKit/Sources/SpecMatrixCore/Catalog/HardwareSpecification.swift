@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// Catalog-derived specifications for the running device.
 ///

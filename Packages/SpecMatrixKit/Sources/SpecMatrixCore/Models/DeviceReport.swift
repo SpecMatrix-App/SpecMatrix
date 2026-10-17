@@ -1,4 +1,5 @@
 import Foundation
+import SpecMatrixShared
 
 /// A complete snapshot of everything SpecMatrix knows about the running device.
 public struct DeviceReport: Sendable, Equatable {
