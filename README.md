@@ -17,6 +17,17 @@ SITE AND REPO CHANGES EXPECTED BEGINNING OF NOVEMBER
 - Adapt README to have badges and more "decor"
 - Document Actions workflow
 
+MACOS VERSION EXPECTED EARLY DECEMBER TO EARLY JANUARY
+- Full hardware support
+- Detailed specs
+- More accuracy
+- More to come!
+
+ANDROID VERSION EXPECTED EARLY DECEMBER TO EARLY FEBRUARY
+- Full feature parity between iOS and Android
+- Material UI
+- More accuracy
+- More to come!
 
 # SpecMatrix
 
