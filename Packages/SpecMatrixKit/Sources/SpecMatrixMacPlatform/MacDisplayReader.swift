@@ -20,12 +20,21 @@ public enum MacDisplayReader {
             ? .unknown("The display did not report a name.")
             : .measured(screen.localizedName, source("NSScreen.localizedName"))
 
+        let mode = CGDisplayCopyDisplayMode(displayID)
         let resolution: SpecValue<PixelDimensions>
-        if let mode = CGDisplayCopyDisplayMode(displayID),
-           let pixels = PixelDimensions(width: mode.pixelWidth, height: mode.pixelHeight) {
+        if let mode, let pixels = PixelDimensions(width: mode.pixelWidth, height: mode.pixelHeight) {
             resolution = .measured(pixels, source("CGDisplayMode.pixelWidth/pixelHeight"))
         } else {
             resolution = .unknown("The display did not report its current mode.")
+        }
+        // CGDisplayMode.refreshRate is 0 for variable-refresh displays (e.g. ProMotion), which have no fixed rate.
+        let currentRefresh: SpecValue<Double>
+        if let rate = mode?.refreshRate, rate > 0 {
+            currentRefresh = .measured(rate, source("CGDisplayMode.refreshRate"))
+        } else if mode != nil {
+            currentRefresh = .unknown("The current mode has no fixed refresh rate (variable refresh or not reported).")
+        } else {
+            currentRefresh = .unknown("The display did not report its current mode.")
         }
 
         let points: SpecValue<PixelDimensions> = PixelDimensions(width: Int(screen.frame.width.rounded()),
@@ -56,6 +65,19 @@ public enum MacDisplayReader {
             ? .measured(headroom, source("NSScreen.maximumPotentialExtendedDynamicRangeColorComponentValue"))
             : .unknown("The display reported an invalid dynamic-range headroom.")
 
+        let options = [kCGDisplayShowDuplicateLowResolutionModes: kCFBooleanTrue] as CFDictionary
+        let modes = (CGDisplayCopyAllDisplayModes(displayID, options) as? [CGDisplayMode]) ?? []
+        let largest: SpecValue<PixelDimensions> = modes
+            .max { $0.pixelWidth * $0.pixelHeight < $1.pixelWidth * $1.pixelHeight }
+            .flatMap { PixelDimensions(width: $0.pixelWidth, height: $0.pixelHeight) }
+            .map { .measured($0, source("CGDisplayCopyAllDisplayModes")) }
+            ?? .unknown("The display did not report its available modes.")
+
+        let rotation = CGDisplayRotation(displayID)
+        let colorSpace: SpecValue<String> = screen.colorSpace?.localizedName.flatMap { $0.isEmpty ? nil : $0 }
+            .map { .measured($0, source("NSScreen.colorSpace.localizedName")) }
+            ?? .unknown("The display did not report a named color space.")
+
         return MacDisplayReading(
             id: displayID,
             name: name,
@@ -65,7 +87,14 @@ public enum MacDisplayReader {
             scale: scale,
             maximumRefreshRate: refresh,
             diagonal: diagonal,
-            extendedDynamicRangeHeadroom: edr
+            extendedDynamicRangeHeadroom: edr,
+            isMain: .measured(CGDisplayIsMain(displayID) != 0, source("CGDisplayIsMain")),
+            isMirrored: .measured(CGDisplayIsInMirrorSet(displayID) != 0, source("CGDisplayIsInMirrorSet")),
+            rotation: rotation.isFinite ? .measured(Int(rotation.rounded()), source("CGDisplayRotation"))
+                                        : .unknown("The display reported an invalid rotation."),
+            currentRefreshRate: currentRefresh,
+            colorSpace: colorSpace,
+            largestModeResolution: largest
         )
     }
 }

@@ -12,18 +12,22 @@ struct BundledMacCatalogTests {
     }
 
     @Test func loadsWithTheDerivedRecords() {
-        #expect(catalog.catalogVersion == "2026.10.0")
+        #expect(catalog.catalogVersion == "2026.10.1")
         #expect(catalog.entries.count == 44)
         #expect(catalog.entries.flatMap(\.identifiers).count == 58)
+        #expect(catalog.entries.flatMap(\.configurations).count == 89)
+        #expect(catalog.entries.allSatisfy { !$0.configurations.isEmpty })
     }
 
     @Test func macBookAirM2() throws {
         let identifier = try #require(HardwareIdentifier("Mac14,2"))
         let entry = try #require(catalog.entry(for: identifier))
         #expect(entry.marketingName == "MacBook Air (M2, 2022)")
-        #expect(entry.chip?.name == "M2")
-        #expect(entry.chip?.gpuCores == nil)            // 8- and 10-core GPU configurations share Mac14,2
-        #expect(entry.chip?.neuralEngineCores == 16)
+        // 8- and 10-core GPU configurations share Mac14,2.
+        #expect(entry.configurations.map(\.gpuCores) == [8, 10])
+        #expect(entry.configurations.allSatisfy { $0.chip == "M2" && $0.cpuCores == 8 && $0.neuralEngineCores == 16 })
+        #expect(entry.configurations.first?.cpuClusters == [MacCPUCluster(kind: .performance, cores: 4),
+                                                            MacCPUCluster(kind: .efficiency, cores: 4)])
         #expect(entry.display?.resolution == PixelDimensions(width: 2560, height: 1664))   // landscape
         #expect(entry.display?.pixelDensity == PixelDensity(pixelsPerInch: 224))
         #expect(entry.display?.diagonal == DisplayDiagonal(inches: 13.6))
@@ -35,6 +39,7 @@ struct BundledMacCatalogTests {
             #expect(entry.identifiers.allSatisfy { MacCatalog.identifierFamilies.contains($0.family) }, "\(entry.id)")
             #expect(entry.sources.allSatisfy { !$0.supports.contains(.cameras) }, "\(entry.id)")
             #expect(entry.display?.resolution.map { $0.width >= $0.height } ?? true, "\(entry.id)")
+            #expect(entry.sources(supporting: .chip).contains { $0.publisher == "apple.com" }, "\(entry.id)")
         }
     }
 
@@ -59,7 +64,7 @@ struct MacCatalogValidationTests {
         return entry
     }
 
-    private func decode(_ entries: [[String: Any]], schemaVersion: Int = 1) -> Result<MacCatalog, CatalogLoadError> {
+    private func decode(_ entries: [[String: Any]], schemaVersion: Int = 2) -> Result<MacCatalog, CatalogLoadError> {
         let root: [String: Any] = ["schemaVersion": schemaVersion, "catalogVersion": "2026.01.0", "entries": entries]
         return MacCatalog.decode(try! JSONSerialization.data(withJSONObject: root))
     }
@@ -75,7 +80,41 @@ struct MacCatalogValidationTests {
     }
 
     @Test func rejectsOtherSchemaVersions() {
-        #expect(decode([entry()], schemaVersion: 2) == .failure(.unsupportedSchemaVersion(found: 2, supported: 1)))
+        #expect(decode([entry()], schemaVersion: 1) == .failure(.unsupportedSchemaVersion(found: 1, supported: 2)))
+        #expect(decode([entry()], schemaVersion: 3) == .failure(.unsupportedSchemaVersion(found: 3, supported: 2)))
+    }
+
+    private func entry(configurations: [[String: Any]]) -> [String: Any] {
+        var entry = entry(supports: ["identifiers", "marketingName", "chip"])
+        entry["configurations"] = configurations
+        return entry
+    }
+
+    private func cluster(_ type: String, _ cores: Int) -> [String: Any] { ["type": type, "cores": cores] }
+
+    @Test func acceptsConfigurations() throws {
+        let configuration: [String: Any] = ["chip": "M5", "cpuCores": 10, "gpuCores": 10, "neuralEngineCores": 16,
+                                            "cpuClusters": [cluster("super", 4), cluster("efficiency", 6)]]
+        let catalog = try decode([entry(configurations: [configuration])]).get()
+        #expect(catalog.entries.first?.configurations.first?.cpuClusters?.first == MacCPUCluster(kind: .superTier, cores: 4))
+    }
+
+    @Test func rejectsInconsistentConfigurations() {
+        let sum: [String: Any] = ["chip": "M2", "cpuCores": 10, "cpuClusters": [cluster("performance", 4), cluster("efficiency", 4)]]
+        #expect(messages(decode([entry(configurations: [sum])])).contains { $0.contains("add up to 8, not cpuCores 10") })
+        let order: [String: Any] = ["chip": "M2", "cpuClusters": [cluster("efficiency", 4), cluster("performance", 4)]]
+        #expect(messages(decode([entry(configurations: [order])])).contains { $0.contains("highest performance first") })
+        let kind: [String: Any] = ["chip": "M2", "cpuClusters": [cluster("turbo", 4)]]
+        #expect(messages(decode([entry(configurations: [kind])])).contains { $0.contains("\"turbo\" is not one of") })
+        #expect(messages(decode([entry(configurations: [])])).contains { $0.contains("Must not be empty") })
+        let duplicate: [String: Any] = ["chip": "M2", "gpuCores": 8]
+        #expect(messages(decode([entry(configurations: [duplicate, duplicate])])).contains { $0.contains("Duplicates") })
+    }
+
+    @Test func configurationsNeedChipAttribution() {
+        var unattributed = entry()
+        unattributed["configurations"] = [["chip": "M2"]]
+        #expect(messages(decode([unattributed])).contains { $0.contains("No source supports chip") })
     }
 
     @Test func rejectsIPhoneIdentifiers() {

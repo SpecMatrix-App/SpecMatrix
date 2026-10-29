@@ -1,16 +1,53 @@
 import Foundation
 import SpecMatrixShared
 
-/// Chip specifications published for a Mac model. A missing field means "not recorded" — for
-/// example because it differs between configurations sold under the same model identifier —
-/// never zero.
-public struct MacChipSpecification: Sendable, Hashable {
+/// A tier of CPU cores as Apple names it on a tech-specs page.
+public enum MacCPUClusterKind: String, Sendable, Hashable, CaseIterable {
+    /// "Super cores", Apple's highest-performance tier from M5 onwards.
+    case superTier = "super"
+    case performance
+    case efficiency
+
+    /// The order Apple lists tiers in, highest performance first.
+    var rank: Int {
+        switch self {
+        case .superTier: 0
+        case .performance: 1
+        case .efficiency: 2
+        }
+    }
+}
+
+/// One tier of a published CPU configuration, e.g. "4 performance cores".
+public struct MacCPUCluster: Sendable, Hashable {
+    public let kind: MacCPUClusterKind
+    public let cores: Int
+
+    public init(kind: MacCPUClusterKind, cores: Int) {
+        self.kind = kind
+        self.cores = cores
+    }
+}
+
+/// One chip configuration Apple publishes for a Mac model, e.g. "M2 with 8-core CPU and 10-core GPU".
+///
+/// A missing field means Apple's page does not state it for this configuration, never zero.
+public struct MacChipConfiguration: Sendable, Hashable {
     /// Apple's chip name without the "Apple" prefix, e.g. `M2 Pro`.
-    public let name: String
-    public let performanceCores: Int?
-    public let efficiencyCores: Int?
+    public let chip: String
+    public let cpuCores: Int?
+    /// Highest-performance tier first, as Apple lists them.
+    public let cpuClusters: [MacCPUCluster]?
     public let gpuCores: Int?
     public let neuralEngineCores: Int?
+
+    public init(chip: String, cpuCores: Int?, cpuClusters: [MacCPUCluster]?, gpuCores: Int?, neuralEngineCores: Int?) {
+        self.chip = chip
+        self.cpuCores = cpuCores
+        self.cpuClusters = cpuClusters
+        self.gpuCores = gpuCores
+        self.neuralEngineCores = neuralEngineCores
+    }
 }
 
 /// Built-in display specifications published for a Mac model. Desktops record none.
@@ -23,13 +60,14 @@ public struct MacDisplaySpecification: Sendable, Hashable {
     public let maximumRefreshRate: RefreshRate?
 }
 
-/// One Mac model, which may have several model identifiers.
+/// One Mac model, which may have several model identifiers and several chip configurations.
 public struct MacCatalogEntry: Sendable, Hashable {
     public let id: String
     public let identifiers: [HardwareIdentifier]
     public let marketingName: String
     public let releaseDate: CalendarDate?
-    public let chip: MacChipSpecification?
+    /// Every chip configuration Apple publishes for the model. Empty when none is recorded.
+    public let configurations: [MacChipConfiguration]
     public let display: MacDisplaySpecification?
     public let sources: [CatalogSource]
     public let verificationStatus: CatalogVerificationStatus
@@ -45,11 +83,13 @@ public struct MacCatalogEntry: Sendable, Hashable {
 ///
 /// Separate from the iPhone/iPad catalog in `SpecMatrixCore`, with its own schema version and
 /// catalog version. Loading is all-or-nothing; lookup is exact and never returns a neighbouring
-/// model. Values that vary between configurations of one identifier are not recorded.
+/// model. A model identifier can cover several chip configurations; the catalog lists them all and
+/// leaves choosing between them to `MacSpecificationResolver`, which uses what macOS reports.
 public struct MacCatalog: Sendable, Equatable {
-    public static let supportedSchemaVersion = 1
+    public static let supportedSchemaVersion = 2
     public static let bundledResourceName = "MacCatalog"
-    /// The field groups a Mac catalog source may support. (`cameras` is not part of this schema.)
+    /// The field groups a Mac catalog source may support. `chip` covers the configurations.
+    /// (`cameras` is not part of this schema.)
     public static let fields: [CatalogField] = [.identifiers, .marketingName, .releaseDate, .chip, .display]
     /// Model-identifier prefixes used by Macs, e.g. `Mac14,2`, `MacBookPro18,1`, `iMac21,1`.
     public static let identifierFamilies: Set<String> = ["Mac", "MacBookAir", "MacBookPro", "Macmini", "iMac", "MacPro"]

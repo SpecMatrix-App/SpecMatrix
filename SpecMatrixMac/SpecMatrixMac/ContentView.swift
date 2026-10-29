@@ -5,54 +5,45 @@
 
 import SwiftUI
 
-/// The sidebar sections of the main window.
-enum MacSection: String, CaseIterable, Identifiable, Hashable {
-    case overview, processor, graphics, memory, storage, battery, displays
-
-    var id: Self { self }
-
-    var title: String {
-        switch self {
-        case .overview: "Overview"
-        case .processor: "Processor"
-        case .graphics: "Graphics"
-        case .memory: "Memory"
-        case .storage: "Storage"
-        case .battery: "Battery"
-        case .displays: "Displays"
-        }
-    }
-
-    var systemImage: String {
-        switch self {
-        case .overview: "info.circle"
-        case .processor: "cpu"
-        case .graphics: "cube.transparent"
-        case .memory: "memorychip"
-        case .storage: "internaldrive"
-        case .battery: "battery.100"
-        case .displays: "display"
-        }
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var store: MacInfoStore
-    @State private var selection: MacSection? = .overview
+    @ObservedObject var navigation: NavigationModel
+    @AppStorage(SettingsKey.hiddenSections) private var hiddenSectionsRaw = ""
+
+    private var hidden: HiddenSections { HiddenSections(rawValue: hiddenSectionsRaw) }
 
     var body: some View {
         NavigationSplitView {
-            List(MacSection.allCases, selection: $selection) { section in
-                NavigationLink(value: section) {
-                    Label(section.title, systemImage: section.systemImage)
+            List(selection: $navigation.selection) {
+                ForEach(MacSection.Group.allCases, id: \.self) { group in
+                    let sections = hidden.visible.filter { $0.group == group }
+                    if !sections.isEmpty {
+                        Section(group.rawValue) {
+                            ForEach(sections) { section in
+                                NavigationLink(value: section) {
+                                    Label(section.title, systemImage: section.systemImage)
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            .navigationSplitViewColumnWidth(min: 170, ideal: 200)
+            .navigationSplitViewColumnWidth(min: 180, ideal: 210)
         } detail: {
-            detail(for: selection ?? .overview)
+            detail(for: currentSection)
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    if let snapshot = store.snapshot {
+                        Pasteboard.copy(MacReport.text(snapshot: snapshot, network: store.network))
+                    }
+                } label: {
+                    Label("Copy Report", systemImage: "doc.on.doc")
+                }
+                .help("Copy a plain-text report of every value and its source (⇧⌘C)")
+                .disabled(store.snapshot == nil)
+
                 Button {
                     store.refresh()
                 } label: {
@@ -64,6 +55,15 @@ struct ContentView: View {
         }
         .onAppear { store.start() }
         .onDisappear { store.stop() }
+        .onChange(of: hiddenSectionsRaw) { _ in
+            // A section hidden in Settings while selected falls back to the overview.
+            if let selection = navigation.selection, hidden.contains(selection) { navigation.selection = .overview }
+        }
+    }
+
+    private var currentSection: MacSection {
+        guard let selection = navigation.selection, !hidden.contains(selection) else { return .overview }
+        return selection
     }
 
     @ViewBuilder
@@ -71,21 +71,25 @@ struct ContentView: View {
         if let snapshot = store.snapshot {
             Group {
                 switch section {
-                case .overview: OverviewSection(snapshot: snapshot, catalogError: store.catalogError)
-                case .processor: ProcessorSection(snapshot: snapshot)
-                case .graphics: GraphicsSection(snapshot: snapshot)
-                case .memory: MemorySection(snapshot: snapshot)
-                case .storage: StorageSection(snapshot: snapshot)
-                case .battery: BatterySection(snapshot: snapshot)
-                case .displays: DisplaysSection(snapshot: snapshot)
+                case .overview: OverviewView(snapshot: snapshot, network: store.network, catalogError: store.catalogError,
+                                             navigation: navigation)
+                case .processor: ProcessorView(snapshot: snapshot)
+                case .graphics: GraphicsView(snapshot: snapshot)
+                case .memory: MemoryView(snapshot: snapshot, store: store)
+                case .storage: StorageView(snapshot: snapshot)
+                case .displays: DisplaysView(snapshot: snapshot)
+                case .power: PowerView(snapshot: snapshot)
+                case .network: NetworkView(network: store.network, collectedAt: snapshot.collectedAt)
+                case .system: SystemView(snapshot: snapshot, catalogVersion: store.catalogVersion)
+                case .catalog: ModelRecordView(snapshot: snapshot, catalogError: store.catalogError)
                 }
             }
-            .formStyle(.grouped)
             .navigationTitle(section.title)
             .navigationSubtitle(snapshot.specification.marketingName.value ?? "This Mac")
         } else {
             VStack(spacing: 12) {
                 ProgressView()
+                    .accessibilityLabel("Loading")
                 Text("Reading this Mac…")
                     .foregroundColor(.secondary)
             }

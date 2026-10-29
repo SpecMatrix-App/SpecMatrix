@@ -33,6 +33,18 @@ enum MacSysctl {
         }
     }
 
+    /// A fixed-size C structure such as `xsw_usage`.
+    static func value<T>(_ name: String, as type: T.Type) -> Result<T, SpecError> {
+        var size = MemoryLayout<T>.size
+        let buffer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: MemoryLayout<T>.alignment)
+        defer { buffer.deallocate() }
+        guard sysctlbyname(name, buffer, &size, nil, 0) == 0 else { return .failure(error(name)) }
+        guard size == MemoryLayout<T>.size else {
+            return .failure(SpecError(operation: "sysctl \(name)", message: "Unexpected value size \(size)."))
+        }
+        return .success(buffer.load(as: T.self))
+    }
+
     private static func error(_ name: String) -> SpecError {
         SpecError(operation: "sysctl \(name)", message: String(cString: strerror(errno)))
     }

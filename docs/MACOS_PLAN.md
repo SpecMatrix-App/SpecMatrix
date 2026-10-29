@@ -44,6 +44,8 @@ Date: 2026-10-16.
 | Products | `SpecMatrixKit` unchanged (Core, Platform, State). New `SpecMatrixMacKit` = `SpecMatrixShared`. |
 | Not changed | `SpecMatrix.xcodeproj` (the uncommitted edit there is the owner's, made before this part); iOS sources and tests; `DeviceCatalog.json`; catalog scripts; `.github/workflows/ci.yml`; test-target settings |
 
+**Update, 1.0 development pass (2026-10-29):** the full Mac app, the schema 2 Mac catalog with per-model chip configurations, the Mac CI workflow and the release checklist are described in `docs/MACOS_HANDOFF.md`, which supersedes the status notes below.
+
 **Update, Phase 2 (2026-10-16):** the `SpecValue` blocker below is resolved. `SpecValue`, `CatalogReference` and the catalog-citation types moved unchanged to `SpecMatrixShared`, and the Mac catalog and detection targets now exist. Details: `docs/MACOS_PHASE2_HANDOFF.md`.
 
 **Deviations from the plan:**

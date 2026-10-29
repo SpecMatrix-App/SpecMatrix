@@ -6,8 +6,9 @@ import IOKit.ps
 
 #if os(macOS)
 /// Reads the internal battery through the public IOKit power-source API (`IOPSCopyPowerSourcesInfo`),
-/// which works inside the App Sandbox. Battery cycle count and health are not read: cycle count is not
-/// a public power-source key, and health was not approved for this phase.
+/// which works inside the App Sandbox. Only the keys listed in `PowerSourceDescription` are read; in
+/// particular the battery's serial number (`kIOPSHardwareSerialNumberKey`) never is. Cycle count is not a
+/// public power-source key and is not read from undocumented sources.
 public enum MacBatteryReader {
     public static func read() -> MacBatteryReading {
         let api = "IOPSCopyPowerSourcesInfo"
@@ -20,9 +21,23 @@ public enum MacBatteryReader {
             guard let description = IOPSGetPowerSourceDescription(blob, powerSource)?.takeUnretainedValue() as? [String: Any],
                   description[kIOPSTypeKey] as? String == kIOPSInternalBatteryType
             else { continue }
-            return MacBatteryMapping.reading(from: PowerSourceDescription(description))
+            var reading = MacBatteryMapping.reading(from: PowerSourceDescription(description))
+            reading.adapterWatts = adapterWatts(onBattery: reading.powerSource.value == .battery)
+            return reading
         }
         return MacBatteryReading(allMissing: .unavailable(.notSupportedByHardware))
+    }
+
+    /// The rated wattage of the connected adapter. Only `kIOPSPowerAdapterWattsKey` is read.
+    static func adapterWatts(onBattery: Bool) -> SpecValue<Int> {
+        if onBattery { return .unknown("No power adapter is in use.") }
+        guard let details = IOPSCopyExternalPowerAdapterDetails()?.takeRetainedValue() as? [String: Any] else {
+            return .unknown("macOS did not report power adapter details.")
+        }
+        guard let watts = details[kIOPSPowerAdapterWattsKey] as? Int, watts > 0 else {
+            return .unknown("The power adapter did not report its wattage.")
+        }
+        return .measured(watts, MeasurementSource(api: "IOPSCopyExternalPowerAdapterDetails", environment: .device))
     }
 }
 
@@ -34,7 +49,9 @@ extension PowerSourceDescription {
                   isCharging: description[kIOPSIsChargingKey] as? Bool,
                   isCharged: description[kIOPSIsChargedKey] as? Bool,
                   minutesToEmpty: description[kIOPSTimeToEmptyKey] as? Int,
-                  minutesToFull: description[kIOPSTimeToFullChargeKey] as? Int)
+                  minutesToFull: description[kIOPSTimeToFullChargeKey] as? Int,
+                  health: description[kIOPSBatteryHealthKey] as? String,
+                  healthCondition: description[kIOPSBatteryHealthConditionKey] as? String)
     }
 }
 #endif
@@ -53,9 +70,14 @@ public struct PowerSourceDescription: Sendable, Equatable {
     /// Minutes; -1 while macOS is still calculating.
     public var minutesToEmpty: Int?
     public var minutesToFull: Int?
+    /// `kIOPSBatteryHealthKey`: "Good", "Fair" or "Poor".
+    public var health: String?
+    /// `kIOPSBatteryHealthConditionKey`, e.g. "Check Battery".
+    public var healthCondition: String?
 
     public init(currentCapacity: Int?, maximumCapacity: Int?, powerSourceState: String?, isCharging: Bool?,
-                isCharged: Bool?, minutesToEmpty: Int?, minutesToFull: Int?) {
+                isCharged: Bool?, minutesToEmpty: Int?, minutesToFull: Int?, health: String? = nil,
+                healthCondition: String? = nil) {
         self.currentCapacity = currentCapacity
         self.maximumCapacity = maximumCapacity
         self.powerSourceState = powerSourceState
@@ -63,6 +85,8 @@ public struct PowerSourceDescription: Sendable, Equatable {
         self.isCharged = isCharged
         self.minutesToEmpty = minutesToEmpty
         self.minutesToFull = minutesToFull
+        self.health = health
+        self.healthCondition = healthCondition
     }
 }
 
@@ -106,7 +130,19 @@ public enum MacBatteryMapping {
         default:
             estimate = .unknown("There is no time estimate while the battery is neither charging nor discharging.")
         }
-        return MacBatteryReading(level: level, chargeState: chargeState, powerSource: powerSource, estimate: estimate)
+        let health: SpecValue<MacBatteryHealth>
+        if let text = description.health {
+            health = MacBatteryHealth(rawValue: text).map { .measured($0, source) }
+                ?? .unknown("The battery reported an unrecognised health value (\(text)).")
+        } else {
+            health = .unknown("macOS did not report a battery health summary.")
+        }
+        let condition: SpecValue<String> = description.healthCondition.flatMap { $0.isEmpty ? nil : $0 }
+            .map { .measured($0, source) }
+            ?? .unknown("macOS did not report a service recommendation.")
+
+        return MacBatteryReading(level: level, chargeState: chargeState, powerSource: powerSource, estimate: estimate,
+                                 health: health, healthCondition: condition)
     }
 
     private static func minutes(_ value: Int?, source: MeasurementSource) -> SpecValue<Int> {

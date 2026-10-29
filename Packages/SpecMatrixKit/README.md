@@ -327,3 +327,20 @@ xcodebuild test -scheme SpecMatrixKit -destination 'platform=iOS Simulator,name=
 
 If `swift` or `xcodebuild` resolves to the Command Line Tools, prefix the command with
 `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
+
+## Mac catalog (SpecMatrix for Mac)
+
+The Mac app does not use `DeviceCatalog.json`. Its own catalog, `Sources/SpecMatrixMacCatalog/Resources/MacCatalog.json`
+(schema 2), lists every chip configuration Apple publishes for each Mac model, and
+`MacSpecificationResolver` chooses among them using the chip and CPU clusters macOS reports. The notes
+above about grouped Mac chips describe the iPhone/iPad catalog's Mac records only.
+
+```bash
+# Re-check MacCatalog.json against the Apple and EveryMac pages it cites (network; development tool, not CI)
+python3 Packages/SpecMatrixKit/Scripts/verify_mac_catalog_sources.py
+
+# Mac targets only
+swift test --package-path Packages/SpecMatrixKit --filter SpecMatrixMacTests
+```
+
+Details: [`docs/MACOS_HANDOFF.md`](../../docs/MACOS_HANDOFF.md).

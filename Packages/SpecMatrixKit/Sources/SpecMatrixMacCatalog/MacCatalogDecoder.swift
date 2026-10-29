@@ -1,10 +1,10 @@
 import Foundation
 import SpecMatrixShared
 
-/// Decodes and validates Mac catalog JSON (schema version 1).
+/// Decodes and validates Mac catalog JSON (schema version 2).
 ///
 /// Rules (all issues are collected; any issue rejects the whole catalog):
-/// 1. A JSON object whose integer `schemaVersion` is 1; other versions are rejected first.
+/// 1. A JSON object whose integer `schemaVersion` is 2; other versions are rejected first.
 /// 2. Unknown keys are rejected at every level, so typos cannot silently drop data.
 /// 3. Required: `catalogVersion`, at least one entry, and per entry `id` (unique lowercase slug),
 ///    `identifiers`, `marketingName`, `sources`, `verification`. Everything else is optional; an absent
@@ -13,6 +13,10 @@ import SpecMatrixShared
 ///    (`MacCatalog.identifierFamilies`).
 /// 5. Numbers are positive; dates are valid `YYYY-MM-DD`; display resolution is landscape and
 ///    complete (width and height together).
+/// 5a. `configurations`, when present, is a non-empty list of distinct configurations, each with a chip
+///    name. CPU clusters are non-empty, use the types `super`, `performance` and `efficiency` at most once
+///    each, highest performance first, and add up to `cpuCores` when both are recorded. The `chip` field
+///    group covers the configurations.
 /// 6. Sources have a title, an HTTPS `url`, an `accessed` date and a non-empty `supports` list drawn
 ///    from `MacCatalog.fields`. Every populated field group is supported by a source, and no source
 ///    claims a group the entry does not record.
@@ -67,18 +71,23 @@ private struct RawEntry: Decodable {
     let identifiers: [String]?
     let marketingName: String?
     let releaseDate: String?
-    let chip: RawChip?
+    let configurations: [RawConfiguration]?
     let display: RawDisplay?
     let sources: [RawSource]?
     let verification: RawVerification?
 }
 
-private struct RawChip: Decodable {
-    let name: String?
-    let performanceCores: Int?
-    let efficiencyCores: Int?
+private struct RawConfiguration: Decodable {
+    let chip: String?
+    let cpuCores: Int?
+    let cpuClusters: [RawCluster]?
     let gpuCores: Int?
     let neuralEngineCores: Int?
+}
+
+private struct RawCluster: Decodable {
+    let type: String?
+    let cores: Int?
 }
 
 private struct RawDisplay: Decodable {
@@ -109,9 +118,10 @@ private struct Validator {
     private var seenIdentifiers: [HardwareIdentifier: String] = [:]
 
     private static let rootKeys: Set<String> = ["schemaVersion", "catalogVersion", "derivedFrom", "entries"]
-    private static let entryKeys: Set<String> = ["id", "identifiers", "marketingName", "releaseDate", "chip", "display",
-                                                 "sources", "verification"]
-    private static let chipKeys: Set<String> = ["name", "performanceCores", "efficiencyCores", "gpuCores", "neuralEngineCores"]
+    private static let entryKeys: Set<String> = ["id", "identifiers", "marketingName", "releaseDate", "configurations",
+                                                 "display", "sources", "verification"]
+    private static let configurationKeys: Set<String> = ["chip", "cpuCores", "cpuClusters", "gpuCores", "neuralEngineCores"]
+    private static let clusterKeys: Set<String> = ["type", "cores"]
     private static let displayKeys: Set<String> = ["diagonalInches", "pixelWidth", "pixelHeight", "pixelsPerInch",
                                                    "maximumRefreshRateHz"]
     private static let sourceKeys: Set<String> = ["title", "url", "accessed", "supports"]
@@ -123,7 +133,16 @@ private struct Validator {
             guard let entry = value as? [String: Any] else { continue }
             let path = "entries[\(index)]"
             unexpected(entry, Self.entryKeys, path)
-            if let chip = entry["chip"] as? [String: Any] { unexpected(chip, Self.chipKeys, path + ".chip") }
+            for (configurationIndex, value) in (entry["configurations"] as? [Any] ?? []).enumerated() {
+                guard let configuration = value as? [String: Any] else { continue }
+                let configurationPath = "\(path).configurations[\(configurationIndex)]"
+                unexpected(configuration, Self.configurationKeys, configurationPath)
+                for (clusterIndex, cluster) in (configuration["cpuClusters"] as? [Any] ?? []).enumerated() {
+                    if let cluster = cluster as? [String: Any] {
+                        unexpected(cluster, Self.clusterKeys, "\(configurationPath).cpuClusters[\(clusterIndex)]")
+                    }
+                }
+            }
             if let display = entry["display"] as? [String: Any] { unexpected(display, Self.displayKeys, path + ".display") }
             if let verification = entry["verification"] as? [String: Any] {
                 unexpected(verification, Self.verificationKeys, path + ".verification")
@@ -181,13 +200,13 @@ private struct Validator {
 
         let marketingName = nonEmpty(raw.marketingName, path + ".marketingName")
         let releaseDate = raw.releaseDate.flatMap { date($0, path + ".releaseDate") }
-        let chip = raw.chip.flatMap { validate($0, path: path + ".chip") }
+        let configurations = raw.configurations.map { validate($0, path: path + ".configurations") } ?? []
         let display = raw.display.map { validate($0, path: path + ".display") }
         let sources = validate(raw.sources, path: path + ".sources")
 
         var populated: Set<CatalogField> = [.identifiers, .marketingName]
         if raw.releaseDate != nil { populated.insert(.releaseDate) }
-        if raw.chip != nil { populated.insert(.chip) }
+        if raw.configurations?.isEmpty == false { populated.insert(.chip) }
         if raw.display != nil { populated.insert(.display) }
         checkAttribution(sources, populated: populated, path: path)
 
@@ -221,20 +240,72 @@ private struct Validator {
 
         guard issues.count == startCount, let id, let marketingName, let status, let verifiedOn else { return nil }
         return MacCatalogEntry(id: id, identifiers: identifiers, marketingName: marketingName, releaseDate: releaseDate,
-                               chip: chip, display: display, sources: sources.map(\.source),
+                               configurations: configurations, display: display, sources: sources.map(\.source),
                                verificationStatus: status, verifiedOn: verifiedOn)
     }
 
-    private mutating func validate(_ raw: RawChip, path: String) -> MacChipSpecification? {
-        let name = nonEmpty(raw.name, path + ".name")
-        let counts = [("performanceCores", raw.performanceCores), ("efficiencyCores", raw.efficiencyCores),
-                      ("gpuCores", raw.gpuCores), ("neuralEngineCores", raw.neuralEngineCores)]
+    private mutating func validate(_ raw: [RawConfiguration], path: String) -> [MacChipConfiguration] {
+        if raw.isEmpty { issue(path, "Must not be empty; omit the field when no configuration is recorded.") }
+        var configurations: [MacChipConfiguration] = []
+        for (index, rawConfiguration) in raw.enumerated() {
+            let configurationPath = "\(path)[\(index)]"
+            guard let configuration = validate(rawConfiguration, path: configurationPath) else { continue }
+            if configurations.contains(configuration) {
+                issue(configurationPath, "Duplicates an earlier configuration.")
+            }
+            configurations.append(configuration)
+        }
+        return configurations
+    }
+
+    private mutating func validate(_ raw: RawConfiguration, path: String) -> MacChipConfiguration? {
+        let chip = nonEmpty(raw.chip, path + ".chip")
+        let counts = [("cpuCores", raw.cpuCores), ("gpuCores", raw.gpuCores), ("neuralEngineCores", raw.neuralEngineCores)]
         for (key, value) in counts {
             if let value, value <= 0 { issue("\(path).\(key)", "Must be a positive integer (found \(value)).") }
         }
-        guard let name else { return nil }
-        return MacChipSpecification(name: name, performanceCores: raw.performanceCores, efficiencyCores: raw.efficiencyCores,
-                                    gpuCores: raw.gpuCores, neuralEngineCores: raw.neuralEngineCores)
+        var clusters: [MacCPUCluster]?
+        if let rawClusters = raw.cpuClusters {
+            clusters = validate(rawClusters, cpuCores: raw.cpuCores, path: path + ".cpuClusters")
+        }
+        guard let chip else { return nil }
+        return MacChipConfiguration(chip: chip, cpuCores: raw.cpuCores, cpuClusters: clusters, gpuCores: raw.gpuCores,
+                                    neuralEngineCores: raw.neuralEngineCores)
+    }
+
+    private mutating func validate(_ raw: [RawCluster], cpuCores: Int?, path: String) -> [MacCPUCluster]? {
+        guard !raw.isEmpty else {
+            issue(path, "Must not be empty; omit the field when the split is not published.")
+            return nil
+        }
+        var clusters: [MacCPUCluster] = []
+        for (index, rawCluster) in raw.enumerated() {
+            let clusterPath = "\(path)[\(index)]"
+            var kind: MacCPUClusterKind?
+            if let text = nonEmpty(rawCluster.type, clusterPath + ".type") {
+                kind = MacCPUClusterKind(rawValue: text)
+                if kind == nil {
+                    let allowed = MacCPUClusterKind.allCases.map(\.rawValue).joined(separator: ", ")
+                    issue(clusterPath + ".type", "\"\(text)\" is not one of: \(allowed).")
+                }
+            }
+            guard let cores = rawCluster.cores else {
+                issue(clusterPath + ".cores", "Required field is missing.")
+                continue
+            }
+            if cores <= 0 { issue(clusterPath + ".cores", "Must be a positive integer (found \(cores)).") }
+            if let kind {
+                if let previous = clusters.last, previous.kind.rank >= kind.rank {
+                    issue(clusterPath + ".type", "Tiers must be listed once each, highest performance first.")
+                }
+                clusters.append(MacCPUCluster(kind: kind, cores: cores))
+            }
+        }
+        let total = clusters.reduce(0) { $0 + $1.cores }
+        if let cpuCores, clusters.count == raw.count, total != cpuCores {
+            issue(path, "Cluster cores add up to \(total), not cpuCores \(cpuCores).")
+        }
+        return clusters.count == raw.count ? clusters : nil
     }
 
     private mutating func validate(_ raw: RawDisplay, path: String) -> MacDisplaySpecification {

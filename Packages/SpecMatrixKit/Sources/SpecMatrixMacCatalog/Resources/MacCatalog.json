@@ -1,10 +1,10 @@
 {
-  "schemaVersion": 1,
-  "catalogVersion": "2026.10.0",
+  "schemaVersion": 2,
+  "catalogVersion": "2026.10.1",
   "derivedFrom": {
     "catalog": "SpecMatrixCore/Resources/DeviceCatalog.json",
     "catalogVersion": "2026.10.3",
-    "note": "The family \"Mac\" records, copied without new research. Display resolution is stored in landscape order."
+    "note": "Seeded from the family \"Mac\" records. Display resolution is stored in landscape order. Schema 2 replaces the single chip record with every chip configuration Apple publishes for the model. All sources were re-checked on 2026-10-29 with Scripts/verify_mac_catalog_sources.py."
   },
   "entries": [
     {
@@ -13,12 +13,24 @@
         "Mac17,4"
       ],
       "marketingName": "MacBook Air (15-inch, M5)",
-      "chip": {
-        "name": "M5",
-        "efficiencyCores": 6,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M5",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 15.3,
         "pixelWidth": 2880,
@@ -29,7 +41,7 @@
         {
           "title": "MacBook Air (15-inch, M5) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/126321",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -39,7 +51,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -48,7 +60,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -56,7 +68,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -65,11 +77,40 @@
         "Mac17,3"
       ],
       "marketingName": "MacBook Air (13-inch, M5)",
-      "chip": {
-        "name": "M5",
-        "efficiencyCores": 6,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M5",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.6,
         "pixelWidth": 2560,
@@ -80,7 +121,7 @@
         {
           "title": "MacBook Air (13-inch, M5) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/126320",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -90,7 +131,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -99,7 +140,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -107,7 +148,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -116,13 +157,24 @@
         "Mac16,13"
       ],
       "marketingName": "MacBook Air (15-inch, M4, 2025)",
-      "chip": {
-        "name": "M4",
-        "performanceCores": 4,
-        "efficiencyCores": 6,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 15.3,
         "pixelWidth": 2880,
@@ -133,7 +185,7 @@
         {
           "title": "MacBook Air (15-inch, M4, 2025) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/122210",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -143,7 +195,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -152,7 +204,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -160,7 +212,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -169,12 +221,40 @@
         "Mac16,12"
       ],
       "marketingName": "MacBook Air (13-inch, M4, 2025)",
-      "chip": {
-        "name": "M4",
-        "performanceCores": 4,
-        "efficiencyCores": 6,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.6,
         "pixelWidth": 2560,
@@ -185,7 +265,7 @@
         {
           "title": "MacBook Air (13-inch, M4, 2025) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/122209",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -195,7 +275,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -204,7 +284,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -212,7 +292,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -221,13 +301,24 @@
         "Mac15,13"
       ],
       "marketingName": "MacBook Air (15-inch, M3, 2024)",
-      "chip": {
-        "name": "M3",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 15.3,
         "pixelWidth": 2880,
@@ -238,7 +329,7 @@
         {
           "title": "MacBook Air (15-inch, M3, 2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/118552",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -248,7 +339,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -257,7 +348,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -265,7 +356,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -274,12 +365,40 @@
         "Mac15,12"
       ],
       "marketingName": "MacBook Air (13-inch, M3, 2024)",
-      "chip": {
-        "name": "M3",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.6,
         "pixelWidth": 2560,
@@ -290,7 +409,7 @@
         {
           "title": "MacBook Air (13-inch, M3, 2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/118551",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -300,7 +419,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -309,7 +428,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -317,7 +436,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -326,13 +445,24 @@
         "Mac14,15"
       ],
       "marketingName": "MacBook Air (15-inch, M2, 2023)",
-      "chip": {
-        "name": "M2",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 15.3,
         "pixelWidth": 2880,
@@ -343,7 +473,7 @@
         {
           "title": "MacBook Air (15-inch, M2, 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111346",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -353,7 +483,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -362,7 +492,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -370,7 +500,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -379,12 +509,40 @@
         "Mac14,2"
       ],
       "marketingName": "MacBook Air (M2, 2022)",
-      "chip": {
-        "name": "M2",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.6,
         "pixelWidth": 2560,
@@ -395,7 +553,7 @@
         {
           "title": "MacBook Air (M2, 2022) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111867",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -405,7 +563,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -414,7 +572,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -422,7 +580,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -431,12 +589,40 @@
         "MacBookAir10,1"
       ],
       "marketingName": "MacBook Air (M1, 2020)",
-      "chip": {
-        "name": "M1",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 7,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.3,
         "pixelWidth": 2560,
@@ -447,7 +633,7 @@
         {
           "title": "MacBook Air (M1, 2020) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111883",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -457,7 +643,7 @@
         {
           "title": "Identify your MacBook Air model (Apple Support)",
           "url": "https://support.apple.com/en-us/102869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -466,7 +652,7 @@
         {
           "title": "All MacBook Air By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-air-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -474,7 +660,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -484,6 +670,72 @@
         "Mac17,9"
       ],
       "marketingName": "MacBook Pro (14-inch, M5 Pro or M5 Max)",
+      "configurations": [
+        {
+          "chip": "M5 Pro",
+          "cpuCores": 15,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 5
+            },
+            {
+              "type": "performance",
+              "cores": 10
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Pro",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -495,16 +747,17 @@
         {
           "title": "MacBook Pro (14-inch, M5 Pro or M5 Max) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/126318",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -513,7 +766,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -521,7 +774,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -531,6 +784,56 @@
         "Mac17,8"
       ],
       "marketingName": "MacBook Pro (16-inch, M5 Pro or M5 Max)",
+      "configurations": [
+        {
+          "chip": "M5 Pro",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 16.2,
         "pixelWidth": 3456,
@@ -542,16 +845,17 @@
         {
           "title": "MacBook Pro (16-inch, M5 Pro or M5 Max) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/126319",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -560,7 +864,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -568,7 +872,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -577,12 +881,24 @@
         "Mac17,2"
       ],
       "marketingName": "MacBook Pro (14-inch, M5)",
-      "chip": {
-        "name": "M5",
-        "efficiencyCores": 6,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M5",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -594,7 +910,7 @@
         {
           "title": "MacBook Pro (14-inch, M5) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/125405",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -604,7 +920,7 @@
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -614,7 +930,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -622,7 +938,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -631,13 +947,24 @@
         "Mac16,1"
       ],
       "marketingName": "MacBook Pro (14-inch, M4, 2024)",
-      "chip": {
-        "name": "M4",
-        "performanceCores": 4,
-        "efficiencyCores": 6,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -649,7 +976,7 @@
         {
           "title": "MacBook Pro (14-inch, M4, 2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121552",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -659,7 +986,7 @@
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "chip"
@@ -668,7 +995,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -676,7 +1003,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -686,6 +1013,62 @@
         "Mac16,8"
       ],
       "marketingName": "MacBook Pro (14-inch, M4 Pro or M4 Max, 2024)",
+      "configurations": [
+        {
+          "chip": "M4 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Pro",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Max",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Max",
+          "cpuCores": 16,
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -697,16 +1080,17 @@
         {
           "title": "MacBook Pro (14-inch, M4 Pro or M4 Max, 2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121553",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -714,7 +1098,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -722,7 +1106,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -732,6 +1116,56 @@
         "Mac16,7"
       ],
       "marketingName": "MacBook Pro (16-inch, 2024)",
+      "configurations": [
+        {
+          "chip": "M4 Pro",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Max",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Max",
+          "cpuCores": 16,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 12
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 16.2,
         "pixelWidth": 3456,
@@ -743,16 +1177,17 @@
         {
           "title": "MacBook Pro (16-inch, 2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121554",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -761,7 +1196,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -769,7 +1204,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -778,13 +1213,24 @@
         "Mac15,3"
       ],
       "marketingName": "MacBook Pro (14-inch, M3, Nov 2023)",
-      "chip": {
-        "name": "M3",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -796,7 +1242,7 @@
         {
           "title": "MacBook Pro (14-inch, M3, Nov 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/117735",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -806,7 +1252,7 @@
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "chip"
@@ -815,7 +1261,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -823,7 +1269,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -834,6 +1280,62 @@
         "Mac15,10"
       ],
       "marketingName": "MacBook Pro (14-inch, M3 Pro or M3 Max, Nov 2023)",
+      "configurations": [
+        {
+          "chip": "M3 Pro",
+          "cpuCores": 11,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 5
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 14,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 6
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 18,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3 Max",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 30,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3 Max",
+          "cpuCores": 16,
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -845,16 +1347,17 @@
         {
           "title": "MacBook Pro (14-inch, M3 Pro or M3 Max, Nov 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/117736",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -862,7 +1365,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -870,7 +1373,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -881,6 +1384,56 @@
         "Mac15,11"
       ],
       "marketingName": "MacBook Pro (16-inch, Nov 2023)",
+      "configurations": [
+        {
+          "chip": "M3 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 6
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 18,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3 Max",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 30,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M3 Max",
+          "cpuCores": 16,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 12
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 16.2,
         "pixelWidth": 3456,
@@ -892,16 +1445,17 @@
         {
           "title": "MacBook Pro (16-inch, Nov 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/117737",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -910,7 +1464,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -918,7 +1472,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -928,6 +1482,72 @@
         "Mac14,9"
       ],
       "marketingName": "MacBook Pro (14-inch, 2023)",
+      "configurations": [
+        {
+          "chip": "M2 Pro",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 6
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 19,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 30,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 38,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -939,16 +1559,17 @@
         {
           "title": "MacBook Pro (14-inch, 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111340",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -957,7 +1578,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -965,7 +1586,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -975,6 +1596,56 @@
         "Mac14,10"
       ],
       "marketingName": "MacBook Pro (16-inch, 2023)",
+      "configurations": [
+        {
+          "chip": "M2 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 19,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 30,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 38,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 16.2,
         "pixelWidth": 3456,
@@ -986,16 +1657,17 @@
         {
           "title": "MacBook Pro (16-inch, 2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111838",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1004,7 +1676,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1012,7 +1684,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1021,13 +1693,24 @@
         "Mac14,7"
       ],
       "marketingName": "MacBook Pro (13-inch, M2, 2022)",
-      "chip": {
-        "name": "M2",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.3,
         "pixelWidth": 2560,
@@ -1038,7 +1721,7 @@
         {
           "title": "MacBook Pro (13-inch, M2, 2022) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111869",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1048,7 +1731,7 @@
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1057,7 +1740,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1065,7 +1748,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1075,6 +1758,46 @@
         "MacBookPro18,4"
       ],
       "marketingName": "MacBook Pro (14-inch, 2021)",
+      "configurations": [
+        {
+          "chip": "M1 Pro",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 6
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 14,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Pro",
+          "cpuCores": 10,
+          "gpuCores": 14,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Pro",
+          "cpuCores": 10,
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "gpuCores": 24
+        },
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "gpuCores": 32
+        }
+      ],
       "display": {
         "diagonalInches": 14.2,
         "pixelWidth": 3024,
@@ -1086,16 +1809,17 @@
         {
           "title": "MacBook Pro (14-inch, 2021) - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111902",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1104,7 +1828,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1112,7 +1836,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1122,6 +1846,56 @@
         "MacBookPro18,2"
       ],
       "marketingName": "MacBook Pro (16-inch, 2021)",
+      "configurations": [
+        {
+          "chip": "M1 Pro",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 24,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 16.2,
         "pixelWidth": 3456,
@@ -1133,16 +1907,17 @@
         {
           "title": "MacBook Pro (16-inch, 2021) - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111901",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
+            "chip",
             "display"
           ]
         },
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1151,7 +1926,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1159,7 +1934,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1168,13 +1943,24 @@
         "MacBookPro17,1"
       ],
       "marketingName": "MacBook Pro (13-inch, M1, 2020)",
-      "chip": {
-        "name": "M1",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 8,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 13.3,
         "pixelWidth": 2560,
@@ -1185,7 +1971,7 @@
         {
           "title": "MacBook Pro (13-inch, M1, 2020) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111893",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1195,7 +1981,7 @@
         {
           "title": "Identify your MacBook Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/108052",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1204,7 +1990,7 @@
         {
           "title": "All MacBook Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-macbook-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1212,7 +1998,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1221,13 +2007,24 @@
         "Mac16,3"
       ],
       "marketingName": "iMac (24-inch, 2024, Four ports)",
-      "chip": {
-        "name": "M4",
-        "performanceCores": 4,
-        "efficiencyCores": 6,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 23.5,
         "pixelWidth": 4480,
@@ -1238,7 +2035,7 @@
         {
           "title": "iMac (24-inch, 2024, Four ports) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121557",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1248,7 +2045,7 @@
         {
           "title": "Identify your iMac model (Apple Support)",
           "url": "https://support.apple.com/en-us/108054",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1257,7 +2054,7 @@
         {
           "title": "All iMac By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-imac-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1265,7 +2062,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1274,13 +2071,24 @@
         "Mac16,2"
       ],
       "marketingName": "iMac (24-inch, 2024, Two ports)",
-      "chip": {
-        "name": "M4",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 8,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 23.5,
         "pixelWidth": 4480,
@@ -1291,7 +2099,7 @@
         {
           "title": "iMac (24-inch, 2024, Two ports) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121556",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1301,7 +2109,7 @@
         {
           "title": "Identify your iMac model (Apple Support)",
           "url": "https://support.apple.com/en-us/108054",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1310,7 +2118,7 @@
         {
           "title": "All iMac By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-imac-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1318,7 +2126,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1327,13 +2135,24 @@
         "Mac15,5"
       ],
       "marketingName": "iMac (24-inch, 2023, Four ports)",
-      "chip": {
-        "name": "M3",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 23.5,
         "pixelWidth": 4480,
@@ -1344,7 +2163,7 @@
         {
           "title": "iMac (24-inch, 2023, Four ports) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/117734",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1354,7 +2173,7 @@
         {
           "title": "Identify your iMac model (Apple Support)",
           "url": "https://support.apple.com/en-us/108054",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1363,7 +2182,7 @@
         {
           "title": "All iMac By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-imac-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1371,7 +2190,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1380,13 +2199,24 @@
         "Mac15,4"
       ],
       "marketingName": "iMac (24-inch, 2023, Two ports)",
-      "chip": {
-        "name": "M3",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 8,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M3",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 23.5,
         "pixelWidth": 4480,
@@ -1397,7 +2227,7 @@
         {
           "title": "iMac (24-inch, 2023, Two ports) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/117733",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1407,7 +2237,7 @@
         {
           "title": "Identify your iMac model (Apple Support)",
           "url": "https://support.apple.com/en-us/108054",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1416,7 +2246,7 @@
         {
           "title": "All iMac By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-imac-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1424,7 +2254,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1434,12 +2264,40 @@
         "iMac21,2"
       ],
       "marketingName": "iMac (24-inch, M1, 2021)",
-      "chip": {
-        "name": "M1",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 7,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "display": {
         "diagonalInches": 23.5,
         "pixelWidth": 4480,
@@ -1450,7 +2308,7 @@
         {
           "title": "iMac (24-inch, M1, 2021) - Technical Specifications (Apple Support)",
           "url": "https://support.apple.com/en-us/111895",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip",
@@ -1460,7 +2318,7 @@
         {
           "title": "Identify your iMac model (Apple Support)",
           "url": "https://support.apple.com/en-us/108054",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1469,7 +2327,7 @@
         {
           "title": "All iMac By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-imac-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1477,7 +2335,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1486,16 +2344,32 @@
         "Mac18,5"
       ],
       "marketingName": "Mac mini (M6)",
-      "chip": {
-        "name": "M6",
-        "efficiencyCores": 6,
-        "gpuCores": 12
-      },
+      "configurations": [
+        {
+          "chip": "M6",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 2
+            },
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 12
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (M6 or M5 Pro) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/128108",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "chip"
           ]
@@ -1503,7 +2377,7 @@
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1512,7 +2386,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1520,7 +2394,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1529,15 +2403,35 @@
         "Mac17,16"
       ],
       "marketingName": "Mac mini (M5 Pro)",
-      "chip": {
-        "name": "M5 Pro",
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M5 Pro",
+          "cpuCores": 15,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 5
+            },
+            {
+              "type": "performance",
+              "cores": 10
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Pro",
+          "cpuCores": 18,
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (M6 or M5 Pro) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/128108",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "chip"
           ]
@@ -1545,7 +2439,7 @@
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1554,7 +2448,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1562,7 +2456,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1572,19 +2466,60 @@
         "Mac16,11"
       ],
       "marketingName": "Mac mini (2024)",
+      "configurations": [
+        {
+          "chip": "M4",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 6
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Pro",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Pro",
+          "cpuCores": 14,
+          "gpuCores": 20,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (2024) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/121555",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
-            "marketingName"
+            "marketingName",
+            "chip"
           ]
         },
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1593,7 +2528,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1601,7 +2536,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1610,18 +2545,29 @@
         "Mac14,3"
       ],
       "marketingName": "Mac mini (2023)",
-      "chip": {
-        "name": "M2",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 10,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 10,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111837",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1630,7 +2576,7 @@
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1640,7 +2586,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1648,7 +2594,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1657,16 +2603,35 @@
         "Mac14,12"
       ],
       "marketingName": "Mac mini (2023)",
-      "chip": {
-        "name": "M2 Pro",
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2 Pro",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 6
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 16,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Pro",
+          "cpuCores": 12,
+          "gpuCores": 19,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111837",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1675,7 +2640,7 @@
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1685,7 +2650,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1693,7 +2658,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1702,18 +2667,29 @@
         "Macmini9,1"
       ],
       "marketingName": "Mac mini (M1, 2020)",
-      "chip": {
-        "name": "M1",
-        "performanceCores": 4,
-        "efficiencyCores": 4,
-        "gpuCores": 8,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M1",
+          "cpuCores": 8,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 4
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 8,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac mini (M1, 2020) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111894",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1722,7 +2698,7 @@
         {
           "title": "Identify your Mac mini model (Apple Support)",
           "url": "https://support.apple.com/en-us/102852",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1731,7 +2707,7 @@
         {
           "title": "All Mac mini By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-mini-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1739,7 +2715,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1748,15 +2724,45 @@
         "Mac17,14"
       ],
       "marketingName": "Mac Studio (M5 Max)",
-      "chip": {
-        "name": "M5 Max",
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M5 Max",
+          "cpuCores": 18,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 6
+            },
+            {
+              "type": "performance",
+              "cores": 12
+            }
+          ],
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (M5 Max or M5 Ultra) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/128107",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "chip"
           ]
@@ -1764,7 +2770,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1773,7 +2779,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1781,7 +2787,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1790,15 +2796,35 @@
         "Mac17,15"
       ],
       "marketingName": "Mac Studio (M5 Ultra)",
-      "chip": {
-        "name": "M5 Ultra",
-        "neuralEngineCores": 32
-      },
+      "configurations": [
+        {
+          "chip": "M5 Ultra",
+          "cpuCores": 30,
+          "cpuClusters": [
+            {
+              "type": "super",
+              "cores": 10
+            },
+            {
+              "type": "performance",
+              "cores": 20
+            }
+          ],
+          "gpuCores": 64,
+          "neuralEngineCores": 32
+        },
+        {
+          "chip": "M5 Ultra",
+          "cpuCores": 36,
+          "gpuCores": 80,
+          "neuralEngineCores": 32
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (M5 Max or M5 Ultra) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/128107",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "chip"
           ]
@@ -1806,7 +2832,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -1815,7 +2841,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1823,7 +2849,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1832,16 +2858,35 @@
         "Mac16,9"
       ],
       "marketingName": "Mac Studio (2025)",
-      "chip": {
-        "name": "M4 Max",
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M4 Max",
+          "cpuCores": 14,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 10
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M4 Max",
+          "cpuCores": 16,
+          "gpuCores": 40,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2025) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/122211",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1850,7 +2895,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1860,7 +2905,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1868,7 +2913,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1877,15 +2922,35 @@
         "Mac15,14"
       ],
       "marketingName": "Mac Studio (2025)",
-      "chip": {
-        "name": "M3 Ultra",
-        "neuralEngineCores": 32
-      },
+      "configurations": [
+        {
+          "chip": "M3 Ultra",
+          "cpuCores": 28,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 20
+            },
+            {
+              "type": "efficiency",
+              "cores": 8
+            }
+          ],
+          "gpuCores": 60,
+          "neuralEngineCores": 32
+        },
+        {
+          "chip": "M3 Ultra",
+          "cpuCores": 32,
+          "gpuCores": 80,
+          "neuralEngineCores": 32
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2025) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/122211",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1894,7 +2959,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1904,7 +2969,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1912,7 +2977,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1921,17 +2986,45 @@
         "Mac14,13"
       ],
       "marketingName": "Mac Studio (2023)",
-      "chip": {
-        "name": "M2 Max",
-        "performanceCores": 8,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 30,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M2 Max",
+          "cpuCores": 12,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 38,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111835",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1940,7 +3033,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1950,7 +3043,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -1958,7 +3051,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -1967,17 +3060,45 @@
         "Mac14,14"
       ],
       "marketingName": "Mac Studio (2023)",
-      "chip": {
-        "name": "M2 Ultra",
-        "performanceCores": 16,
-        "efficiencyCores": 8,
-        "neuralEngineCores": 32
-      },
+      "configurations": [
+        {
+          "chip": "M2 Ultra",
+          "cpuCores": 24,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 8
+            }
+          ],
+          "gpuCores": 60,
+          "neuralEngineCores": 32
+        },
+        {
+          "chip": "M2 Ultra",
+          "cpuCores": 24,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 8
+            }
+          ],
+          "gpuCores": 76,
+          "neuralEngineCores": 32
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111835",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -1986,7 +3107,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -1996,7 +3117,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -2004,7 +3125,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -2013,17 +3134,45 @@
         "Mac13,1"
       ],
       "marketingName": "Mac Studio (2022)",
-      "chip": {
-        "name": "M1 Max",
-        "performanceCores": 8,
-        "efficiencyCores": 2,
-        "neuralEngineCores": 16
-      },
+      "configurations": [
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 24,
+          "neuralEngineCores": 16
+        },
+        {
+          "chip": "M1 Max",
+          "cpuCores": 10,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 8
+            },
+            {
+              "type": "efficiency",
+              "cores": 2
+            }
+          ],
+          "gpuCores": 32,
+          "neuralEngineCores": 16
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2022) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111900",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -2032,7 +3181,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -2042,7 +3191,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -2050,7 +3199,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -2059,17 +3208,45 @@
         "Mac13,2"
       ],
       "marketingName": "Mac Studio (2022)",
-      "chip": {
-        "name": "M1 Ultra",
-        "performanceCores": 16,
-        "efficiencyCores": 4,
-        "neuralEngineCores": 32
-      },
+      "configurations": [
+        {
+          "chip": "M1 Ultra",
+          "cpuCores": 20,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 48,
+          "neuralEngineCores": 32
+        },
+        {
+          "chip": "M1 Ultra",
+          "cpuCores": 20,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 4
+            }
+          ],
+          "gpuCores": 64,
+          "neuralEngineCores": 32
+        }
+      ],
       "sources": [
         {
           "title": "Mac Studio (2022) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111900",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -2078,7 +3255,7 @@
         {
           "title": "Identify your Mac Studio model (Apple Support)",
           "url": "https://support.apple.com/en-us/102231",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName",
@@ -2088,7 +3265,7 @@
         {
           "title": "All Mac Studio By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-studio-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -2096,7 +3273,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     },
     {
@@ -2105,17 +3282,45 @@
         "Mac14,8"
       ],
       "marketingName": "Mac Pro (2023)",
-      "chip": {
-        "name": "M2 Ultra",
-        "performanceCores": 16,
-        "efficiencyCores": 8,
-        "neuralEngineCores": 32
-      },
+      "configurations": [
+        {
+          "chip": "M2 Ultra",
+          "cpuCores": 24,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 8
+            }
+          ],
+          "gpuCores": 60,
+          "neuralEngineCores": 32
+        },
+        {
+          "chip": "M2 Ultra",
+          "cpuCores": 24,
+          "cpuClusters": [
+            {
+              "type": "performance",
+              "cores": 16
+            },
+            {
+              "type": "efficiency",
+              "cores": 8
+            }
+          ],
+          "gpuCores": 76,
+          "neuralEngineCores": 32
+        }
+      ],
       "sources": [
         {
           "title": "Mac Pro (2023) - Tech Specs (Apple Support)",
           "url": "https://support.apple.com/en-us/111343",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "marketingName",
             "chip"
@@ -2124,7 +3329,7 @@
         {
           "title": "Identify your Mac Pro model (Apple Support)",
           "url": "https://support.apple.com/en-us/102887",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers",
             "marketingName"
@@ -2133,7 +3338,7 @@
         {
           "title": "All Mac Pro By Model Identifier (EveryMac.com)",
           "url": "https://everymac.com/systems/by-identifier/all-mac-pro-model-identifiers.html",
-          "accessed": "2026-10-15",
+          "accessed": "2026-10-29",
           "supports": [
             "identifiers"
           ]
@@ -2141,7 +3346,7 @@
       ],
       "verification": {
         "status": "verified",
-        "verifiedOn": "2026-10-15"
+        "verifiedOn": "2026-10-29"
       }
     }
   ]

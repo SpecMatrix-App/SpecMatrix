@@ -1,0 +1,70 @@
+name: Mac CI
+
+# SpecMatrix for Mac: Mac package tests and an unsigned build of the Mac app.
+# Independent of the iOS workflow (ci.yml), which it does not change or depend on.
+# No signing, certificates, notarization, packaging or account-specific secrets are used.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'SpecMatrixMac/**'
+      - 'Packages/SpecMatrixKit/**'
+      - '.github/workflows/mac.yml'
+  pull_request:
+    paths:
+      - 'SpecMatrixMac/**'
+      - 'Packages/SpecMatrixKit/**'
+      - '.github/workflows/mac.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mac-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mac-build-and-test:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          xcrun --sdk macosx --show-sdk-version
+
+      - name: Mac package tests (SpecMatrixMacTests, native, no simulator)
+        shell: bash
+        run: |
+          swift test --package-path Packages/SpecMatrixKit --filter SpecMatrixMacTests 2>&1 | tee mac-package-tests.log
+          # Fail if no tests ran, so a filter that silently matches nothing cannot pass.
+          grep -E 'Test run with [1-9][0-9]* tests' mac-package-tests.log
+
+      - name: Build the Mac app (unsigned)
+        run: |
+          xcodebuild build \
+            -project SpecMatrixMac/SpecMatrixMac.xcodeproj \
+            -scheme SpecMatrixMac \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Check the built app
+        shell: bash
+        run: |
+          APP=build/DerivedData/Build/Products/Debug/SpecMatrix-Mac.app
+          PLIST="$APP/Contents/Info.plist"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :LSMinimumSystemVersion' "$PLIST")" = "13.0"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$PLIST")" = "1.0"
+          test -f "$APP/Contents/Resources/PrivacyInfo.xcprivacy"
+          test -n "$(find "$APP" -name MacCatalog.json)"
+          # The Mac app must not link or bundle the iPhone/iPad catalog (SpecMatrixCore).
+          if find "$APP" -name 'DeviceCatalog.json' -o -name '*SpecMatrixCore*' | grep -q .; then
+            echo "The Mac app bundles iPhone/iPad catalog code or data." >&2
+            exit 1
+          fi
+          echo "Mac app checks passed."

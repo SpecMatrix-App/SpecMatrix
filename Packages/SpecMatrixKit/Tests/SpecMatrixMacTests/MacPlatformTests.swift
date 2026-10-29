@@ -9,10 +9,14 @@ struct MacSpecificationResolverTests {
     private let catalog = MacCatalog.loadBundled()
     private let source = MeasurementSource(api: "Test", environment: .device)
 
-    private func resolve(_ identifier: String, chip: String?) throws -> MacSpecification {
+    private func resolve(_ identifier: String, chip: String?, clusters: [Int]? = nil) throws -> MacSpecification {
         let chipValue: SpecValue<String> = chip.map { .measured($0, source) } ?? .unknown("Not reported.")
+        let clusterValue: SpecValue<[MacCoreCluster]> = clusters
+            .map { .measured($0.enumerated().map { MacCoreCluster(name: "Level \($0.offset)", cores: $0.element) }, source) }
+            ?? .unknown("Not reported.")
         let model = try #require(HardwareIdentifier(identifier))
-        return MacSpecificationResolver.resolve(identifier: .measured(model, source), detectedChipName: chipValue, catalog: catalog)
+        return MacSpecificationResolver.resolve(identifier: .measured(model, source), detectedChipName: chipValue,
+                                                detectedCoreClusters: clusterValue, catalog: catalog)
     }
 
     @Test func matchingChipUsesCatalogValuesWithCitations() throws {
@@ -31,13 +35,33 @@ struct MacSpecificationResolverTests {
         #expect(spec.marketingName.value == "MacBook Air (15-inch, M5)")
         #expect(spec.gpuCores.provenance == .unknown)
         #expect(spec.neuralEngineCores.provenance == .unknown)
+        guard case .noMatch = spec.configurationMatch else { Issue.record("Expected no match"); return }
     }
 
     @Test func configurationDependentValuesStayUnknown() throws {
-        let spec = try resolve("Mac14,2", chip: "Apple M2")
-        #expect(spec.gpuCores.provenance == .unknown)     // not recorded: 8- or 10-core GPU
+        let spec = try resolve("Mac14,2", chip: "Apple M2", clusters: [4, 4])
+        #expect(spec.configurationMatch.candidates.count == 2)   // 8- or 10-core GPU; macOS does not say which
+        #expect(spec.gpuCores.provenance == .unknown)
         #expect(spec.neuralEngineCores.value == 16)
+        #expect(spec.catalogChipName.value == "M2")
         #expect(spec.builtInDisplayResolution.value == PixelDimensions(width: 2560, height: 1664))
+    }
+
+    @Test func detectedClustersSelectTheConfiguration() throws {
+        // MacBook Pro (14-inch, M4 Pro or M4 Max): the M4 Pro is sold as 12-core/16-core GPU or 14-core/20-core GPU.
+        let base = try resolve("Mac16,8", chip: "Apple M4 Pro", clusters: [8, 4])
+        #expect(base.gpuCores.value == 16)
+        let upgraded = try resolve("Mac16,8", chip: "Apple M4 Pro", clusters: [10, 4])
+        #expect(upgraded.gpuCores.value == 20)
+        let unpublished = try resolve("Mac16,8", chip: "Apple M4 Pro", clusters: [9, 4])
+        #expect(unpublished.gpuCores.provenance == .unknown)
+        guard case .noMatch = unpublished.configurationMatch else { Issue.record("Expected no match"); return }
+    }
+
+    @Test func threeTierClustersMatch() throws {
+        let spec = try resolve("Mac18,5", chip: "Apple M6", clusters: [2, 4, 6])
+        #expect(spec.gpuCores.value == 12)
+        #expect(spec.neuralEngineCores.provenance == .unknown)   // Apple states "Dual 16-core Neural Engine"
     }
 
     @Test func uncataloguedModelIsUnknownNotGuessed() throws {
@@ -97,6 +121,18 @@ struct MacBatteryMappingTests {
             currentCapacity: 10, maximumCapacity: 0, powerSourceState: PowerSourceDescription.batteryPower,
             isCharging: false, isCharged: false, minutesToEmpty: nil, minutesToFull: nil))
         #expect(invalid.level.provenance == .unknown)
+    }
+
+    @Test func healthIsReportedOnlyWhenMacOSStatesIt() {
+        var reported = description(state: PowerSourceDescription.acPower, charging: false)
+        reported.health = "Good"
+        reported.healthCondition = "Check Battery"
+        let reading = MacBatteryMapping.reading(from: reported)
+        #expect(reading.health.value == .good)
+        #expect(reading.healthCondition.value == "Check Battery")
+        let silent = MacBatteryMapping.reading(from: description(state: PowerSourceDescription.acPower, charging: false))
+        #expect(silent.health.provenance == .unknown)
+        #expect(silent.healthCondition.provenance == .unknown)
     }
 
     @Test func absentBatteryIsUnavailableNotZero() {
