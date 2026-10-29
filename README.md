@@ -1,5 +1,23 @@
 ## LAST UPDATE RELEASED OCTOBER 16TH 2026 - V2
 
+SpecMatrix V2.1 EXPECTED BEGINNING OF NOVEMBER
+- iPhone Duo Support
+- More Features
+  - Speed Test?
+  - Cellular 
+    - Bars
+    - Quality (5G, 4G, LTE, etc.)
+  - Better Battery Tracking
+  - Debug Mode!
+- Bug Fixes
+- Release Workflow with Actions
+
+SITE AND REPO CHANGES EXPECTED BEGINNING OF NOVEMBER
+- Change to an all round site (all my projects)
+- Adapt README to have badges and more "decor"
+- Document Actions workflow
+
+
 # SpecMatrix
 
 SpecMatrix is an iOS application designed to provide an innovative solution for users. It offers a comprehensive suite of tools to monitor and analyze your device's performance, network, and hardware capabilities, all in one intuitive interface. By providing real-time insights and detailed metrics, SpecMatrix empowers users to better understand and manage their devices.
