@@ -26,7 +26,8 @@ struct MacSpecificationResolverTests {
         #expect(spec.gpuCores.value == 10)
         #expect(spec.neuralEngineCores.value == 16)
         guard case .catalog(_, let reference) = spec.gpuCores else { Issue.record("Expected a catalog value"); return }
-        #expect(reference.catalogVersion == "2026.10.0")
+        let loadedCatalog = try catalog.get()
+        #expect(reference.catalogVersion == loadedCatalog.catalogVersion)
         #expect(reference.sources.allSatisfy { $0.supports.contains(.chip) })
     }
 
